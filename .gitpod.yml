@@ -1,0 +1,7 @@
+tasks:
+  - init: echo "Setup commands here"
+  - command: echo "Start-up commands run after setup"
+  
+  image:
+  file: Dockerfile
+
