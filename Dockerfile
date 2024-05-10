@@ -5,7 +5,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Nextflow
-#RUN curl -s https://get.nextflow.io | bash
+# RUN curl -s https://get.nextflow.io | bash
 #RUN mv nextflow /usr/local/bin/
 
 # Install system dependencies for R, R packages, Git, and sudo

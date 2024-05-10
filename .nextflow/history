@@ -103,3 +103,4 @@
 2024-05-10 04:53:12	6.2s	insane_hopper	ERR	e297b4895bbc8bc843b56c861565ec1c	6b31ea8c-77f2-41e5-93e6-162d052b351b	nextflow run main.nf
 2024-05-10 04:59:12	11s	silly_tesla	ERR	eccd3b9415c3d55186c46bbd39d78209	3630fb93-b7bb-456c-be2d-51fad71dd4e6	nextflow run main.nf
 2024-05-10 05:00:47	2.2s	hungry_raman	ERR	dbc250a0be857de5661e1b9f36610c74	3cd8fe7f-3819-4660-b9c6-3ea8efcbdc18	nextflow run main.nf
+2024-05-10 05:32:50	5.2s	big_mclean	ERR	62226e5c54ddbcf559d945c5f05a65f0	940383d9-03ae-46e8-90ac-9cf80e1a5d46	nextflow run main.nf

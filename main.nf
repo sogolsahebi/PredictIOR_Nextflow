@@ -1,8 +1,8 @@
-#!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
 process ProcessData {
-    container 'nextflow-r-env:latest'
+
+    conda 'base' 
 
     input:
     path rda_file
@@ -12,8 +12,8 @@ process ProcessData {
 
     script:
     """
-    library(SummarizedExperiment)
-    library(dplyr)
+    # Install missing R packages directly from R
+    install.packages(c('survcomp', 'MultiAssayExperiment'), dependencies=TRUE, repos='http://cran.rstudio.com/')
 
     # Load the .rda file and assume it directly loads into 'se'
     load("${rda_file}")
