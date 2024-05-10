@@ -1,146 +1,62 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-process RunRScript {
+process ProcessData {
+    container 'nextflow-r-env:latest'
+
+    input:
+    path rda_file
+
     output:
-    path "*.rda"
+    file "results.csv"
 
     script:
     """
-    Rscript ${baseDir}/R/getSummarizedExperiment.R
+    library(SummarizedExperiment)
+    library(dplyr)
+
+    # Load the .rda file and assume it directly loads into 'se'
+    load("${rda_file}")
+    se <- get(ls()[1])  # Get the first (or the only) object loaded, assumed to be SummarizedExperiment
+
+    # Extract expression data and clinical data
+    expr <- assay(se)
+    clin <- as.data.frame(colData(se))
+
+    # Source your gene survival analysis script
+    source("/workspace/PredictIOR_Nextflow/R/geneSurvCont.R")
+
+    # Apply gene survival analysis
+    cox_os <- lapply(1:100, function(i) {
+      res <- geneSurvCont(dat.icb = expr,
+                          clin = clin,
+                          time.censor = 36,
+                          missing.perc = 0.5,
+                          const.int = 0.001,
+                          n.cutoff = 15,
+                          feature = rownames(expr)[i],
+                          study = "ICB_Ravi__Lung__PD-(L)1",
+                          surv.outcome = "OS",
+                          cancer.type = "Lung",
+                          treatment = "PD-(L)1")
+      
+      if (!is.null(res) && !is.na(res$Coef)) {
+        return(res)
+      } else {
+        return(NULL)
+      }
+    })
+
+    # Filter NULL results and combine
+    cox_os <- do.call(rbind, cox_os[!sapply(cox_os, is.null)])
+    cox_os$FDR <- p.adjust(cox_os$Pval, method = "BH")
+
+    # Save results to CSV file
+    write.csv(cox_os[order(cox_os$FDR, decreasing = FALSE), ], "results.csv", row.names = FALSE)
     """
 }
 
 workflow {
-    RunRScript()
-    output = Channel.fromPath("*.rda")
-    output.collectFile(name: 'results.rda', storeDir: 'results')
+    rdaFile = file("${baseDir}/data/ICB_Wolf__Breast__IO+chemo.rda")
+    ProcessData(rdaFile)
 }
-
-
-
-
-// nextflow.enable.dsl=2
-
-// process RunRScript {
-//     output:
-//     path "*.rda"
-
-//     script:
-//     """
-//     Rscript /workspaces/predictIO-template/R/getSummarizedExperiment.R
-//     """
-// }
-
-// workflow {
-//     RunRScript()
-//     output = Channel.fromPath("*.rda")
-//     output.collectFile(name: 'results.rda', storeDir: '/workspaces/predictIO-template/results')
-// }
-
-
-
-
-// // Define script parameters
-// params.dataDir = './data'
-// params.outDir = './results'
-// params.container = 'bioconductor/bioconductor_docker:RELEASE_3_12'
-
-// log.info """
-//     P R E D I C T I O - N F   P I P E L I N E
-//     ===================================
-//     dataDir       : ${params.dataDir}
-//     outDir        : ${params.outDir}
-//     container     : ${params.container}
-// """
-
-// // Define input data channel
-// Channel
-//     .fromPath("${params.dataDir}/*.rds")
-//     .set { input_data_ch }
-
-// process LoadData {
-//     tag "Loading data"
-//     publishDir "${params.outDir}", mode: 'copy', overwrite: true
-//     container 'bioconductor/bioconductor_docker:RELEASE_3_12'
-//     containerOptions = '-v /mnt/c/Users/sogol/predictIO-template/R:/R'
-
-//     input:
-//     path data_file
-
-//     output:
-//     path "${params.outDir}/${data_file.baseName}.rds"
-
-//     script:
-//     """
-//     # Initialize Conda and install required packages
-//     eval "$(conda shell.bash hook)"
-//     conda install -c conda-forge -c bioconda -y bioconductor-multiassayexperiment
-
-//     # Check for the presence of the R script
-//     echo "Checking R script presence in mounted directory:"
-//     ls -l /R/
-//     Rscript --vanilla /R/getSummarizedExperiment.R $data_file ${data_file.baseName}.rds
-//     """
-// }
-
-
-
-// // Main workflow that orchestrates the execution of the process
-// workflow {
-//     load_data = LoadData(input_data_ch)
-
-//     load_data.view()
-// }
-
-
-
-// TODO: analaysis data.
-// TODO: packages, redable, check : if the data csv file.
-// Main workflow definition that orchestrates the execution of all processes
-
-
-
-
-// // Process to perform meta analysis using getMetaAnalysis.R
-// process PerformMetaAnalysis {
-//     tag "Meta Analysis"
-//     publishDir "${params.outDir}", mode: 'copy', overwrite: true
-//     container params.container
-
-//     input:
-//     path data
-
-//     output:
-//     path 'meta_analysis_results.txt' into meta_analysis_results_ch
-
-//     script:
-//     """
-//     Rscript --vanilla getMetaAnalysis.R $data meta_analysis_results.txt
-//     """
-// }
-
-// // Process to calculate gene signature score using getGeneSigScore.R
-// process CalculateGeneSigScore {
-//     tag "Gene Signature Score"
-//     publishDir "${params.outDir}", mode: 'copy', overwrite: true
-//     container params.container
-
-//     input:
-//     path data
-
-//     output:
-//     path 'gene_sig_score_results.txt' into gene_sig_score_results_ch
-
-//     script:
-//     """
-//     Rscript --vanilla getGeneSigScore.R $data gene_sig_score_results.txt
-//     """
-// }
-
-// // Main workflow definition that orchestrates the execution of all processes
-// workflow {
-//     load_data = LoadData(input_data_ch)
-//     meta_analysis = PerformMetaAnalysis(load_data.out)
-//     gene_sig_score = CalculateGeneSigScore(load_data.out)
-// }

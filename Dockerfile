@@ -5,9 +5,8 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Nextflow
-USER gitpod
-RUN curl -s https://get.nextflow.io | bash && \
-    sudo mv nextflow /usr/local/bin
+#RUN curl -s https://get.nextflow.io | bash
+#RUN mv nextflow /usr/local/bin/
 
 # Install system dependencies for R, R packages, Git, and sudo
 RUN apt-get update && apt-get install -y \
@@ -35,8 +34,5 @@ RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopasswd
 # Set environment variables
 ENV R_HOME /usr/lib/R
 
-# Install specific R packages
-RUN R -e "install.packages('BiocManager', dependencies=TRUE, repos='http://cran.rstudio.com/')" \
-    && R -e "BiocManager::install(c('MultiAssayExperiment', 'SummarizedExperiment'))"
-
-    
+# Install additional R packages
+RUN R -e "install.packages(c('survcomp', 'GSVA', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'summarytools', 'MultiAssayExperiment'), dependencies=TRUE, repos='http://cran.rstudio.com/')"
