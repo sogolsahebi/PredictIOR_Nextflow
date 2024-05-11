@@ -1,0 +1,1 @@
+my_conda_env/Miniconda3-latest-Linux-x86_64.sh filter=lfs diff=lfs merge=lfs -text
