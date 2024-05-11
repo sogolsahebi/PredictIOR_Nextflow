@@ -1,38 +1,38 @@
-# Start from a base image with necessary tools
-FROM ubuntu:20.04
 
-# Avoid prompts from apt by setting this environment variable
-ENV DEBIAN_FRONTEND=noninteractive
+# Start from a Debian base image
+FROM debian:buster
 
-# Install Nextflow
-# RUN curl -s https://get.nextflow.io | bash
-#RUN mv nextflow /usr/local/bin/
-
-# Install system dependencies for R, R packages, Git, and sudo
+# Install system dependencies for R
 RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    dirmngr \
-    gpg-agent \
+    r-base \
+    r-base-dev
+
+# Verify R installation
+RUN R --version
+
+# Start from the official R base image
+FROM r-base:4.3.2
+
+#curl -s https://get.sdkman.io | bash
+#sudo mv nextflow /usr/local/bin
+
+# Install system dependencies for R packages, curl, git, and Java (for Nextflow)
+RUN apt-get update && apt-get install -y \
+    curl \
     git \
-    libcurl4-gnutls-dev \
+    libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
     libfontconfig1-dev \
     libcairo2-dev \
     libxt-dev \
-    sudo \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0x51716619e084dab9 \
-    && add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
-    && apt-get update && apt-get install -y r-base
+    libbz2-dev \
+    liblzma-dev \
+    openjdk-11-jdk  # Installing Java
 
-# Clean up to reduce the image size
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install Nextflow
+RUN curl -s https://get.nextflow.io | bash && \
+    mv nextflow /usr/local/bin/
 
-# Allow passwordless sudo for all users
-RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopasswd
-
-# Set environment variables
-ENV R_HOME /usr/lib/R
-
-# Install additional R packages
-RUN R -e "install.packages(c('survcomp', 'GSVA', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'summarytools', 'MultiAssayExperiment'), dependencies=TRUE, repos='http://cran.rstudio.com/')"
+# Copy the install_packages.R script from your R folder to the /tmp directory in the image
+COPY R/install_packages.R /tmp/

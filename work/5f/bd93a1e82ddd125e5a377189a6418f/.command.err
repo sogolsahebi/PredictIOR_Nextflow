@@ -1,0 +1,136 @@
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_COLLATE failed, using "C" 
+3: Setting LC_TIME failed, using "C" 
+4: Setting LC_MESSAGES failed, using "C" 
+5: Setting LC_MONETARY failed, using "C" 
+6: Setting LC_PAPER failed, using "C" 
+7: Setting LC_MEASUREMENT failed, using "C" 
+
+Attaching package: 'dplyr'
+
+The following object is masked from 'package:kableExtra':
+
+    group_rows
+
+The following objects are masked from 'package:data.table':
+
+    between, first, last
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.19 (BiocManager 1.30.23), R 4.4.0 (2024-04-24)
+Installing package(s) 'MultiAssayExperiment'
+also installing the dependencies 'SparseArray', 'SummarizedExperiment', 'DelayedArray', 'GenomicRanges'
+
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/SparseArray_1.4.3.tar.gz'
+Content type 'application/x-gzip' length 376028 bytes (367 KB)
+==================================================
+downloaded 367 KB
+
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/SummarizedExperiment_1.34.0.tar.gz'
+Content type 'application/x-gzip' length 688177 bytes (672 KB)
+==================================================
+downloaded 672 KB
+
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/DelayedArray_0.30.1.tar.gz'
+Content type 'application/x-gzip' length 634929 bytes (620 KB)
+==================================================
+downloaded 620 KB
+
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/GenomicRanges_1.56.0.tar.gz'
+Content type 'application/x-gzip' length 1140266 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/MultiAssayExperiment_1.30.1.tar.gz'
+Content type 'application/x-gzip' length 1181656 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+5: Setting LC_PAPER failed, using "C" 
+6: Setting LC_MEASUREMENT failed, using "C" 
+ERROR: failed to lock directory '/home/gitpod/R/R-4.3.2-library' for modifying
+Try removing '/home/gitpod/R/R-4.3.2-library/00LOCK-SparseArray'
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+5: Setting LC_PAPER failed, using "C" 
+6: Setting LC_MEASUREMENT failed, using "C" 
+* installing *source* package 'GenomicRanges' ...
+** using staged installation
+** libs
+using C compiler: 'gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0'
+installing to /home/gitpod/R/R-4.3.2-library/00LOCK-GenomicRanges/00new/GenomicRanges/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomicRanges)
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+5: Setting LC_PAPER failed, using "C" 
+6: Setting LC_MEASUREMENT failed, using "C" 
+ERROR: dependency 'SparseArray' is not available for package 'DelayedArray'
+* removing '/home/gitpod/R/R-4.3.2-library/DelayedArray'
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+5: Setting LC_PAPER failed, using "C" 
+6: Setting LC_MEASUREMENT failed, using "C" 
+ERROR: dependency 'DelayedArray' is not available for package 'SummarizedExperiment'
+* removing '/home/gitpod/R/R-4.3.2-library/SummarizedExperiment'
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+5: Setting LC_PAPER failed, using "C" 
+6: Setting LC_MEASUREMENT failed, using "C" 
+ERROR: dependencies 'SummarizedExperiment', 'DelayedArray' are not available for package 'MultiAssayExperiment'
+* removing '/home/gitpod/R/R-4.3.2-library/MultiAssayExperiment'
+
+The downloaded source packages are in
+	'/tmp/RtmpYNbOUm/downloaded_packages'
+Error in library(package, lib.loc = local_lib_path) : 
+  there is no package called 'package'
+Calls: sapply -> lapply -> FUN -> library
+In addition: Warning messages:
+1: In install.packages(...) :
+  installation of package 'SparseArray' had non-zero exit status
+2: In install.packages(...) :
+  installation of package 'DelayedArray' had non-zero exit status
+3: In install.packages(...) :
+  installation of package 'SummarizedExperiment' had non-zero exit status
+4: In install.packages(...) :
+  installation of package 'MultiAssayExperiment' had non-zero exit status
+Execution halted

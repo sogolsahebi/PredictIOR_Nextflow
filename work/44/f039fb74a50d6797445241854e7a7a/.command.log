@@ -1,0 +1,22 @@
+During startup - Warning messages:
+1: Setting LC_CTYPE failed, using "C" 
+2: Setting LC_COLLATE failed, using "C" 
+3: Setting LC_TIME failed, using "C" 
+4: Setting LC_MESSAGES failed, using "C" 
+5: Setting LC_MONETARY failed, using "C" 
+6: Setting LC_PAPER failed, using "C" 
+7: Setting LC_MEASUREMENT failed, using "C" 
+Loading required package: data.table
+Loading required package: kableExtra
+Loading required package: MultiAssayExperiment
+Installing package into '/usr/local/lib/R/site-library'
+(as 'lib' is unspecified)
+Warning in install.packages(pkg, dependencies = TRUE, repos = "http://cran.rstudio.com/") :
+  'lib = "/usr/local/lib/R/site-library"' is not writable
+Error in install.packages(pkg, dependencies = TRUE, repos = "http://cran.rstudio.com/") : 
+  unable to install packages
+Calls: sapply -> lapply -> FUN -> install.packages
+In addition: Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'MultiAssayExperiment'
+Execution halted
