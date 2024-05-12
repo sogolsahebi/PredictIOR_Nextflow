@@ -400,4 +400,3 @@ geneLogReg <- function(dat.icb, clin = NULL, missing.perc, const.int=0.001, n.cu
   return(res)
 
 }
-

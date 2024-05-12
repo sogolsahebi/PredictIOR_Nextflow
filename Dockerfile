@@ -1,38 +1,48 @@
+# Use Rocker/R-ver as the base image
+FROM rocker/r-ver:4.3.2
 
-# Start from a Debian base image
-FROM debian:buster
-
-# Install system dependencies for R
-RUN apt-get update && apt-get install -y \
-    r-base \
-    r-base-dev
-
-# Verify R installation
-RUN R --version
-
-# Start from the official R base image
-FROM r-base:4.3.2
-
-#curl -s https://get.sdkman.io | bash
-#sudo mv nextflow /usr/local/bin
-
-# Install system dependencies for R packages, curl, git, and Java (for Nextflow)
+# Install system dependencies for Nextflow and PostgreSQL
 RUN apt-get update && apt-get install -y \
     curl \
+    unzip \
+    openjdk-11-jre-headless \
     git \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    libxml2-dev \
-    libfontconfig1-dev \
-    libcairo2-dev \
-    libxt-dev \
-    libbz2-dev \
-    liblzma-dev \
-    openjdk-11-jdk  # Installing Java
+    libpq-dev \
+    sudo && \
+    rm -rf /var/lib/apt/lists/*  # This ensures the RUN command remains a single layer
 
 # Install Nextflow
 RUN curl -s https://get.nextflow.io | bash && \
-    mv nextflow /usr/local/bin/
+    mv nextflow /usr/local/bin/ && \
+    chmod +x /usr/local/bin/nextflow
 
-# Copy the install_packages.R script from your R folder to the /tmp directory in the image
-COPY R/install_packages.R /tmp/
+
+# Install R packages and skip errors
+RUN install2.r --error FALSE --deps TRUE \
+    readr \
+    dplyr \
+    meta \
+    metafor \
+    forestplot \
+    ggplot2 \
+    ggrepel \
+    gridExtra \
+    data.table \
+    kableExtra \
+    summarytools || true
+
+# Install BiocManager
+RUN R -e "install.packages('BiocManager', repos = 'http://cran.rstudio.com/')"
+
+# Install Bioconductor packages
+RUN R -e "BiocManager::install(c('GSVA', 'MultiAssayExperiment', 'survcomp', 'SummarizedExperiment'))"
+
+# Set up environment variables
+ENV PATH="/usr/local/bin:$PATH"
+
+# Create and set permissions for R library directory
+RUN mkdir -p /usr/local/lib/R/site-library && \
+    chown -R root:staff /usr/local/lib/R/site-library
+
+# Set up working directories
+WORKDIR /workspace

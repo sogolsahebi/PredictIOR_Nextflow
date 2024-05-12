@@ -1,5 +1,9 @@
+image: sogolsahebi/nextflow-r-env:latest
+
 tasks:
-  - init: echo "Setup commands here"
-  - command: echo "Start-up commands run after setup"
-image:
-  file: Dockerfile
+  - init: echo "R and Nextflow are ready to use!"
+
+ports:
+  - port: 8888
+    onOpen: open-preview
+
