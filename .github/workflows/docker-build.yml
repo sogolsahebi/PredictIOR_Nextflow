@@ -19,8 +19,8 @@ jobs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: sogolsahebi
+        password: Betoche1!
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
@@ -29,3 +29,5 @@ jobs:
         file: Dockerfile
         push: true
         tags: sogolsahebi/nextflow-r-env:latest
+
+
