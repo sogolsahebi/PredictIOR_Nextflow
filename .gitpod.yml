@@ -2,10 +2,15 @@ image: sogolsahebi/nextflow-r-env:latest
 
 tasks:
   - init: echo "Initializing R and Nextflow environment..."
-    command: source ~/.bashrc && echo "R and Nextflow are ready to use!"
+    command: >
+      echo "Checking installations..." &&
+      echo "Nextflow installation and permissions:" &&
+      ls -l /usr/local/bin/nextflow &&
+      nextflow -version &&
+      echo "R version:" &&
+      R --version &&
+      echo "R and Nextflow are ready to use!"
 
 ports:
   - port: 8888
     onOpen: open-preview
-
-

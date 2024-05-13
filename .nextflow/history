@@ -215,3 +215,6 @@
 2024-05-13 04:44:22	25.9s	cheeky_archimedes	OK	cfe7be32870294c11f068bac922323c1	905a0eef-b99c-44d4-a8a4-33249632bf4e	nextflow run main.nf
 2024-05-13 04:46:25	20.3s	intergalactic_waddington	OK	1f4984dad3374a220b4c1ec0eb087100	e364bf27-e1f0-4f4a-a7e7-98aaca1a6dde	nextflow run main.nf
 2024-05-13 04:49:37	16.2s	festering_mirzakhani	OK	a009c024948ede11d3b2b3675779c0d1	5581f686-4ce1-4e34-b659-16fc432d8e3b	nextflow run main.nf
+2024-05-13 13:55:30	-	hungry_babbage	-	890a3c1849f72a086cd72da829d61b34	0f8c931e-1ff1-4cdb-9741-c83c76104f78	nextflow run main.nf
+2024-05-13 13:57:44	17s	boring_ampere	OK	4e52769b1578edf433991dfc0e492fc5	07472400-8880-48f9-8108-a9bb435f32d3	nextflow run main.nf
+2024-05-13 14:06:45	14.9s	special_morse	OK	99ba788d830659d8d78d146cbc542d51	06c8b4d3-4c33-4293-a6af-9593623fd09a	nextflow run main.nf
