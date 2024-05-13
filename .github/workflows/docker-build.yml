@@ -30,4 +30,9 @@ jobs:
         push: true
         tags: sogolsahebi/nextflow-r-env:latest
 
+    
+    #- name: Run commands in Docker container
+    # run: docker run sogolsahebi/nextflow-r-env <command>
+
+
 

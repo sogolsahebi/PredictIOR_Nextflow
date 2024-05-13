@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # Set the default library path for package installations
 .libPaths("~/R/x86_64-pc-linux-gnu-library/4.3")
 

@@ -1,0 +1,89 @@
+Bioconductor version '3.18' is out-of-date; the current release version '3.19'
+  is available with R version '4.4'; see https://bioconductor.org/install
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://p3m.dev/cran/__linux__/jammy/2024-02-28
+Bioconductor version 3.18 (BiocManager 1.30.22), R 4.3.2 (2023-10-31)
+Installing package(s) 'SummarizedExperiment'
+also installing the dependencies ‘XVector’, ‘SparseArray’, ‘GenomicRanges’, ‘DelayedArray’
+
+trying URL 'https://bioconductor.org/packages/3.18/bioc/src/contrib/XVector_0.42.0.tar.gz'
+Content type 'application/x-gzip' length 67825 bytes (66 KB)
+==================================================
+downloaded 66 KB
+
+trying URL 'https://bioconductor.org/packages/3.18/bioc/src/contrib/SparseArray_1.2.4.tar.gz'
+Content type 'application/x-gzip' length 367778 bytes (359 KB)
+==================================================
+downloaded 359 KB
+
+trying URL 'https://bioconductor.org/packages/3.18/bioc/src/contrib/GenomicRanges_1.54.1.tar.gz'
+Content type 'application/x-gzip' length 1140246 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.18/bioc/src/contrib/DelayedArray_0.28.0.tar.gz'
+Content type 'application/x-gzip' length 624166 bytes (609 KB)
+==================================================
+downloaded 609 KB
+
+trying URL 'https://bioconductor.org/packages/3.18/bioc/src/contrib/SummarizedExperiment_1.32.0.tar.gz'
+Content type 'application/x-gzip' length 686052 bytes (669 KB)
+==================================================
+downloaded 669 KB
+
+* installing *source* package ‘XVector’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Ocopy_byteblocks.c -o Ocopy_byteblocks.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c RDS_random_access.c -o RDS_random_access.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c R_init_XVector.c -o R_init_XVector.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c SharedDouble_class.c -o SharedDouble_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c SharedInteger_class.c -o SharedInteger_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c SharedRaw_class.c -o SharedRaw_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c SharedVector_class.c -o SharedVector_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XDouble_class.c -o XDouble_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XInteger_class.c -o XInteger_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XRawList_comparison.c -o XRawList_comparison.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XRaw_class.c -o XRaw_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XVectorList_class.c -o XVectorList_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c XVector_class.c -o XVector_class.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG  -I'/usr/local/lib/R/site-library/S4Vectors/include' -I'/usr/local/lib/R/site-library/IRanges/include' -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c io_utils.c -o io_utils.o
+io_utils.c:16:10: fatal error: zlib.h: No such file or directory
+   16 | #include <zlib.h>
+      |          ^~~~~~~~
+compilation terminated.
+make: *** [/usr/local/lib/R/etc/Makeconf:191: io_utils.o] Error 1
+ERROR: compilation failed for package ‘XVector’
+* removing ‘/usr/local/lib/R/site-library/XVector’
+ERROR: dependency ‘XVector’ is not available for package ‘SparseArray’
+* removing ‘/usr/local/lib/R/site-library/SparseArray’
+ERROR: dependency ‘XVector’ is not available for package ‘GenomicRanges’
+* removing ‘/usr/local/lib/R/site-library/GenomicRanges’
+ERROR: dependency ‘SparseArray’ is not available for package ‘DelayedArray’
+* removing ‘/usr/local/lib/R/site-library/DelayedArray’
+ERROR: dependencies ‘GenomicRanges’, ‘DelayedArray’ are not available for package ‘SummarizedExperiment’
+* removing ‘/usr/local/lib/R/site-library/SummarizedExperiment’
+
+The downloaded source packages are in
+	‘/tmp/Rtmp7zREGQ/downloaded_packages’
+Old packages: 'boot', 'cluster', 'foreign', 'lattice', 'MASS', 'Matrix',
+  'mgcv', 'nlme', 'rpart', 'survival'
+Warning messages:
+1: In install.packages(...) :
+  installation of package ‘XVector’ had non-zero exit status
+2: In install.packages(...) :
+  installation of package ‘SparseArray’ had non-zero exit status
+3: In install.packages(...) :
+  installation of package ‘GenomicRanges’ had non-zero exit status
+4: In install.packages(...) :
+  installation of package ‘DelayedArray’ had non-zero exit status
+5: In install.packages(...) :
+  installation of package ‘SummarizedExperiment’ had non-zero exit status
+Error in library(SummarizedExperiment) : 
+  there is no package called ‘SummarizedExperiment’
+Execution halted

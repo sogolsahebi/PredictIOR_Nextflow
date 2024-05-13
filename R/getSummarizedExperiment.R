@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # Goal: 
 #- Function to convert a MAE to multiple SummarizedExperiments based on all unique treatment types
 
