@@ -1,0 +1,7 @@
+Error: package or namespace load failed for ‘box’:
+ .onAttach failed in attachNamespace() for 'box', details:
+  call: library(box)
+  error: the ‘box’ package is not supposed to be attached!
+
+Please consult the user guide at `vignette("box", package = "box")`.
+Execution halted

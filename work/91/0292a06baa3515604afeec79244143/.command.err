@@ -1,0 +1,4 @@
+Error in box::use(R/getGeneAssociation.R[...]) : 
+  unable to load module “R/getGeneAssociation.R”; not found in “/usr/local/lib/R/site-library/box/mod”, “/workspace/PredictIOR_Nextflow/work/91/0292a06baa3515604afeec79244143”
+Calls: <Anonymous> ... tryCatchList -> tryCatchOne -> <Anonymous> -> rethrow
+Execution halted

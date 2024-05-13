@@ -1,0 +1,4 @@
+Error in box::use("R/getGeneAssociation.R[...]") : 
+  expected a module or package name, got character literal “R/getGeneAssociation.R[...]”
+Calls: <Anonymous> ... tryCatchList -> tryCatchOne -> <Anonymous> -> rethrow
+Execution halted

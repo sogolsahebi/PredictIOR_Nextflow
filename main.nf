@@ -6,6 +6,7 @@ params.data_dir = './data'
 params.out_dir = './output'
 params.rda_file = "${params.data_dir}/${params.study_id}.rda"
 
+
 process LoadAndExtractData {
     container 'nextflow-r-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -33,37 +34,27 @@ process LoadAndExtractData {
 
 process GeneAssociationOs {
     container 'nextflow-r-env:latest'
-    publishDir "${params.out_dir}", mode: 'copy'
-
-    input:
-    tuple path(expr_csv), path(clin_csv)
-    val study_id
 
     output:
-    path("cox_os_results.csv")
+    file 'gene_association_output.txt'
 
     script:
     """
     #!/usr/bin/env Rscript
-    expr <- read.csv("${expr_csv}", row.names = 1)
-    clin <- read.csv("${clin_csv}")
-
-    # Check if the source file can be accessed and the function can be sourced without error
-    box::use("R/getGeneAssociation.R[...]")
-
-
-    # Ensure the split and paste are working as expected
-    study_id_parts <- unlist(strsplit("${study_id}", "__"))
-    print(study_id_parts)
-
-    # Placeholder for actual function call
-    # Insert actual function call here once above checks are confirmed to be correct
+    if (file.exists("R/getGeneAssociation.R")) {
+        source("R/getGeneAssociation.R")
+        message("getGeneAssociation.R sourced successfully.")
+    } else {
+        message("Error: R/getGeneAssociation.R not found.")
+    }
     """
 }
 
+
+
 workflow {
 
-    // Define study parts for use in analysis
+    // Define study parts for use in analysis within the workflow block
     study_id_parts = params.study_id.split("__")
 
     // Entry point for the RDA data file
@@ -73,6 +64,6 @@ workflow {
     LoadAndExtractData(icb_dat)
 
     // Use extracted data to analyze gene survival associations
-    GeneAssociationOs(LoadAndExtractData.out, params.study_id)
-
+    GeneAssociationOs(LoadAndExtractData.out, params.study_id, study_id_parts)
 }
+

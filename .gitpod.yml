@@ -1,15 +1,12 @@
 image: sogolsahebi/nextflow-r-env:latest
 
 tasks:
-  - init: echo "Initializing R and Nextflow environment..."
-    command: >
-      echo "Checking installations..." &&
-      echo "Nextflow installation and permissions:" &&
-      ls -l /usr/local/bin/nextflow &&
-      nextflow -version &&
-      echo "R version:" &&
-      R --version &&
-      echo "R and Nextflow are ready to use!"
+  - name: Install Nextflow
+    command: |
+      curl -s https://get.nextflow.io | bash
+      mkdir -p ~/bin
+      mv nextflow ~/bin/
+      echo "export PATH=\"$HOME/bin:\$PATH\"" >> ~/.bashrc
 
 ports:
   - port: 8888

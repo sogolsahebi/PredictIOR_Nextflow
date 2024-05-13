@@ -68,3 +68,12 @@ RUN mkdir -p /usr/local/lib/R/site-library && \
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
 
+# Copy R scripts into the Docker image
+COPY ./R /PredictIOR_Nextflow/R
+
+# Expose any necessary ports, for example, if your app has a web server
+# EXPOSE 8080
+
+# Command to run on container start
+CMD ["R"]
+
