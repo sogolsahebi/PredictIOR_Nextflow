@@ -6,7 +6,6 @@ params.data_dir = './data'
 params.out_dir = './output'
 params.rda_file = "${params.data_dir}/${params.study_id}.rda"
 
-// Load RDA data, extract expression and clinical data, and write to CSV files.
 process LoadAndExtractData {
     container 'nextflow-r-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -19,7 +18,7 @@ process LoadAndExtractData {
 
     script:
     """
-    #! /usr/bin/env Rscript
+    #!/usr/bin/env Rscript
     library(SummarizedExperiment)
 
     load("${rda_file}")
@@ -32,15 +31,48 @@ process LoadAndExtractData {
     """
 }
 
+process GeneAssociationOs {
+    container 'nextflow-r-env:latest'
+    publishDir "${params.out_dir}", mode: 'copy'
+
+    input:
+    tuple path(expr_csv), path(clin_csv)
+    val study_id
+
+    output:
+    path("cox_os_results.csv")
+
+    script:
+    """
+    #!/usr/bin/env Rscript
+    expr <- read.csv("${expr_csv}", row.names = 1)
+    clin <- read.csv("${clin_csv}")
+
+    # Check if the source file can be accessed and the function can be sourced without error
+    box::use("R/getGeneAssociation.R[...]")
 
 
+    # Ensure the split and paste are working as expected
+    study_id_parts <- unlist(strsplit("${study_id}", "__"))
+    print(study_id_parts)
+
+    # Placeholder for actual function call
+    # Insert actual function call here once above checks are confirmed to be correct
+    """
+}
 
 workflow {
-    // load rda file and extact clin and expr
+
+    // Define study parts for use in analysis
+    study_id_parts = params.study_id.split("__")
+
+    // Entry point for the RDA data file
     icb_dat = file(params.rda_file)
+
+    // Load RDA data and extract expression and clinical data to CSV files
     LoadAndExtractData(icb_dat)
 
-    //
-
+    // Use extracted data to analyze gene survival associations
+    GeneAssociationOs(LoadAndExtractData.out, params.study_id)
 
 }

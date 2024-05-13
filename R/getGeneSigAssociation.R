@@ -1,128 +1,13 @@
 #!/usr/bin/env Rscript
 
-#########################################################################
-#########################################################################
+##########################################################################
+##########################################################################
 ## Get gene association (as continuous) with survival outcome (OS/PFS)
-#########################################################################
-#########################################################################
+##########################################################################
+##########################################################################
 
-
-geneSigSurvCont <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutoff, study, surv.outcome, sig.name, cancer.type, treatment){
-
-         if( !class(dat.icb) %in% c("SummarizedExperiment", "MultiAssayExperiment", "data.frame", "matrix") ){
-           stop(message("function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data"))
-            }
-
-        if( class(dat.icb) == "MultiAssayExperiment"){
-          dat <- createSE(dat.icb)
-          dat_expr <- assay(dat)
-          dat_clin <- colData(dat)
-          }
-
-       if( class(dat.icb) == "SummarizedExperiment"){
-         dat_expr <- assay(dat.icb)
-         dat_clin <- colData(dat.icb)
-        }
-
-       if( sum(nrow(clin)) > 0  ){
-
-        dat_expr <- dat.icb
-        dat_clin <- clin
-
-       }
-
-        #cancer_type <- names( table( dat_clin$cancer_type )[ table( dat_clin$cancer_type ) >= n.cutoff ] )
-
-        #message(paste(study, cancer_type, sep="/"))
-
-        ## association with OS
-        if( surv.outcome == "OS"){
-
-          if( length( dat_clin$event_occurred_os[ !is.na( dat_clin$event_occurred_os ) ] ) >= n.cutoff ){
-
-              cox <- survCont( surv = dat_clin$event_occurred_os ,
-                               time = dat_clin$survival_time_os ,
-                               time.censor = time.censor ,
-                               var = geneSig)
-
-              res <- data.frame( Outcome = "OS",
-                          Gene = sig.name,
-                          Study = study,
-                          Coef = round(cox["HR"], 3),
-                          SE = round(cox["SE"], 3),
-                          N = cox["N"],
-                          Pval = cox["Pval"],
-                          Cancer_type = cancer.type,
-                          Treatment = treatment)
-
-          }else{  res <- data.frame( Outcome = "OS",
-                                     Gene = sig.name,
-                                     Study = study,
-                                     Coef = NA,
-                                     SE = NA,
-                                     N = NA,
-                                     Pval = NA,
-                                     Cancer_type = NA,
-                                     Treatment = NA)
-
-          message("lack of number of samples with known immunotherapy survival outcome")
-
-          }
-
-        }
-
-        ## association with PFS
-        if( surv.outcome == "PFS"){
-
-          if( length( dat_clin$event_occurred_pfs[ !is.na( dat_clin$event_occurred_pfs ) ] ) >= n.cutoff ){
-
-            cox <- survCont( surv = dat_clin$event_occurred_pfs ,
-                             time = dat_clin$survival_time_pfs ,
-                             time.censor = time.censor ,
-                             var = geneSig )
-
-            res <- data.frame( Outcome = "PFS",
-                               Gene = sig.name,
-                               Study = study,
-                               Coef = round(cox["HR"], 3),
-                               SE = round(cox["SE"], 3),
-                               N = cox["N"],
-                               Pval = cox["Pval"],
-                               Cancer_type = cancer.type,
-                               Treatment = treatment)
-
-          }else{  res <- data.frame( Outcome = "PFS",
-                                     Gene = sig.name,
-                                     Study = study,
-                                     Coef = NA,
-                                     SE = NA,
-                                     N = NA,
-                                     Pval = NA,
-                                     Cancer_type = NA,
-                                     Treatment = NA)
-
-          message("lack of number of samples with known immunotherapy survival outcome")
-
-          }
-
-        }
-
-
-
-
-  return(res)
-}
-
-
-
-#########################################################################
-#########################################################################
-## Get gene association (as binary) with survival outcome (OS/PFS)
-#########################################################################
-#########################################################################
-
-geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutoff, n0.cutoff, n1.cutoff, study, surv.outcome, sig.name,
-                             method = "median", var.type, cancer.type, treatment){
+geneSurvCont <- function(dat.icb, clin = NULL, time.censor, missing.perc, const.int=0.001,
+                         n.cutoff, feature, study, surv.outcome, cancer.type, treatment){
 
   if( !class(dat.icb) %in% c("SummarizedExperiment", "MultiAssayExperiment", "data.frame", "matrix") ){
     stop(message("function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data"))
@@ -148,34 +33,51 @@ geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutof
 
   #cancer_type <- names( table( dat_clin$cancer_type )[ table( dat_clin$cancer_type ) >= n.cutoff ] )
 
-  #message(paste(study, cancer_type, sep="/"))
+  #message(paste(study))
+
+  #data <- dat_expr[ , dat_clin$cancer_type %in% cancer_type ]
+  data <- dat_expr
+  remove <- rem(data, missing.perc, const.int)
+
+  if( length(remove) ){
+    data <- data[-remove,]
+  }
+
+  data <- as.matrix( data[ rownames(data) %in% feature , ] )
 
   ## association with OS
-  if( surv.outcome == "OS"){
+  if( surv.outcome == "OS" ){
 
-    if( length( dat_clin$event_occurred_os[ !is.na( dat_clin$event_occurred_os ) ] ) >= n.cutoff ){
+    if( nrow(data) & length( dat_clin$event_occurred_os[ !is.na( dat_clin$event_occurred_os ) ] ) >= n.cutoff ){
 
-      cox <- survDicho( surv = dat_clin$event_occurred_os ,
-                        time = dat_clin$survival_time_os ,
-                        time.censor = time.censor ,
-                        var = geneSig,
-                        n0.cutoff = n0.cutoff,
-                        n1.cutoff = n1.cutoff,
-                        method = method,
-                        var.type = var.type)
+      res <- lapply(1:nrow(data), function(k){
 
-      res <- data.frame( Outcome = "OS",
-                         Gene = sig.name,
-                         Study = study,
-                         Coef = round(cox["HR"], 3),
-                         SE = round(cox["SE"], 3),
-                         N = cox["N"],
-                         Pval = cox["Pval"],
-                         Cancer_type = cancer.type,
-                         Treatment = treatment)
+        g <- as.numeric( scale( data[k , ] ) )
+        names( g ) <- colnames( data )
+
+        cox <- survCont( surv = dat_clin$event_occurred_os ,
+                         time = dat_clin$survival_time_os ,
+                         time.censor = time.censor ,
+                         var = g )
+
+        data.frame( Outcome = "OS",
+                    Gene = rownames(data)[k],
+                    Study = study,
+                    Coef = cox["HR"],
+                    SE = cox["SE"],
+                    N = cox["N"],
+                    Pval = cox["Pval"],
+                    Cancer_type = cancer.type,
+                    Treatment = treatment)
+
+      })
+
+      res <- do.call(rbind, res)
+      rownames(res) <- NULL
+      # res$FDR <- p.adjust(res$Pval, method = "BH")
 
     }else{  res <- data.frame( Outcome = "OS",
-                               Gene = sig.name,
+                               Gene = NA,
                                Study = study,
                                Coef = NA,
                                SE = NA,
@@ -184,7 +86,7 @@ geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutof
                                Cancer_type = NA,
                                Treatment = NA)
 
-    message("lack of number of samples with known immunotherapy survival outcome")
+    message("lack of number of samples and/or genes with known immunotherapy survival outcome")
 
     }
 
@@ -193,29 +95,37 @@ geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutof
   ## association with PFS
   if( surv.outcome == "PFS"){
 
-    if( length( dat_clin$event_occurred_pfs[ !is.na( dat_clin$event_occurred_pfs ) ] ) >= n.cutoff ){
 
-      cox <- survDicho( surv = dat_clin$event_occurred_pfs ,
-                        time = dat_clin$survival_time_pfs ,
-                        time.censor = time.censor ,
-                        var = geneSig,
-                        n0.cutoff = n0.cutoff,
-                        n1.cutoff = n1.cutoff,
-                        method = method,
-                        var.type = var.type)
+    if( nrow(data) & length( dat_clin$event_occurred_pfs[ !is.na( dat_clin$event_occurred_pfs ) ] ) >= n.cutoff ){
 
-      res <- data.frame( Outcome = "PFS",
-                         Gene = sig.name,
-                         Study = study,
-                         Coef = round(cox["HR"], 3),
-                         SE = round(cox["SE"], 3),
-                         N = cox["N"],
-                         Pval = cox["Pval"],
-                         Cancer_type = cancer.type,
-                         Treatment = treatment)
+      res <- lapply(1:nrow(data), function(k){
+
+        g <- as.numeric( scale( data[k , ] ) )
+        names( g ) <- colnames( data )
+
+        cox <- survCont( surv = dat_clin$event_occurred_pfs ,
+                         time = dat_clin$survival_time_pfs ,
+                         time.censor = time.censor ,
+                         var = g )
+
+        data.frame( Outcome = "PFS",
+                    Gene = rownames(data)[k],
+                    Study = study,
+                    Coef = cox["HR"],
+                    SE = cox["SE"],
+                    N = cox["N"],
+                    Pval = cox["Pval"],
+                    Cancer_type = cancer.type,
+                    Treatment = treatment)
+
+      })
+
+      res <- do.call(rbind, res)
+      rownames(res) <- NULL
+      # res$FDR <- p.adjust(res$Pval, method = "BH")
 
     }else{  res <- data.frame( Outcome = "PFS",
-                               Gene = sig.name,
+                               Gene = NA,
                                Study = study,
                                Coef = NA,
                                SE = NA,
@@ -224,7 +134,7 @@ geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutof
                                Cancer_type = NA,
                                Treatment = NA)
 
-    message("lack of number of samples with known immunotherapy survival outcome")
+    message("lack of number of samples and/or genes with known immunotherapy survival outcome")
 
     }
 
@@ -233,63 +143,96 @@ geneSigSurvDicho <- function(dat.icb, clin = NULL, geneSig, time.censor, n.cutof
   return(res)
 }
 
-#####################################################################
-#####################################################################
-## Get gene association (as continuous) with response (R vs NR)
-#####################################################################
-#####################################################################
-# n1.cutoff: cutoff for NR (== 1) samples
-# n0.cutoff: cutoff for R (== 0) samples
 
-geneSigLogReg <- function(dat.icb, clin = NULL, geneSig, n.cutoff, study, sig.name, n0.cutoff, n1.cutoff, cancer.type, treatment){
+##########################################################################
+##########################################################################
+## Get gene association (as continuous) with survival outcome (OS/PFS)
+##########################################################################
+##########################################################################
 
-      if( !class(dat.icb) %in% c("SummarizedExperiment", "MultiAssayExperiment", "data.frame", "matrix") ){
-          stop(message("function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data"))
-        }
+geneSurvDicho <- function(dat.icb, clin = NULL, time.censor, missing.perc, const.int=0.001, n.cutoff, feature,
+                          study, surv.outcome, n0.cutoff, n1.cutoff, method = "median", var.type, cancer.type, treatment){
 
-       if( class(dat.icb) == "MultiAssayExperiment"){
-         dat <- createSE(dat.icb)
-         dat_expr <- assay(dat)
-         dat_clin <- colData(dat)
-        }
+  if( !class(dat.icb) %in% c("SummarizedExperiment", "MultiAssayExperiment", "matrix", "data.frame") ){
 
-      if( class(dat.icb) == "SummarizedExperiment"){
-        dat_expr <- assay(dat.icb)
-        dat_clin <- colData(dat.icb)
-       }
+    stop(message("function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data"))
 
-     if( sum(nrow(clin)) > 0  ){
+  }
 
-       dat_expr <- dat.icb
-       dat_clin <- clin
-
-     }
-
-    #cancer_type <- names( table( dat_clin$cancer_type )[ table( dat_clin$cancer_type ) >= n.cutoff ] )
-    #message(paste(study, cancer_type, sep="/"))
-
-    if( length(dat_clin$response) >= n.cutoff &
-        sum(dat_clin$response == "NR", na.rm = TRUE) >= n1.cutoff &
-        sum(dat_clin$response == "R", na.rm = TRUE) >= n0.cutoff ){
-
-        x <- ifelse( dat_clin$response %in% "R" , 0 ,
-                     ifelse( dat_clin$response %in% "NR" , 1 , NA ) )
-
-          fit <- glm( x ~ geneSig , family=binomial( link="logit" ) )
-
-          res <- data.frame( Outcome = "R vs NR",
-                             Gene = sig.name,
-                             Study = study,
-                             Coef = round( summary(fit)$coefficients[ "geneSig" , "Estimate"  ] , 3 ),
-                             SE = round( summary(fit)$coefficients[ "geneSig" , "Std. Error" ] , 3 ),
-                             N = length(x[!is.na(x)]),
-                             Pval = summary(fit)$coefficients[ "geneSig" , "Pr(>|z|)" ],
-                             Cancer_type = cancer.type,
-                             Treatment = treatment)
+  if( class(dat.icb) == "MultiAssayExperiment"){
 
 
-    }else{  res <- data.frame( Outcome = "R vs NR",
-                               Gene = sig.name,
+    dat <- createSE(dat.icb)
+    dat_expr <- assay(dat)
+    dat_clin <- colData(dat)
+
+  }
+
+  if( class(dat.icb) == "SummarizedExperiment"){
+
+    dat_expr <- assay(dat.icb)
+    dat_clin <- colData(dat.icb)
+
+  }
+
+  if( sum(nrow(clin)) > 0  ){
+
+    dat_expr <- dat.icb
+    dat_clin <- clin
+
+  }
+
+  #cancer_type <- names( table( dat_clin$cancer_type )[ table( dat_clin$cancer_type ) >= n.cutoff ] )
+
+  #message(paste(study, cancer_type, sep="/"))
+
+  #data <- dat_expr[ , dat_clin$cancer_type %in% cancer_type]
+  data <- dat_expr
+  remove <- rem(data, missing.perc, const.int)
+
+  if( length(remove) ){
+    data <- data[-remove,]
+  }
+
+  data <- as.matrix( data[ rownames(data) %in% feature , ] )
+
+  ## association with OS
+  if( surv.outcome == "OS"){
+
+    if( nrow(data) &  length( dat_clin$event_occurred_os[ !is.na( dat_clin$event_occurred_os ) ] ) >= n.cutoff ){
+
+      res <- lapply(1:nrow(data), function(k){
+
+        g <- as.numeric( scale( data[k , ] ) )
+        names( g ) <- colnames( data )
+
+        cox <- survDicho( surv = dat_clin$event_occurred_os ,
+                          time = dat_clin$survival_time_os ,
+                          time.censor = time.censor ,
+                          var = g,
+                          n0.cutoff = n0.cutoff,
+                          n1.cutoff = n1.cutoff,
+                          method = method,
+                          var.type = var.type)
+
+        data.frame( Outcome = "OS",
+                    Gene = rownames(data)[k],
+                    Study = study,
+                    Coef = cox["HR"],
+                    SE = cox["SE"],
+                    N = cox["N"],
+                    Pval = cox["Pval"],
+                    Cancer_type = cancer.type,
+                    Treatment = treatment)
+
+      })
+
+      res <- do.call(rbind, res)
+      rownames(res) <- NULL
+      #  res$FDR <- p.adjust(res$Pval, method = "BH")
+
+    }else{  res <- data.frame( Outcome = "OS",
+                               Gene = NA,
                                Study = study,
                                Coef = NA,
                                SE = NA,
@@ -298,11 +241,164 @@ geneSigLogReg <- function(dat.icb, clin = NULL, geneSig, n.cutoff, study, sig.na
                                Cancer_type = NA,
                                Treatment = NA)
 
-    message("lack of number of samples with known immunotherapy response outcome")
+    message("lack of number of samples and/or genes with known immunotherapy survival outcome")
 
     }
+
+  }
+
+  ## association with PFS
+  if( surv.outcome == "PFS"){
+
+
+    if( nrow(data) & length( dat_clin$event_occurred_pfs[ !is.na( dat_clin$event_occurred_pfs  ) ] ) >= n.cutoff ){
+
+      res <- lapply(1:nrow(data), function(k){
+
+        g <- as.numeric( scale( data[k , ] ) )
+        names( g ) <- colnames( data )
+
+        cox <- survDicho( surv = dat_clin$event_occurred_pfs ,
+                          time = dat_clin$survival_time_pfs ,
+                          time.censor= time.censor ,
+                          var = g,
+                          n0.cutoff = n0.cutoff,
+                          n1.cutoff = n1.cutoff,
+                          method = method,
+                          var.type = var.type)
+
+        data.frame( Outcome = "PFS",
+                    Gene = rownames(data)[k],
+                    Study = study,
+                    Coef = cox["HR"],
+                    SE = cox["SE"],
+                    N = cox["N"],
+                    Pval = cox["Pval"],
+                    Cancer_type = cancer.type,
+                    Treatment = treatment)
+
+      })
+
+      res <- do.call(rbind, res)
+      rownames(res) <- NULL
+      # res$FDR <- p.adjust(res$Pval, method = "BH")
+
+    }else{  res <- data.frame( Outcome = "PFS",
+                               Gene = NA,
+                               Study = study,
+                               Coef = NA,
+                               SE = NA,
+                               N = NA,
+                               Pval = NA,
+                               Cancer_type = NA,
+                               Treatment = NA)
+
+    message("lack of number of samples and/or genes with known immunotherapy survival outcome")
+
+    }
+
+  }
+
+  return(res)
+}
+
+#################################################################
+#################################################################
+## Get gene association (as continuous) with response (R vs NR)
+#################################################################
+#################################################################
+# n1.cutoff: cutoff for NR (== 1) samples
+# n0.cutoff: cutoff for R (== 0) samples
+
+geneLogReg <- function(dat.icb, clin = NULL, missing.perc, const.int=0.001, n.cutoff, feature, study,
+                       n0.cutoff, n1.cutoff, cancer.type, treatment){
+
+  if( !class(dat.icb) %in% c("SummarizedExperiment", "MultiAssayExperiment", "matrix", "data.frame") ){
+
+    stop(message("function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data"))
+
+  }
+
+  if( class(dat.icb) == "MultiAssayExperiment"){
+
+    dat <- createSE(dat.icb)
+    dat_expr <- assay(dat)
+    dat_clin <- colData(dat)
+
+  }
+
+  if( class(dat.icb) == "SummarizedExperiment"){
+
+    dat_expr <- assay(dat.icb)
+    dat_clin <- colData(dat.icb)
+
+  }
+
+  if( sum(nrow(clin)) > 0  ){
+
+    dat_expr <- dat.icb
+    dat_clin <- clin
+
+  }
+
+  #cancer_type <- names( table( dat_clin$cancer_type )[ table( dat_clin$cancer_type ) >= n.cutoff ] )
+
+  #message(paste(study, cancer_type, sep="/"))
+
+  #data <- dat_expr[ , dat_clin$cancer_type %in% cancer_type]
+  data <- dat_expr
+  remove <- rem(data, missing.perc, const.int)
+
+  if( length(remove) ){
+    data <- data[-remove,]
+  }
+
+  data <- as.matrix( data[ rownames(data) %in% feature , ] )
+
+  if( nrow(data) & length(dat_clin$response) >= n.cutoff &
+      sum(dat_clin$response == "NR", na.rm = TRUE) >= n1.cutoff &
+      sum(dat_clin$response == "R", na.rm = TRUE) >= n0.cutoff ){
+
+    res <- lapply(1:nrow(data), function(k){
+
+      g <- as.numeric( scale( data[k , ] ) )
+      names( g ) <- colnames( data )
+
+      x <- ifelse( dat_clin$response %in% "R" , 0 ,
+                   ifelse( dat_clin$response %in% "NR" , 1 , NA ) )
+
+      fit <- glm( x ~ g , family=binomial( link="logit" ) )
+
+      data.frame( Outcome = "R vs NR",
+                  Gene = rownames(data)[k],
+                  Study = study,
+                  Coef = round( summary(fit)$coefficients[ "g" , "Estimate"  ] , 3 ),
+                  SE = round( summary(fit)$coefficients[ "g" , "Std. Error" ] , 3 ),
+                  N = length(x[!is.na(x)]),
+                  Pval = summary(fit)$coefficients[ "g" , "Pr(>|z|)" ],
+                  Cancer_type = cancer.type,
+                  Treatment = treatment)
+
+    })
+
+    res <- do.call(rbind, res)
+    rownames(res) <- NULL
+    #  res$FDR <- p.adjust(res$Pval, method = "BH")
+
+  }else{  res <- data.frame( Outcome = "R vs NR",
+                             Gene = NA,
+                             Study = study,
+                             Coef = NA,
+                             SE = NA,
+                             N = NA,
+                             Pval = NA,
+                             Cancer_type = NA,
+                             Treatment = NA)
+
+  message("lack of number of samples and/or genes with known immunotherapy survival outcome")
+
+  }
 
   return(res)
 
 }
-

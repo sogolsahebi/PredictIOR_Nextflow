@@ -52,7 +52,8 @@ RUN R -e "BiocManager::install('SummarizedExperiment')"
 
 # RUN R -e "install.packages('BiocManager'); BiocManager::install(c('GSVA', 'MultiAssayExperiment', 'survcomp', 'SummarizedExperiment'))"
 
-# SummarizedExperiment, MultiAssayExperiment , summarytools
+# Install the 'box' package from R-universe
+RUN R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')"
 
 # Verify R installation
 RUN which R
