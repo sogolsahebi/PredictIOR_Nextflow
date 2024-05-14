@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     git \
     libpq-dev \
     sudo && \
-    rm -rf /var/lib/apt/lists/*  # This ensures the RUN command remains a single layer
+    rm -rf /var/lib/apt/lists/*  
 
 # Install Nextflow
 RUN curl -s https://get.nextflow.io | bash && \
@@ -18,24 +18,8 @@ RUN curl -s https://get.nextflow.io | bash && \
 
 # Verify Nextflow installation
 RUN which nextflow
-# sudo mv nextflow /usr/local/bin
 
-
-# Install R packages and skip errors
-RUN install2.r --error FALSE --deps TRUE \
-    readr \
-    dplyr \
-    meta \
-    metafor \
-    forestplot \
-    ggplot2 \
-    ggrepel \
-    gridExtra \
-    data.table \
-    kableExtra \
-    summarytools || true
-
-# Install necessary system dependencies
+# Install necessary system dependencies for R packages
 RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
     libssl-dev \
@@ -46,11 +30,14 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     zlib1g-dev
 
-# Install Bioconductor packages
-RUN R -e "install.packages('BiocManager', dependencies=TRUE)"
-RUN R -e "BiocManager::install('SummarizedExperiment')"
+# Install R packages and skip errors
+RUN R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra'), dependencies=TRUE)"
 
-# RUN R -e "install.packages('BiocManager'); BiocManager::install(c('GSVA', 'MultiAssayExperiment', 'survcomp', 'SummarizedExperiment'))"
+# Install Bioconductor packages
+RUN R -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager', repos='http://cran.rstudio.com/'); BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp'))"
+
+# Other necessary packages
+RUN R -e "install.packages(c('survival', 'prodlim'), repos='http://cran.rstudio.com/')"
 
 # Install the 'box' package from R-universe
 RUN R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')"
@@ -68,12 +55,8 @@ RUN mkdir -p /usr/local/lib/R/site-library && \
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
 
-# Copy R scripts into the Docker image
-COPY ./R /PredictIOR_Nextflow/R
+# Copy your project files into the Docker image
+COPY . /PredictIOR_Nextflow
 
-# Expose any necessary ports, for example, if your app has a web server
-# EXPOSE 8080
-
-# Command to run on container start
-CMD ["R"]
-
+# Set the entrypoint
+ENTRYPOINT ["bash"]

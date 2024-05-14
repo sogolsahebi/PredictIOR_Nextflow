@@ -269,3 +269,19 @@
 2024-05-13 17:58:42	-	festering_goldwasser	-	197611f33ce692df1eec2165e8319bd4	bb3e90a2-79a8-421c-a3ad-1127098766ed	nextflow run main.nf
 2024-05-13 17:59:27	-	nauseous_bose	-	08f054e48da70126118f8cdafad98bc5	0caedd3e-5918-4257-806d-eccce63b60ee	nextflow run main.nf
 2024-05-13 18:00:41	23.5s	shrivelled_hypatia	ERR	43421e41121ebba552d6be6c80b47769	ebab7966-9c5c-4d09-baca-8607d62df49f	nextflow run main.nf
+2024-05-13 19:37:33	20.5s	zen_crick	OK	ccb3b27612d9f0308d05d9cbf31b355a	2fcc8490-f9c0-4fcd-bb1c-c03ebb5fa17e	nextflow run main.nf
+2024-05-13 19:43:17	-	stupefied_lorenz	-	638ffab588b9d9bd101720f9ae40a755	4fcdd1e3-b9c3-49ce-bb9c-41472c94f085	nextflow run main.nf
+2024-05-13 20:05:45	26.8s	lethal_cray	ERR	b398a77bea400b5dbfe7e486d9b8ae71	526c71dc-0fa8-4e5e-86e5-8f6924280d0e	nextflow run main.nf
+2024-05-13 20:09:55	-	lonely_booth	-	90bd77dac5d69815eb9bb521738f19cf	2461a432-ca0b-482e-94e4-0efb28dcd797	nextflow run main.nf
+2024-05-13 20:10:44	11.3s	stupefied_solvay	ERR	8932260a253b7580a3d9af2a0f6bfbe2	548b7616-02da-4d33-a0ab-a90f4a353098	nextflow run main.nf
+2024-05-13 20:12:34	9.7s	gloomy_brazil	ERR	91a1f549e6fa35620c7464ba2d82bdc3	f29b258f-5e09-452a-83a6-4872432942a7	nextflow run main.nf
+2024-05-13 20:17:49	9.7s	clever_mestorf	ERR	cf84b1f5e0c34e2111af1f41b90e50e6	2cd69935-455a-437b-8cd3-408a4eecc340	nextflow run main.nf
+2024-05-13 20:22:47	8.9s	tiny_planck	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	62731e90-9d29-4911-9a8d-1de4a9169323	nextflow run main.nf
+2024-05-13 20:29:40	9.2s	tender_majorana	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	5c2cdcd8-9fb1-4ac4-b8eb-2983aa7854c7	nextflow run main.nf
+2024-05-13 20:36:47	9.1s	angry_faraday	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	80cab3f9-55f9-4f0a-8616-ee9fc968614f	nextflow run main.nf
+2024-05-13 20:39:32	9.4s	sharp_ekeblad	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	3868b1e3-d4ed-44d8-8ff0-4bd5242a0902	nextflow run main.nf
+2024-05-13 20:56:17	11.4s	infallible_mcclintock	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	a8c44981-4f5c-466e-b9b6-80db673ab7d9	nextflow run main.nf
+2024-05-13 21:02:35	10.2s	berserk_kowalevski	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	fb081dc6-206c-4717-9fe0-ed8dae956122	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
+2024-05-13 21:03:40	14.8s	small_hopper	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	bf211a39-d1d5-44b2-a0d0-5c1071704714	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
+2024-05-13 21:04:34	15.6s	romantic_almeida	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	6a47a1e7-c49b-4cf6-afe1-697d42bc773c	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
+2024-05-13 21:05:44	11.8s	big_davinci	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	69720b05-deb9-46da-94d8-dc779f8324bd	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'

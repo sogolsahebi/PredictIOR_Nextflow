@@ -1,83 +1,179 @@
-May-13 17:57:24.894 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
-May-13 17:57:25.514 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.10.1
-May-13 17:57:25.605 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.1.4,nf-azure@1.3.3,nf-cloudcache@0.3.0,nf-codecommit@0.1.5,nf-console@1.0.6,nf-ga4gh@1.1.0,nf-google@1.8.3,nf-tower@1.6.3,nf-wave@1.0.1
-May-13 17:57:25.619 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-May-13 17:57:25.620 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-May-13 17:57:25.625 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-May-13 17:57:25.692 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-May-13 17:57:25.717 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
-May-13 17:57:25.719 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
-May-13 17:57:25.805 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-May-13 17:57:27.027 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declararion
-May-13 17:57:27.108 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [naughty_wing] DSL2 - revision: 22935d2a2d
-May-13 17:57:27.109 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-May-13 17:57:27.109 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-May-13 17:57:27.119 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
-May-13 17:57:27.123 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@21da4b5f] - activable => nextflow.secret.LocalSecretsProvider@21da4b5f
-May-13 17:57:27.235 [main] DEBUG nextflow.Session - Session UUID: 5e8e1ee2-fd79-42ab-ba68-13d78db85867
-May-13 17:57:27.235 [main] DEBUG nextflow.Session - Run name: naughty_wing
-May-13 17:57:27.236 [main] DEBUG nextflow.Session - Executor pool size: 16
-May-13 17:57:27.244 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-May-13 17:57:27.250 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-May-13 17:57:27.309 [main] DEBUG nextflow.cli.CmdRun - 
+May-13 20:56:13.757 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+May-13 20:56:14.355 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.10.1
+May-13 20:56:14.381 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.1.4,nf-azure@1.3.3,nf-cloudcache@0.3.0,nf-codecommit@0.1.5,nf-console@1.0.6,nf-ga4gh@1.1.0,nf-google@1.8.3,nf-tower@1.6.3,nf-wave@1.0.1
+May-13 20:56:14.456 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-13 20:56:14.458 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-13 20:56:14.462 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+May-13 20:56:14.479 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-13 20:56:14.569 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
+May-13 20:56:14.570 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
+May-13 20:56:14.662 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+May-13 20:56:17.292 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declararion
+May-13 20:56:17.313 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [infallible_mcclintock] DSL2 - revision: 9d99e8396c
+May-13 20:56:17.314 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-13 20:56:17.314 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-13 20:56:17.359 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
+May-13 20:56:17.364 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@551e4c6d] - activable => nextflow.secret.LocalSecretsProvider@551e4c6d
+May-13 20:56:17.483 [main] DEBUG nextflow.Session - Session UUID: a8c44981-4f5c-466e-b9b6-80db673ab7d9
+May-13 20:56:17.484 [main] DEBUG nextflow.Session - Run name: infallible_mcclintock
+May-13 20:56:17.485 [main] DEBUG nextflow.Session - Executor pool size: 16
+May-13 20:56:17.494 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+May-13 20:56:17.498 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-13 20:56:17.579 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 23.10.1 build 5891
   Created: 12-01-2024 22:01 UTC 
   System: Linux 6.1.75-060175-generic
   Runtime: Groovy 3.0.19 on OpenJDK 64-Bit Server VM 11.0.23+9-LTS
   Encoding: UTF-8 (UTF-8)
-  Process: 51680@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
-  CPUs: 16 - Mem: 62.8 GB (15.5 GB) - Swap: 375 GB (374.6 GB)
-May-13 17:57:27.333 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
-May-13 17:57:27.334 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
-May-13 17:57:27.394 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-May-13 17:57:27.414 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-May-13 17:57:27.509 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-May-13 17:57:27.523 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
-May-13 17:57:27.652 [main] DEBUG nextflow.Session - Session start
-May-13 17:57:28.233 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-May-13 17:57:28.432 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-May-13 17:57:28.433 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-May-13 17:57:28.445 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-May-13 17:57:28.451 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.8 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
-May-13 17:57:28.455 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
-May-13 17:57:28.612 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-May-13 17:57:28.612 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-May-13 17:57:28.617 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LoadAndExtractData, GeneAssociationOs
-May-13 17:57:28.617 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
-May-13 17:57:28.618 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LoadAndExtractData
-May-13 17:57:28.619 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneAssociationOs
-May-13 17:57:28.621 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
-  Script_0b7e1a74eb9a54f7: /workspace/PredictIOR_Nextflow/main.nf
-May-13 17:57:28.621 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
-May-13 17:57:28.621 [main] DEBUG nextflow.Session - Session await
-May-13 17:57:28.804 [Actor Thread 4] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
-  task: name=LoadAndExtractData; work-dir=null
-  error [nextflow.exception.ProcessUnrecoverableException]: Not a valid path value: './data/ICB_Ravi__Lung__PD-L1.rda'
-May-13 17:57:28.819 [Actor Thread 4] ERROR nextflow.processor.TaskProcessor - Error executing process > 'LoadAndExtractData'
+  Process: 57726@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
+  CPUs: 16 - Mem: 62.8 GB (5.1 GB) - Swap: 375 GB (374.8 GB)
+May-13 20:56:17.681 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
+May-13 20:56:17.682 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
+May-13 20:56:17.706 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-13 20:56:17.760 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-13 20:56:17.864 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-13 20:56:17.885 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+May-13 20:56:18.007 [main] DEBUG nextflow.Session - Session start
+May-13 20:56:18.853 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-13 20:56:19.171 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-13 20:56:19.172 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-13 20:56:19.181 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+May-13 20:56:19.187 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.8 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+May-13 20:56:19.191 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+May-13 20:56:19.458 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-13 20:56:19.459 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-13 20:56:19.478 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LoadAndExtractData, GeneAssociationOs
+May-13 20:56:19.480 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
+May-13 20:56:19.481 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LoadAndExtractData
+May-13 20:56:19.482 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneAssociationOs
+May-13 20:56:19.483 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_39496bd435bc0e95: /workspace/PredictIOR_Nextflow/main.nf
+May-13 20:56:19.485 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-13 20:56:19.486 [main] DEBUG nextflow.Session - Session await
+May-13 20:56:20.066 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-13 20:56:20.068 [Task submitter] INFO  nextflow.Session - [60/5fcb37] Submitted process > GeneAssociationOs (ICB_Ravi__Lung__PD-L1)
+May-13 20:56:20.080 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-13 20:56:20.081 [Task submitter] INFO  nextflow.Session - [6b/c8417e] Submitted process > LoadAndExtractData
+May-13 20:56:28.193 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: GeneAssociationOs (ICB_Ravi__Lung__PD-L1); status: COMPLETED; exit: 1; error: -; workDir: /workspace/PredictIOR_Nextflow/work/60/5fcb3700c1baa760cc4a0fd42fef30]
+May-13 20:56:28.197 [Task monitor] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=GeneAssociationOs (ICB_Ravi__Lung__PD-L1); work-dir=/workspace/PredictIOR_Nextflow/work/60/5fcb3700c1baa760cc4a0fd42fef30
+  error [nextflow.exception.ProcessFailedException]: Process `GeneAssociationOs (ICB_Ravi__Lung__PD-L1)` terminated with an error exit status (1)
+May-13 20:56:28.214 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'GeneAssociationOs (ICB_Ravi__Lung__PD-L1)'
 
 Caused by:
-  Not a valid path value: './data/ICB_Ravi__Lung__PD-L1.rda'
+  Process `GeneAssociationOs (ICB_Ravi__Lung__PD-L1)` terminated with an error exit status (1)
 
+Command executed:
 
-Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
-May-13 17:57:28.824 [Actor Thread 4] DEBUG nextflow.Session - Session aborted -- Cause: Not a valid path value: './data/ICB_Ravi__Lung__PD-L1.rda'
-May-13 17:57:28.840 [Actor Thread 4] DEBUG nextflow.Session - The following nodes are still active:
-[process] LoadAndExtractData
-  status=ACTIVE
-  port 0: (value) bound ; channel: rda_file
-  port 1: (cntrl) -     ; channel: $
+  #!/usr/bin/env Rscript
+  
+  # Load necessary libraries
+  library(SummarizedExperiment)
+  
+  # Command-line arguments are automatically passed by Nextflow
+  rda_file_path <- 'ICB_Ravi__Lung__PD-L1.rda'
+  output_file_path <- 'ICB_Ravi__Lung__PD-L1_results.csv'
+  
+  # Load the data from the specified .rda file
+  load(rda_file_path)
+  
+  # Extract study ID and its parts
+  study_id <- gsub('.rda', '', basename(rda_file_path))
+  study_id_parts <- unlist(strsplit(study_id, '__'))
+  
+  # Source the R script containing the geneSurvCont function and potentially others
+  source('/R_scripts/getGeneAssociation.R')
+  source('/R_scripts/getHR.R')
+  
+  load("ICB_Ravi__Lung__PD-L1.rda")
+  
+  # Perform analysis
+  results <- lapply(1:100, function(i) {
+    geneSurvCont(
+      dat.icb = dat_icb,  # Make sure 'expr' is defined in the loaded .rda or in getGeneAssociation.R
+      clin = NULL,     # Make sure 'clin' is defined in the loaded .rda or in getGeneAssociation.R
+      time.censor = 36,
+      missing.perc = 0.5,
+      const.int = 0.001,
+      n.cutoff = 15,
+      feature = rownames(expr)[i],
+      study = paste(study_id_parts[1], study_id_parts[2], study_id_parts[3], sep='__'),
+      surv.outcome = 'OS',
+      cancer.type = study_id_parts[2],
+      treatment = study_id_parts[3]
+    )
+  })
+  
+  # Save the results
+  write.csv(results, file = output_file_path, row.names = FALSE)
 
-[process] GeneAssociationOs
-  status=ACTIVE
-  port 0: (value) OPEN  ; channel: -
-  port 1: (cntrl) -     ; channel: $
+Command exit status:
+  1
 
-May-13 17:57:28.892 [main] DEBUG nextflow.Session - Session await > all processes finished
-May-13 17:57:28.893 [main] DEBUG nextflow.Session - Session await > all barriers passed
-May-13 17:57:28.893 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
-May-13 17:57:28.897 [Actor Thread 1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
-  task: name=LoadAndExtractData; work-dir=null
-  error [java.lang.InterruptedException]: java.lang.InterruptedException
-May-13 17:57:28.901 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=0; peakCpus=0; peakMemory=0; ]
-May-13 17:57:29.032 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-May-13 17:57:29.065 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+Command output:
+  (empty)
+
+Command error:
+  Attaching package: ‘BiocGenerics’
+  
+  The following objects are masked from ‘package:stats’:
+  
+      IQR, mad, sd, var, xtabs
+  
+  The following objects are masked from ‘package:base’:
+  
+      anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+      colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+      get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+      match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+      Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+      table, tapply, union, unique, unsplit, which.max, which.min
+  
+  Loading required package: S4Vectors
+  
+  Attaching package: ‘S4Vectors’
+  
+  The following object is masked from ‘package:utils’:
+  
+      findMatches
+  
+  The following objects are masked from ‘package:base’:
+  
+      expand.grid, I, unname
+  
+  Loading required package: IRanges
+  Loading required package: GenomeInfoDb
+  Loading required package: Biobase
+  Welcome to Bioconductor
+  
+      Vignettes contain introductory material; view with
+      'browseVignettes()'. To cite Bioconductor, see
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
+  
+  
+  Attaching package: ‘Biobase’
+  
+  The following object is masked from ‘package:MatrixGenerics’:
+  
+      rowMedians
+  
+  The following objects are masked from ‘package:matrixStats’:
+  
+      anyMissing, rowMedians
+  
+  Error in library(survcomp) : there is no package called ‘survcomp’
+  Calls: source -> withVisible -> eval -> eval -> library
+  Execution halted
+
+Work dir:
+  /workspace/PredictIOR_Nextflow/work/60/5fcb3700c1baa760cc4a0fd42fef30
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+May-13 20:56:28.224 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `GeneAssociationOs (ICB_Ravi__Lung__PD-L1)` terminated with an error exit status (1)
+May-13 20:56:28.253 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-13 20:56:28.253 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-13 20:56:28.254 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+May-13 20:56:28.260 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
+May-13 20:56:28.275 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=0ms; failedDuration=8.1s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
+May-13 20:56:28.438 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-13 20:56:28.473 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
