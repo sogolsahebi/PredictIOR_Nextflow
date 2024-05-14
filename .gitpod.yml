@@ -3,12 +3,14 @@ image: sogolsahebi/nextflow-r-env:latest
 tasks:
   - name: Install Nextflow
     command: |
+      mkdir -p ~/bin
       if [ ! -f ~/bin/nextflow ]; then
         curl -s https://get.nextflow.io | bash
-        mkdir -p ~/bin
         mv nextflow ~/bin/
       fi
-      echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+      if ! grep -Fxq 'export PATH="$HOME/bin:$PATH"' ~/.bashrc; then
+        echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+      fi
       source ~/.bashrc
 
 ports:
