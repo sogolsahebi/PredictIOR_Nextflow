@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     openjdk-11-jre-headless \
     git \
     libpq-dev \
-    sudo && \
+    sudo \
+    bash && \
     rm -rf /var/lib/apt/lists/*  
 
 # Install Nextflow
@@ -30,16 +31,10 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     zlib1g-dev
 
-# Install R packages and skip errors
-RUN R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra'), dependencies=TRUE)"
-
-# Install Bioconductor packages
-RUN R -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager', repos='http://cran.rstudio.com/'); BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp'))"
-
-# Other necessary packages
-RUN R -e "install.packages(c('survival', 'prodlim'), repos='http://cran.rstudio.com/')"
-
-# Install the 'box' package from R-universe
+# Install Bioconductor and CRAN packages
+RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')"
+RUN R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp'))"
+RUN R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim'), dependencies=TRUE)"
 RUN R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')"
 
 # Verify R installation
@@ -54,9 +49,3 @@ RUN mkdir -p /usr/local/lib/R/site-library && \
 
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
-
-# Copy your project files into the Docker image
-COPY . /PredictIOR_Nextflow
-
-# Set the entrypoint
-ENTRYPOINT ["bash"]

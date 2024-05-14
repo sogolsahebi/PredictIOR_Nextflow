@@ -46,34 +46,25 @@ process GeneAssociationOs {
     path "${rda_file.baseName}_results.csv"
 
     script:
+    def studyParts = params.study_id.split("__")
     """
     #!/usr/bin/env Rscript
-
-    # Load necessary libraries
     library(SummarizedExperiment)
 
-    # Command-line arguments are automatically passed by Nextflow
-    rda_file_path <- '${rda_file}'
-    output_file_path <- '${rda_file.baseName}_results.csv'
+    args <- commandArgs(trailingOnly = TRUE)
+    study_id_parts <- unlist(strsplit(args[1], " "))
 
-    # Load the data from the specified .rda file
-    load(rda_file_path)
+    load("${rda_file}")
+    expr <- assay(dat_icb)
+    clin <- as.data.frame(colData(dat_icb))
 
-    # Extract study ID and its parts
-    study_id <- gsub('.rda', '', basename(rda_file_path))
-    study_id_parts <- unlist(strsplit(study_id, '__'))
-
-    # Source the R script containing the geneSurvCont function and potentially others
     source('/R_scripts/getGeneAssociation.R')
     source('/R_scripts/getHR.R')
 
-    load("${rda_file}")
-
-    # Perform analysis
     results <- lapply(1:100, function(i) {
       geneSurvCont(
-        dat.icb = dat_icb,  # Make sure 'expr' is defined in the loaded .rda or in getGeneAssociation.R
-        clin = NULL,     # Make sure 'clin' is defined in the loaded .rda or in getGeneAssociation.R
+        dat.icb = expr,
+        clin = clin,
         time.censor = 36,
         missing.perc = 0.5,
         const.int = 0.001,
@@ -86,10 +77,12 @@ process GeneAssociationOs {
       )
     })
 
-    # Save the results
-    write.csv(results, file = output_file_path, row.names = FALSE)
+    # Convert list to a data frame
+    results_df <- do.call(rbind, results)  # Make sure to use 'results' not 'results_list'
+    write.csv(results_df, file = 'ICB_Ravi__Lung__PD-L1_results.csv', row.names = FALSE)
     """
 }
+
 
 workflow {
     study_id_parts = params.study_id.split("__")

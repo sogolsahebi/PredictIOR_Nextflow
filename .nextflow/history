@@ -285,3 +285,22 @@
 2024-05-13 21:03:40	14.8s	small_hopper	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	bf211a39-d1d5-44b2-a0d0-5c1071704714	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
 2024-05-13 21:04:34	15.6s	romantic_almeida	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	6a47a1e7-c49b-4cf6-afe1-697d42bc773c	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
 2024-05-13 21:05:44	11.8s	big_davinci	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	69720b05-deb9-46da-94d8-dc779f8324bd	nextflow run main.nf -with-docker 'sogolsahebi/nextflow-r-env:latest'
+2024-05-13 21:59:02	3.8s	gigantic_dijkstra	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	ac04cd80-61c1-49bd-ab9e-4bee88ac5170	nextflow main.nf
+2024-05-13 22:29:24	8.7s	festering_brahmagupta	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	baffaa53-844c-4dda-94fb-4f28c204d859	nextflow run main.nf
+2024-05-13 22:31:33	5.6s	cheesy_ramanujan	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	3f36ebd4-d90e-4d1d-8740-b326d7e6079b	nextflow run main.nf
+2024-05-13 22:34:19	5.3s	reverent_leavitt	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	8e61ce04-04f5-4eb4-9629-a878e08bcfa9	nextflow run main.nf
+2024-05-13 22:38:50	4.2s	irreverent_torricelli	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	fb4299ac-8691-4661-b0a4-d837cd833f9e	nextflow run main.nf
+2024-05-13 22:41:08	8.7s	cheeky_nightingale	ERR	9d99e8396c9ffb9dea3d16b9c7df4acb	c4ffb220-c31b-4f80-a9bf-31ef4240cc4e	nextflow run main.nf
+2024-05-13 22:42:04	4.9s	modest_goodall	ERR	6a3bc869ec2625be6a85a989bfca5e3f	9078e090-faa1-4e75-8d88-4c348d44a339	nextflow run main.nf
+2024-05-13 22:42:32	4s	loving_boltzmann	ERR	4697bef7b66c294164e0253345bcbe80	ab4856c9-f314-4cca-be48-1118bd866b34	nextflow run main.nf
+2024-05-13 22:48:02	4.3s	reverent_almeida	ERR	397cbc234f1a590e8e987485e733ae71	c228e186-8c44-4753-acd3-59e133c77ea5	nextflow run main.nf
+2024-05-13 23:50:27	13.7s	disturbed_hamilton	OK	397cbc234f1a590e8e987485e733ae71	752a96aa-3e64-4c6c-91a4-67a1e3c07361	nextflow run main.nf
+2024-05-13 23:51:29	16.5s	tender_gates	ERR	1ce8f0063a23ebde56a6e2a5df679b89	9f56038e-250d-4b68-90a7-61f6b3adce7e	nextflow run main.nf
+2024-05-13 23:54:02	5s	hungry_meucci	ERR	ccc686cf306a3339b4f5507b36baef87	10ac8749-c8bf-4dc7-8bcd-a2df3dd90e58	nextflow run main.nf
+2024-05-13 23:54:58	11.2s	silly_mclean	ERR	c5fada410ac1cf58532669dfa0b72727	ef636462-adb7-43b0-abcc-5e55181b1f29	nextflow run main.nf
+2024-05-13 23:56:20	16.2s	gigantic_mercator	ERR	f8a653bcede1e7d839cb22af8261041e	8bd9479c-d313-4297-99f2-de57fbe3c021	nextflow run main.nf
+2024-05-13 23:57:42	26.1s	serene_aryabhata	ERR	f8a653bcede1e7d839cb22af8261041e	d90ab6f5-815f-40c5-a507-203281974c52	nextflow run main.nf
+2024-05-13 23:59:46	4.4s	special_gutenberg	ERR	8c6ada1b059069e5f974642920d1f7aa	ef9a3673-03a8-446c-815c-f74266da849e	nextflow run main.nf
+2024-05-14 00:04:47	1m 19s	prickly_hugle	OK	e4296f3096b9a4d856bedc1939b62cb1	64f429ba-c020-47ad-ada5-e8ac32ec35b8	nextflow run main.nf
+2024-05-14 00:13:26	1m 17s	jolly_hamilton	ERR	6b0393a9115f4ff68ad19ddb517ca8bb	67e1bd81-6189-45f0-9b41-86a730ce99e5	nextflow run main.nf
+2024-05-14 00:17:29	1m 18s	confident_lamarr	OK	fe5bf13ea399ee0fd95916eb53376b0d	79f503d6-20a1-4d75-a57e-5ad7b3ce8b96	nextflow run main.nf
