@@ -304,3 +304,9 @@
 2024-05-14 00:04:47	1m 19s	prickly_hugle	OK	e4296f3096b9a4d856bedc1939b62cb1	64f429ba-c020-47ad-ada5-e8ac32ec35b8	nextflow run main.nf
 2024-05-14 00:13:26	1m 17s	jolly_hamilton	ERR	6b0393a9115f4ff68ad19ddb517ca8bb	67e1bd81-6189-45f0-9b41-86a730ce99e5	nextflow run main.nf
 2024-05-14 00:17:29	1m 18s	confident_lamarr	OK	fe5bf13ea399ee0fd95916eb53376b0d	79f503d6-20a1-4d75-a57e-5ad7b3ce8b96	nextflow run main.nf
+2024-05-14 20:04:59	3s	serene_bose	ERR	fe5bf13ea399ee0fd95916eb53376b0d	f12e3175-4e7c-4651-85f7-94d32664e05b	nextflow run main.nf
+2024-05-14 20:10:56	2.9s	jolly_lovelace	ERR	fe5bf13ea399ee0fd95916eb53376b0d	1b5c3eed-6cf8-42c1-89d9-bc2e90bbf8a9	nextflow main.nf
+2024-05-14 20:17:08	2.6s	insane_lorenz	ERR	fe5bf13ea399ee0fd95916eb53376b0d	16b3abcc-43b9-4d4c-aa95-21069bd46a6d	nextflow run main.nf
+2024-05-14 23:10:51	5.3s	mighty_ritchie	ERR	fe5bf13ea399ee0fd95916eb53376b0d	9ee1a750-80f4-45f6-8dd9-e5592f57282b	nextflow run main.nf
+2024-05-14 23:16:15	4.9s	condescending_hopper	ERR	fe5bf13ea399ee0fd95916eb53376b0d	7988fe2b-88ae-4941-ad0c-f3ed4f41593a	nextflow run main.nf
+2024-05-14 23:23:05	5s	reverent_shannon	ERR	fe5bf13ea399ee0fd95916eb53376b0d	f525d2e9-5c41-4f67-806f-51240e900cdf	nextflow run main.nf

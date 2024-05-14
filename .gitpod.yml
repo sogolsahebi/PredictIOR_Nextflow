@@ -1,17 +1,23 @@
-image: sogolsahebi/nextflow-r-env:latest
+image:
+  file: Dockerfile
 
 tasks:
-  - name: Install Nextflow
-    command: |
+  - init: |
+      # Ensure Docker is started
+      sudo service docker start
+
+      # Install Nextflow
       mkdir -p ~/bin
-      if [ ! -f ~/bin/nextflow ]; then
+      if [ ! -f /usr/local/bin/nextflow ]; then
         curl -s https://get.nextflow.io | bash
-        mv nextflow ~/bin/
+        sudo mv nextflow /usr/local/bin/
+        sudo chmod +x /usr/local/bin/nextflow
       fi
-      if ! grep -Fxq 'export PATH="$HOME/bin:$PATH"' ~/.bashrc; then
-        echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+      if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then
+        echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
       fi
       source ~/.bashrc
+      nextflow -version
 
 ports:
   - port: 8888

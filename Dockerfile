@@ -1,7 +1,7 @@
 # Use Rocker/R-ver as the base image
 FROM rocker/r-ver:4.3.2
 
-# Install system dependencies for Nextflow and PostgreSQL
+# Install system dependencies for Nextflow, Docker, and PostgreSQL
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
@@ -9,8 +9,19 @@ RUN apt-get update && apt-get install -y \
     git \
     libpq-dev \
     sudo \
-    bash && \
-    rm -rf /var/lib/apt/lists/*  
+    bash \
+    apt-transport-https \
+    ca-certificates \
+    software-properties-common && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Docker
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    sudo apt-get update && \
+    sudo apt-get install -y docker-ce && \
+    sudo usermod -aG docker $(whoami) && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Nextflow
 RUN curl -s https://get.nextflow.io | bash && \
@@ -18,7 +29,7 @@ RUN curl -s https://get.nextflow.io | bash && \
     chmod +x /usr/local/bin/nextflow
 
 # Verify Nextflow installation
-RUN which nextflow
+RUN ls -l /usr/local/bin/nextflow && which nextflow
 
 # Install necessary system dependencies for R packages
 RUN apt-get update && apt-get install -y \
@@ -29,7 +40,8 @@ RUN apt-get update && apt-get install -y \
     liblapack-dev \
     libbz2-dev \
     liblzma-dev \
-    zlib1g-dev
+    zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Bioconductor and CRAN packages
 RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')"
