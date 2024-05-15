@@ -24,9 +24,19 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     rm -rf /var/lib/apt/lists/*
 
 # Install Nextflow
-RUN curl -s https://get.nextflow.io | bash && \
-    mv nextflow /usr/local/bin/ && \
-    chmod +x /usr/local/bin/nextflow
+RUN mkdir -p /usr/local/bin && \
+    if [ ! -f /usr/local/bin/nextflow ]; then \
+        curl -s https://get.nextflow.io | bash && \
+        mv nextflow /usr/local/bin/ && \
+        chmod 755 /usr/local/bin/nextflow; \
+    fi && \
+    if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then \
+        echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc; \
+    fi
+
+# Set PATH environment variable
+ENV PATH="/usr/local/bin:${PATH}"
+
 
 # Verify Nextflow installation
 RUN ls -l /usr/local/bin/nextflow && which nextflow
