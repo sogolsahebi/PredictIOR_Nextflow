@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 May-14 20:10:55.421 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf
 May-14 20:10:55.570 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.10.1
 May-14 20:10:55.587 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.1.4,nf-azure@1.3.3,nf-cloudcache@0.3.0,nf-codecommit@0.1.5,nf-console@1.0.6,nf-ga4gh@1.1.0,nf-google@1.8.3,nf-tower@1.6.3,nf-wave@1.0.1
@@ -62,6 +63,72 @@ May-14 20:10:58.728 [Task monitor] ERROR nextflow.processor.TaskProcessor - Erro
 
 Caused by:
   Process `LoadAndExtractData` terminated with an error exit status (125)
+=======
+May-15 03:32:42.692 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+May-15 03:32:42.979 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.10.1
+May-15 03:32:43.005 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.1.4,nf-azure@1.3.3,nf-cloudcache@0.3.0,nf-codecommit@0.1.5,nf-console@1.0.6,nf-ga4gh@1.1.0,nf-google@1.8.3,nf-tower@1.6.3,nf-wave@1.0.1
+May-15 03:32:43.084 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-15 03:32:43.085 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-15 03:32:43.088 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+May-15 03:32:43.099 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-15 03:32:43.192 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
+May-15 03:32:43.193 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
+May-15 03:32:43.295 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+May-15 03:32:45.487 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declararion
+May-15 03:32:45.506 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [compassionate_shannon] DSL2 - revision: fe5bf13ea3
+May-15 03:32:45.507 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-15 03:32:45.507 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-15 03:32:45.590 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
+May-15 03:32:45.594 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@4052c8c2] - activable => nextflow.secret.LocalSecretsProvider@4052c8c2
+May-15 03:32:45.793 [main] DEBUG nextflow.Session - Session UUID: 6eb2ff85-d833-4aca-8bdf-fab550592367
+May-15 03:32:45.793 [main] DEBUG nextflow.Session - Run name: compassionate_shannon
+May-15 03:32:45.794 [main] DEBUG nextflow.Session - Executor pool size: 16
+May-15 03:32:45.801 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+May-15 03:32:45.806 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-15 03:32:45.894 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 23.10.1 build 5891
+  Created: 12-01-2024 22:01 UTC 
+  System: Linux 6.1.75-060175-generic
+  Runtime: Groovy 3.0.19 on OpenJDK 64-Bit Server VM 11.0.22+7-post-Ubuntu-0ubuntu222.04.1
+  Encoding: UTF-8 (UTF-8)
+  Process: 772@329b0a0c26f0 [172.17.0.2]
+  CPUs: 16 - Mem: 62.8 GB (19.2 GB) - Swap: 375 GB (374.8 GB)
+May-15 03:32:45.983 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
+May-15 03:32:45.984 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
+May-15 03:32:45.996 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-15 03:32:46.009 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-15 03:32:46.030 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-15 03:32:46.041 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+May-15 03:32:46.110 [main] DEBUG nextflow.Session - Session start
+May-15 03:32:46.911 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-15 03:32:47.116 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-15 03:32:47.117 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-15 03:32:47.179 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+May-15 03:32:47.185 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.8 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+May-15 03:32:47.188 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+May-15 03:32:47.388 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-15 03:32:47.388 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-15 03:32:47.392 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LoadAndExtractData, GeneAssociationOs
+May-15 03:32:47.393 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
+May-15 03:32:47.393 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LoadAndExtractData
+May-15 03:32:47.394 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneAssociationOs
+May-15 03:32:47.395 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_b04f527b3ed1f69d: /workspace/PredictIOR_Nextflow/main.nf
+May-15 03:32:47.396 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-15 03:32:47.396 [main] DEBUG nextflow.Session - Session await
+May-15 03:32:47.838 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-15 03:32:47.841 [Task submitter] INFO  nextflow.Session - [45/360231] Submitted process > LoadAndExtractData
+May-15 03:32:47.878 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-15 03:32:47.879 [Task submitter] INFO  nextflow.Session - [8d/70a9fd] Submitted process > GeneAssociationOs (ICB_Ravi__Lung__PD-L1)
+May-15 03:32:47.934 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: LoadAndExtractData; status: COMPLETED; exit: 126; error: -; workDir: /workspace/PredictIOR_Nextflow/work/45/3602312081fa09e8b727a7daef7cbc]
+May-15 03:32:47.938 [Task monitor] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=LoadAndExtractData; work-dir=/workspace/PredictIOR_Nextflow/work/45/3602312081fa09e8b727a7daef7cbc
+  error [nextflow.exception.ProcessFailedException]: Process `LoadAndExtractData` terminated with an error exit status (126)
+May-15 03:32:47.948 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'LoadAndExtractData'
+
+Caused by:
+  Process `LoadAndExtractData` terminated with an error exit status (126)
+>>>>>>> b893ab0 (Repo is ready to use)
 
 Command executed:
 
@@ -77,12 +144,17 @@ Command executed:
   write.csv(clin, "ICB_Ravi__Lung__PD-L1_clin.csv", row.names = FALSE)
 
 Command exit status:
+<<<<<<< HEAD
   125
+=======
+  126
+>>>>>>> b893ab0 (Repo is ready to use)
 
 Command output:
   (empty)
 
 Command error:
+<<<<<<< HEAD
   docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: unable to apply cgroup configuration: cannot enter cgroupv2 "/sys/fs/cgroup/docker" with domain controllers -- it is in an invalid state: unknown.
   time="2024-05-14T20:10:58Z" level=error msg="error waiting for container: context canceled"
 
@@ -98,3 +170,23 @@ May-14 20:10:58.753 [main] WARN  n.processor.TaskPollingMonitor - Killing runnin
 May-14 20:10:58.763 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=0ms; failedDuration=1.5s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
 May-14 20:10:58.944 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
 May-14 20:10:58.962 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+=======
+  docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.
+  See 'docker run --help'.
+
+Work dir:
+  /workspace/PredictIOR_Nextflow/work/45/3602312081fa09e8b727a7daef7cbc
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+May-15 03:32:47.955 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `LoadAndExtractData` terminated with an error exit status (126)
+May-15 03:32:47.968 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-15 03:32:47.969 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-15 03:32:47.970 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: GeneAssociationOs (ICB_Ravi__Lung__PD-L1); status: COMPLETED; exit: 126; error: -; workDir: /workspace/PredictIOR_Nextflow/work/8d/70a9fd52797416cc7ed38df6849ac1]
+May-15 03:32:47.971 [Task monitor] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=GeneAssociationOs (ICB_Ravi__Lung__PD-L1); work-dir=/workspace/PredictIOR_Nextflow/work/8d/70a9fd52797416cc7ed38df6849ac1
+  error [nextflow.exception.ProcessFailedException]: Process `GeneAssociationOs (ICB_Ravi__Lung__PD-L1)` terminated with an error exit status (126)
+May-15 03:32:47.973 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+May-15 03:32:47.974 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=2; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=18ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+May-15 03:32:48.162 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-15 03:32:48.174 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+>>>>>>> b893ab0 (Repo is ready to use)

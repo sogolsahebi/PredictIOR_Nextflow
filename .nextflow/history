@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2024-05-09 18:52:22	6.9s	voluminous_lamarr	ERR	f8f5dd689352341411722c6e6799ca7c	96d1e37f-43ca-43cf-9ff9-49faabf428b4	nextflow run main.nf
 2024-05-09 19:12:10	4.4s	trusting_aryabhata	ERR	f8f5dd689352341411722c6e6799ca7c	dfd90453-1e75-4193-83f2-33190297ed81	nextflow run main.nf
 2024-05-09 20:24:05	5.9s	admiring_lorenz	ERR	f8f5dd689352341411722c6e6799ca7c	60ab4335-3664-4dcf-847a-e42b06a3eabd	nextflow run main.nf
@@ -310,3 +311,10 @@
 2024-05-14 23:10:51	5.3s	mighty_ritchie	ERR	fe5bf13ea399ee0fd95916eb53376b0d	9ee1a750-80f4-45f6-8dd9-e5592f57282b	nextflow run main.nf
 2024-05-14 23:16:15	4.9s	condescending_hopper	ERR	fe5bf13ea399ee0fd95916eb53376b0d	7988fe2b-88ae-4941-ad0c-f3ed4f41593a	nextflow run main.nf
 2024-05-14 23:23:05	5s	reverent_shannon	ERR	fe5bf13ea399ee0fd95916eb53376b0d	f525d2e9-5c41-4f67-806f-51240e900cdf	nextflow run main.nf
+=======
+2024-05-15 03:32:45	3.2s	compassionate_shannon	ERR	fe5bf13ea399ee0fd95916eb53376b0d	6eb2ff85-d833-4aca-8bdf-fab550592367	nextflow run main.nf
+2024-05-15 03:34:43	5.1s	curious_swirles	ERR	fe5bf13ea399ee0fd95916eb53376b0d	830658cf-b875-45bb-9a86-aedf378e7e36	nextflow run main.nf
+2024-05-15 04:30:28	4.7s	condescending_kay	ERR	fe5bf13ea399ee0fd95916eb53376b0d	fcd7f4d0-5ea0-4ec9-85ff-52509af1b307	nextflow run main.nf
+2024-05-15 05:01:40	5.8s	suspicious_mccarthy	ERR	fe5bf13ea399ee0fd95916eb53376b0d	f8230443-0895-4127-a876-463a8cfa08c3	nextflow run main.nf
+2024-05-15 05:03:44	1m 24s	tiny_dubinsky	OK	8bed8527c54da0ed10b85f24de56375a	f3861a80-46cc-48ab-bccb-80bd8b523cc6	nextflow run main.nf
+>>>>>>> b893ab0 (Repo is ready to use)

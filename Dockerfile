@@ -1,6 +1,10 @@
 # Use Rocker/R-ver as the base image
 FROM rocker/r-ver:4.3.2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b893ab0 (Repo is ready to use)
 # Install system dependencies for Nextflow, Docker, and PostgreSQL
 RUN apt-get update && apt-get install -y \
     curl \

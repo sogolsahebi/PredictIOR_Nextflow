@@ -2,23 +2,50 @@ image:
   file: Dockerfile
 
 tasks:
+<<<<<<< HEAD
   - init: |
       # Ensure Docker is started
       sudo service docker start
 
+=======
+  - name: Start and setup environment
+    init: |
+      HISTFILE=/workspace/.gitpod/cmd-0 history -r
+
+      # Ensure Docker is started
+      sudo service docker start
+
+      # Add gitpod user to the docker group
+      sudo usermod -aG docker gitpod
+
+>>>>>>> b893ab0 (Repo is ready to use)
       # Install Nextflow
       mkdir -p ~/bin
       if [ ! -f /usr/local/bin/nextflow ]; then
         curl -s https://get.nextflow.io | bash
         sudo mv nextflow /usr/local/bin/
+<<<<<<< HEAD
         sudo chmod +x /usr/local/bin/nextflow
+=======
+        sudo chmod 755 /usr/local/bin/nextflow
+>>>>>>> b893ab0 (Repo is ready to use)
       fi
       if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then
         echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
       fi
       source ~/.bashrc
+<<<<<<< HEAD
       nextflow -version
 
 ports:
   - port: 8888
     onOpen: open-preview
+=======
+      sudo chmod 755 /usr/local/bin/nextflow
+      nextflow -version
+
+    # This command ensures that the group changes take effect
+    command: |
+      newgrp docker
+      /bin/bash
+>>>>>>> b893ab0 (Repo is ready to use)
