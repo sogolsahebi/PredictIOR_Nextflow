@@ -1,7 +1,10 @@
-# Use Rocker/R-ver as the base image
-FROM rocker/r-ver:4.3.2
+# Use Rocker/R-ver as the base image that includes RStudio
+FROM rocker/rstudio:4.3.2
 
-# Install system dependencies for Nextflow, Docker, and PostgreSQL
+# Disable authentication for RStudio
+ENV DISABLE_AUTH=true
+
+# Install system dependencies for Nextflow, Docker, PostgreSQL, and Pandoc
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
@@ -12,7 +15,8 @@ RUN apt-get update && apt-get install -y \
     bash \
     apt-transport-https \
     ca-certificates \
-    software-properties-common && \
+    software-properties-common \
+    pandoc && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Docker
@@ -20,7 +24,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     sudo apt-get update && \
     sudo apt-get install -y docker-ce && \
-    sudo usermod -aG docker $(whoami) && \
+    sudo usermod -aG docker rstudio && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Nextflow
@@ -29,19 +33,9 @@ RUN mkdir -p /usr/local/bin && \
         curl -s https://get.nextflow.io | bash && \
         mv nextflow /usr/local/bin/ && \
         chmod 755 /usr/local/bin/nextflow; \
-    fi && \
-    if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then \
-        echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc; \
     fi
 
-# Set PATH environment variable
-ENV PATH="/usr/local/bin:${PATH}"
-
-
-# Verify Nextflow installation
-RUN ls -l /usr/local/bin/nextflow && which nextflow
-
-# Install necessary system dependencies for R packages
+# Install necessary R packages
 RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
     libssl-dev \
@@ -54,20 +48,21 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 # Install Bioconductor and CRAN packages
-RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')"
-RUN R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp'))"
-RUN R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim'), dependencies=TRUE)"
-RUN R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')"
-
-# Verify R installation
-RUN which R
-
-# Set up environment variables
-ENV PATH="/usr/local/bin:$PATH"
-
-# Create and set permissions for R library directory
-RUN mkdir -p /usr/local/lib/R/site-library && \
-    chown -R root:staff /usr/local/lib/R/site-library
+RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')" && \
+    R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp', 'BiocStyle'))" && \
+    R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim'), dependencies=TRUE)" && \
+    R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')" && \
+    R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
+
+# Add a script to render Rmd files
+COPY render_rmd.sh /usr/local/bin/render_rmd.sh
+RUN chmod +x /usr/local/bin/render_rmd.sh
+
+# Expose the RStudio port
+EXPOSE 8787
+
+# Command to run when the container starts
+CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0"]

@@ -317,3 +317,17 @@
 2024-05-15 05:03:44	1m 24s	tiny_dubinsky	OK	8bed8527c54da0ed10b85f24de56375a	f3861a80-46cc-48ab-bccb-80bd8b523cc6	nextflow run main.nf
 2024-05-15 05:22:53	1m 38s	ecstatic_hoover	OK	8bed8527c54da0ed10b85f24de56375a	cc30e4db-bde1-4aaf-8d14-bb4e18616975	nextflow run main.nf
 2024-05-15 15:47:01	1m 22s	extravagant_lattes	OK	8bed8527c54da0ed10b85f24de56375a	53241ee2-ed81-44c9-bb01-3061a984a570	nextflow run main.nf
+2024-05-17 13:19:46	1m 26s	kickass_wright	OK	8bed8527c54da0ed10b85f24de56375a	d6554fb4-56ea-4190-b549-eed1c80fda75	nextflow run main.nf
+2024-05-17 13:23:22	1m 36s	silly_sammet	OK	8fb480a81f5643b77229f03a5fdb9194	bad3946d-53dd-403c-a6c3-8084fc8d003f	nextflow run main.nf
+2024-05-17 13:33:36	17s	peaceful_coulomb	ERR	aaec8e558bdfa559caa6671ae36ecd91	1d1aee15-d65a-44e5-9f2b-ba0370233ca8	nextflow run main.nf
+2024-05-17 13:44:46	12.6s	clever_brown	ERR	a142a378ba246610fbcf5c8e494c5662	7acec4c7-3398-4e6e-a734-71951f5a8bb3	nextflow run main.nf
+2024-05-17 13:55:29	13s	spontaneous_hodgkin	ERR	cba3af94e03238098e3acaefc43fad95	975e3461-e20c-462b-964a-2dde0c5b3e33	nextflow run main.nf
+2024-05-17 13:59:12	3.7s	dreamy_raman	ERR	3c63aff84ace217c89daa2e8d702add0	975e3461-e20c-462b-964a-2dde0c5b3e33	nextflow run main.nf -resume
+2024-05-17 16:51:59	11.8s	trusting_noether	ERR	563d8e16279a888d9d37334e08f860e6	d724940c-d1fe-491a-b87e-fe83af62bfe1	nextflow run main.nf
+2024-05-17 17:24:51	15.3s	mighty_shaw	ERR	d975405ab5395b026e92856beff65908	9fec566e-bb79-4f03-b87b-b1ac8abf104e	nextflow run main.nf
+2024-05-17 17:42:55	11.7s	kickass_pauling	ERR	9d47b525094092b6aa69548f746e1408	720ba703-3a4e-487e-986b-682ae892bb1a	nextflow run main.nf
+2024-05-17 17:44:02	13s	spontaneous_dijkstra	ERR	1014ed21243e24a122fc7e4bec833dd3	b5e5132f-9deb-4921-9e14-f9d9a3173d0a	nextflow run main.nf
+2024-05-17 17:48:45	20.5s	compassionate_archimedes	ERR	c747d0ce8e00d91fc1f66330eb167f2c	3b81df5a-566d-40f2-9c47-ba669fd8fd9f	nextflow run main.nf
+2024-05-17 17:51:14	18.6s	backstabbing_kalman	ERR	f5667aacb61deca40ed467f21ec1b291	fbf335e7-8ab1-4af2-bc19-f570b4e90c95	nextflow run main.nf
+2024-05-17 17:53:16	24.6s	serene_murdock	ERR	b02655142591084412b25305e3ed7848	5ad660f6-d5bb-46cb-b1f0-f848e5b72eac	nextflow run main.nf
+2024-05-17 17:54:39	2m 25s	agitated_hoover	OK	7aa6f55d530cf37c11f1219fe61d9400	9b2bb3de-0a1b-42e7-8872-ff106dc9808b	nextflow run main.nf

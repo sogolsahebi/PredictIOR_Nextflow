@@ -1,0 +1,5 @@
+"Outcome","Gene","Study","Coef","SE","N","Pval","Cancer_type","Treatment","FDR"
+"R vs NR","CXCR4","VanDenEnde____Esophageal",-0.217,0.379,32,0.567247942458012,"","Esophageal",0.756330589944016
+"R vs NR","CCR7","VanDenEnde____Esophageal",0.053,0.365,32,0.884021231043879,"","Esophageal",0.884021231043879
+"R vs NR","CD27","VanDenEnde____Esophageal",0.345,0.394,32,0.381220041238935,"","Esophageal",0.756330589944016
+"R vs NR","SIGLEC14","VanDenEnde____Esophageal",-0.522,0.445,32,0.240724403862667,"","Esophageal",0.756330589944016
