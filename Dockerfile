@@ -50,12 +50,19 @@ RUN apt-get update && apt-get install -y \
 # Install Bioconductor and CRAN packages
 RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')" && \
     R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp', 'BiocStyle'))" && \
-    R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim'), dependencies=TRUE)" && \
+    R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim', 'summarytools'), dependencies=TRUE)" && \
     R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')" && \
     R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 
+# Install additional R packages
+RUN R -e "install.packages(c('stringr', 'rstudioapi', 'pheatmap', 'RColorBrewer'), dependencies=TRUE)"
+
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
+
+# Copy R files from your local R dir to the container
+COPY R/*.R /PredictIOR_Nextflow/R/
+
 
 # Add a script to render Rmd files
 COPY render_rmd.sh /usr/local/bin/render_rmd.sh
