@@ -49,13 +49,18 @@ RUN apt-get update && apt-get install -y \
 
 # Install Bioconductor and CRAN packages
 RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')" && \
-    R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp', 'BiocStyle'))" && \
+    R -e "BiocManager::install(c('SummarizedExperiment', 'MultiAssayExperiment', 'GSVA', 'survcomp', 'BiocStyle', 'EnhancedVolcano'))" && \
     R -e "install.packages(c('readr', 'dplyr', 'meta', 'metafor', 'forestplot', 'ggplot2', 'ggrepel', 'gridExtra', 'data.table', 'kableExtra', 'survival', 'prodlim', 'summarytools'), dependencies=TRUE)" && \
     R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')" && \
     R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 
+    
 # Install additional R packages
 RUN R -e "install.packages(c('stringr', 'rstudioapi', 'pheatmap', 'RColorBrewer'), dependencies=TRUE)"
+
+# Install missing CRAN and Bioconductor packages
+RUN R -e "BiocManager::install(c('ComplexHeatmap', 'survminer', 'cowplot', 'ggsignif'))" && \
+    R -e "install.packages(c('EnhancedVolcano'), dependencies=TRUE)"
 
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
