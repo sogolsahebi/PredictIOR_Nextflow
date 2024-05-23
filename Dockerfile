@@ -54,7 +54,6 @@ RUN R -e "install.packages('BiocManager', repos='http://cran.rstudio.com/')" && 
     R -e "install.packages('box', repos = 'https://klmr.r-universe.dev')" && \
     R -e "install.packages('rmarkdown', repos='http://cran.rstudio.com/')"
 
-    
 # Install additional R packages
 RUN R -e "install.packages(c('stringr', 'rstudioapi', 'pheatmap', 'RColorBrewer'), dependencies=TRUE)"
 
@@ -62,12 +61,14 @@ RUN R -e "install.packages(c('stringr', 'rstudioapi', 'pheatmap', 'RColorBrewer'
 RUN R -e "BiocManager::install(c('ComplexHeatmap', 'survminer', 'cowplot', 'ggsignif'))" && \
     R -e "install.packages(c('EnhancedVolcano'), dependencies=TRUE)"
 
+# Install the PredictioR package from GitHub
+RUN R -e "devtools::install_github('bhklab/PredictioR')"
+
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
 
 # Copy R files from your local R dir to the container
 COPY R/*.R /PredictIOR_Nextflow/R/
-
 
 # Add a script to render Rmd files
 COPY render_rmd.sh /usr/local/bin/render_rmd.sh
@@ -78,3 +79,9 @@ EXPOSE 8787
 
 # Command to run when the container starts
 CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0"]
+
+# Set up the working directory
+WORKDIR /PredictIOR_Nextflow
+
+# Copy R files from your local R dir to the container
+COPY R/*.R /PredictIOR_Nextflow/R/

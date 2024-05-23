@@ -1,5 +1,0 @@
-"Outcome","Gene","Study","Coef","SE","N","Pval","Cancer_type","Treatment","FDR"
-"R vs NR","CXCR4","Jerby__Arnon__Melanoma",-0.23,0.205,96,0.262211362551041,"Arnon","Melanoma",0.349615150068055
-"R vs NR","NR4A1","Jerby__Arnon__Melanoma",0.095,0.222,96,0.66696024574498,"Arnon","Melanoma",0.66696024574498
-"R vs NR","SDCBP","Jerby__Arnon__Melanoma",0.268,0.205,96,0.190997383672052,"Arnon","Melanoma",0.349615150068055
-"R vs NR","HLA.E","Jerby__Arnon__Melanoma",-0.422,0.217,96,0.0521898478477733,"Arnon","Melanoma",0.208759391391093

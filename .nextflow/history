@@ -331,3 +331,4 @@
 2024-05-17 17:51:14	18.6s	backstabbing_kalman	ERR	f5667aacb61deca40ed467f21ec1b291	fbf335e7-8ab1-4af2-bc19-f570b4e90c95	nextflow run main.nf
 2024-05-17 17:53:16	24.6s	serene_murdock	ERR	b02655142591084412b25305e3ed7848	5ad660f6-d5bb-46cb-b1f0-f848e5b72eac	nextflow run main.nf
 2024-05-17 17:54:39	2m 25s	agitated_hoover	OK	7aa6f55d530cf37c11f1219fe61d9400	9b2bb3de-0a1b-42e7-8872-ff106dc9808b	nextflow run main.nf
+2024-05-20 15:15:23	2m 24s	evil_torricelli	OK	755037d18422f08b9b9638f92c9441f5	a632be5d-2b2b-4398-b618-c6b186cd247d	nextflow run main.nf

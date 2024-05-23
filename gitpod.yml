@@ -2,6 +2,7 @@ image:
   file: Dockerfile
 
 tasks:
+  - init: echo 'export PATH=$PATH:/workspace/PredictIOR_Nextflow' >> ~/.bashrc && source ~/.bashrc
   - name: Start and setup environment
     init: |
       HISTFILE=/workspace/.gitpod/cmd-0 history -r
@@ -14,23 +15,13 @@ tasks:
 
       # Install Nextflow
       mkdir -p ~/bin
-      if [ ! -f /usr/local/bin/nextflow ]; then
-        curl -s https://get.nextflow.io | bash
-        sudo mv nextflow /usr/local/bin/
-        sudo chmod 755 /usr/local/bin/nextflow
-      fi
-      if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then
-        echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-      fi
+      curl -s https://get.nextflow.io | bash
+      mv nextflow ~/bin/
+      chmod +x ~/bin/nextflow
+      echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
       source ~/.bashrc
-      sudo chmod 755 /usr/local/bin/nextflow
-      nextflow -version
 
-    # This command ensures that the group changes take effect
     command: |
       newgrp docker
       /bin/bash
 
-
-
- 
