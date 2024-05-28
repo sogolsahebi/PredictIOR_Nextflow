@@ -8,9 +8,14 @@ params.rda_file = "${params.data_dir}/${params.study_id}.rda"
 
 //single gene - vector , feautre input vs all genes nrow(expr)
 
+// Extract cancer type and treatment type of this data set
+cancer_type = params.study_id.split('__')[1]
+treatment_type = params.study_id.split('__')[2]
+println("Extracted Cancer Type: ${cancer_type}, Treatment Type: ${treatment_type}")
+
 // Process to load RDA data and extract expression and clinical data
 process LoadAndExtractData {
-    container 'nextflow-rmd-env'
+    container 'sogolsahebi/nextflow-rmd-env'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -39,7 +44,7 @@ process LoadAndExtractData {
 //1.Gene Association  with 'Os'
 process GeneAssociationOs {
     tag "${params.study_id}"
-    container 'nextflow-rmd-env'
+    container 'sogolsahebi/nextflow-rmd-env'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -50,7 +55,7 @@ process GeneAssociationOs {
     path "${params.study_id}_cox_os_results.csv"
 
     script:
-    def studyParts = params.study_id.split("__")
+
     """
     #!/usr/bin/env Rscript
     library(SummarizedExperiment)
@@ -75,11 +80,11 @@ process GeneAssociationOs {
         missing.perc = 0.5,
         const.int = 0.001,
         n.cutoff = 15,
-        feature = rownames(expr)[i],  # TODO: single gene - all genes.          
-        study = paste(study_id_parts[0], study_id_parts[1], study_id_parts[2], sep='__'),
+        feature = rownames(expr)[i],
+        study = '${params.study_id}',
         surv.outcome = 'OS',
-        cancer.type = study_id_parts[1],
-        treatment = study_id_parts[2]
+        cancer.type = '${cancer_type}',
+        treatment = '${treatment_type}'
       )
     })
 
@@ -93,7 +98,7 @@ process GeneAssociationOs {
 //2.Gene Association  with Immunotherapy response (R vs NR).
 process LogisticRegression {
     tag "${params.study_id}"
-    container 'nextflow-rmd-env'
+    container 'sogolsahebi/nextflow-rmd-env'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:

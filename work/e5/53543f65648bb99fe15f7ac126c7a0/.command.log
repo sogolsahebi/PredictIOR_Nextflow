@@ -1,4 +1,0 @@
-Unable to find image 'nextflow-r-env:latest' locally
-docker: Error response from daemon: pull access denied for nextflow-r-env, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
-See 'docker run --help'.
-Error response from daemon: No such container: nxf-8gcUSW3u9IiyF6Rnr0f9z32g

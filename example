@@ -1,0 +1,95 @@
+#!/usr/bin/env nextflow
+nextflow.enable.dsl=2
+
+params.study_id = 'ICB_Ravi__Lung__PD-L1'
+params.data_dir = './data'
+params.out_dir = './output'
+params.rda_file = "${params.data_dir}/${params.study_id}.rda"
+
+process ExtractCancerandTreatment {
+    tag "${params.study_id}"
+
+    output:
+    tuple val(cancer_type), val(treatment_type) into cancer_treatment_channel
+
+    script:
+    """
+    study_id_parts = '${params.study_id}'.split('__')
+    cancer_type = study_id_parts[1]
+    treatment_type = study_id_parts[2]
+
+    // Print outputs for debug (not actually passing data through println)
+    println(cancer_type)
+    println(treatment_type)
+    """
+}
+
+process LoadAndExtractData {
+    container 'sogolsahebi/nextflow-rmd-env:latest'
+    publishDir "${params.out_dir}", mode: 'copy'
+
+    input:
+    path rda_file
+
+    output:
+    path "${params.study_id}_expr.csv"
+    path "${params.study_id}_clin.csv"
+
+    script:
+    """
+    #!/usr/bin/env Rscript
+    library(SummarizedExperiment)
+
+    load("\${rda_file}")
+
+    expr <- assay(dat_icb)
+    clin <- as.data.frame(colData(dat_icb))
+
+    write.csv(expr, "${params.study_id}_expr.csv", row.names = TRUE)
+    write.csv(clin, "${params.study_id}_clin.csv", row.names = FALSE)
+    """
+}
+
+process GeneAssociationOs {
+    tag "${params.study_id}"
+    container 'sogolsahebi/nextflow-rmd-env:latest'
+    publishDir "${params.out_dir}", mode: 'copy'
+
+    input:
+    path expr_file
+    path clin_file
+    tuple val(cancer_type), val(treatment_type) from cancer_treatment_channel
+
+    output:
+    path "${params.study_id}_cox_os_results.csv"
+
+    script:
+    """
+    #!/usr/bin/env Rscript
+    library(SummarizedExperiment)
+
+    expr <- read.csv("${expr_file}", row.names = 1)
+    clin <- read.csv("${clin_file}")
+
+    source('/R_scripts/getGeneAssociation.R')
+    source('/R_scripts/getHR.R')
+
+    // Example function call, adapt as necessary
+    result = performAnalysis(expr, clin, cancer_type, treatment_type)
+
+    write.csv(result, "${params.study_id}_cox_os_results.csv", row.names = FALSE)
+    """
+}
+
+workflow {
+    icb_dat = file(params.rda_file)
+
+    cancer_treatment = ExtractCancerandTreatment()
+    extracted_data = LoadAndExtractData(icb_dat)
+
+    GeneAssociationOs(
+        extracted_data.out[0],  // expr.csv
+        extracted_data.out[1],  // clin.csv
+        cancer_treatment.out
+    )
+}

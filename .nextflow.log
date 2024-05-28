@@ -1,75 +1,65 @@
-May-20 15:15:19.375 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
-May-20 15:15:20.172 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.1
-May-20 15:15:20.276 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
-May-20 15:15:20.294 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-May-20 15:15:20.296 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-May-20 15:15:20.353 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
-May-20 15:15:20.376 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-May-20 15:15:20.463 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
-May-20 15:15:20.466 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
-May-20 15:15:20.666 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
-May-20 15:15:20.673 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@2257fadf] - activable => nextflow.secret.LocalSecretsProvider@2257fadf
-May-20 15:15:20.751 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-May-20 15:15:23.065 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
-May-20 15:15:23.156 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [evil_torricelli] DSL2 - revision: 755037d184
-May-20 15:15:23.158 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-May-20 15:15:23.159 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-May-20 15:15:23.368 [main] DEBUG nextflow.Session - Session UUID: a632be5d-2b2b-4398-b618-c6b186cd247d
-May-20 15:15:23.368 [main] DEBUG nextflow.Session - Run name: evil_torricelli
-May-20 15:15:23.369 [main] DEBUG nextflow.Session - Executor pool size: 16
-May-20 15:15:23.381 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-May-20 15:15:23.458 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-May-20 15:15:23.576 [main] DEBUG nextflow.cli.CmdRun - 
+May-28 20:25:43.499 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
+May-28 20:25:43.978 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.1
+May-28 20:25:44.053 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+May-28 20:25:44.068 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-28 20:25:44.069 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-28 20:25:44.074 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+May-28 20:25:44.092 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-28 20:25:44.163 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
+May-28 20:25:44.168 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
+May-28 20:25:44.251 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
+May-28 20:25:44.255 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@16073fa8] - activable => nextflow.secret.LocalSecretsProvider@16073fa8
+May-28 20:25:44.265 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+May-28 20:25:45.478 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+May-28 20:25:45.516 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [reverent_fourier] DSL2 - revision: 8e4ce74d78
+May-28 20:25:45.518 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-28 20:25:45.519 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-28 20:25:45.643 [main] DEBUG nextflow.Session - Session UUID: af1a6bac-5e3e-4a98-861d-35221b25f48b
+May-28 20:25:45.644 [main] DEBUG nextflow.Session - Run name: reverent_fourier
+May-28 20:25:45.644 [main] DEBUG nextflow.Session - Executor pool size: 16
+May-28 20:25:45.658 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+May-28 20:25:45.666 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-28 20:25:45.749 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 24.04.1 build 5913
   Created: 20-05-2024 09:48 UTC 
   System: Linux 6.1.89-060189-generic
   Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.23+9-LTS
   Encoding: UTF-8 (UTF-8)
-  Process: 6807@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
-  CPUs: 16 - Mem: 62.5 GB (15 GB) - Swap: 375 GB (371.3 GB)
-May-20 15:15:23.660 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
-May-20 15:15:23.661 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
-May-20 15:15:23.674 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-May-20 15:15:23.685 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-May-20 15:15:23.718 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-May-20 15:15:23.757 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
-May-20 15:15:23.828 [main] DEBUG nextflow.Session - Session start
-May-20 15:15:26.276 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-May-20 15:15:26.660 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-May-20 15:15:26.661 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-May-20 15:15:26.670 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-May-20 15:15:26.678 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.5 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
-May-20 15:15:26.751 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
-May-20 15:15:27.158 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-May-20 15:15:27.159 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-May-20 15:15:27.171 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-May-20 15:15:27.171 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-May-20 15:15:27.177 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LoadAndExtractData, GeneAssociationOs, LogisticRegression
-May-20 15:15:27.178 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
-May-20 15:15:27.179 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LoadAndExtractData
-May-20 15:15:27.180 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneAssociationOs
-May-20 15:15:27.181 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LogisticRegression
-May-20 15:15:27.183 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
-  Script_e1761e65ff8493c8: /workspace/PredictIOR_Nextflow/main.nf
-May-20 15:15:27.183 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
-May-20 15:15:27.183 [main] DEBUG nextflow.Session - Session await
-May-20 15:15:27.706 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-May-20 15:15:27.709 [Task submitter] INFO  nextflow.Session - [53/935af5] Submitted process > LoadAndExtractData
-May-20 15:15:37.426 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: LoadAndExtractData; status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/53/935af5f0df6a6cfcf08c086cdb3b3d]
-May-20 15:15:37.427 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-May-20 15:15:37.463 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-May-20 15:15:37.476 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-May-20 15:15:37.477 [Task submitter] INFO  nextflow.Session - [1d/deb362] Submitted process > GeneAssociationOs (ICB_Ravi__Lung__PD-L1)
-May-20 15:15:37.489 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-May-20 15:15:37.490 [Task submitter] INFO  nextflow.Session - [79/1fc1c5] Submitted process > LogisticRegression (ICB_Ravi__Lung__PD-L1)
-May-20 15:16:53.251 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: GeneAssociationOs (ICB_Ravi__Lung__PD-L1); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/1d/deb362c7609211aaf9b46f3962a9fe]
-May-20 15:17:47.195 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: LogisticRegression (ICB_Ravi__Lung__PD-L1); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/79/1fc1c5a485897ea7861cc7f707e9c6]
-May-20 15:17:47.200 [main] DEBUG nextflow.Session - Session await > all processes finished
-May-20 15:17:47.295 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
-May-20 15:17:47.296 [main] DEBUG nextflow.Session - Session await > all barriers passed
-May-20 15:17:47.299 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
-May-20 15:17:47.300 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
-May-20 15:17:47.306 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=3; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3m 35s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=0; ]
-May-20 15:17:47.471 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-May-20 15:17:47.577 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
-May-20 15:17:47.577 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+  Process: 151610@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
+  CPUs: 16 - Mem: 62.5 GB (18.4 GB) - Swap: 375 GB (365.3 GB)
+May-28 20:25:45.778 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
+May-28 20:25:45.778 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
+May-28 20:25:45.788 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-28 20:25:45.799 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-28 20:25:45.836 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-28 20:25:45.852 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+May-28 20:25:45.928 [main] DEBUG nextflow.Session - Session start
+May-28 20:25:46.991 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-28 20:25:47.036 [main] INFO  nextflow.script.BaseScript - Extracted Cancer Type: Lung, Treatment Type: PD-L1
+May-28 20:25:47.226 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-28 20:25:47.227 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-28 20:25:47.238 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+May-28 20:25:47.247 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.5 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+May-28 20:25:47.252 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+May-28 20:25:47.468 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-28 20:25:47.468 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-28 20:25:47.476 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-28 20:25:47.476 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-28 20:25:47.480 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LoadAndExtractData, GeneAssociationOs, LogisticRegression
+May-28 20:25:47.481 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+May-28 20:25:47.482 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LoadAndExtractData
+May-28 20:25:47.483 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneAssociationOs
+May-28 20:25:47.484 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LogisticRegression
+May-28 20:25:47.485 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_a1319809816cdef9: /workspace/PredictIOR_Nextflow/main.nf
+May-28 20:25:47.485 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-28 20:25:47.486 [main] DEBUG nextflow.Session - Session await
+May-28 20:25:47.964 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-28 20:25:47.967 [Task submitter] INFO  nextflow.Session - [61/1388ee] Submitted process > LoadAndExtractData
+May-28 20:26:00.671 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: LoadAndExtractData; status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/61/1388ee9787afce4b797917100b73e7]
+May-28 20:26:00.672 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-28 20:26:00.710 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-28 20:26:00.748 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-28 20:26:00.750 [Task submitter] INFO  nextflow.Session - [fb/a7e690] Submitted process > GeneAssociationOs (ICB_Ravi__Lung__PD-L1)
+May-28 20:26:00.762 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-28 20:26:00.763 [Task submitter] INFO  nextflow.Session - [cc/6b43f8] Submitted process > LogisticRegression (ICB_Ravi__Lung__PD-L1)

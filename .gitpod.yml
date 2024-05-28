@@ -1,29 +1,26 @@
+image:
+  file: Dockerfile
+
 tasks:
+  - init: echo 'export PATH=$PATH:/workspace/PredictIOR_Nextflow' >> ~/.bashrc && source ~/.bashrc
   - name: Start and setup environment
     init: |
+      HISTFILE=/workspace/.gitpod/cmd-0 history -r
+
       # Ensure Docker is started
       sudo service docker start
 
-      # Check if docker group exists, and if not, create it and add gitpod
-      if ! getent group docker > /dev/null 2>&1; then
-        sudo groupadd docker
-      fi
+      # Add gitpod user to the docker group
       sudo usermod -aG docker gitpod
 
       # Install Nextflow
-      if [ ! -f /usr/local/bin/nextflow ]; then
-        curl -s https://get.nextflow.io | bash
-        sudo mv nextflow /usr/local/bin/
-        sudo chmod 755 /usr/local/bin/nextflow
-      fi
-
-      # Ensure the PATH is set correctly
-      echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+      mkdir -p ~/bin
+      curl -s https://get.nextflow.io | bash
+      mv nextflow ~/bin/
+      chmod +x ~/bin/nextflow
+      echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
       source ~/.bashrc
 
     command: |
       newgrp docker
       /bin/bash
-
-#  - name: Keep-Alive
-#    command: ./keep_alive.sh
