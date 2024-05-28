@@ -1,38 +1,29 @@
-image:
-  file: Dockerfile
-
 tasks:
   - name: Start and setup environment
     init: |
-      HISTFILE=/workspace/.gitpod/cmd-0 history -r
-
       # Ensure Docker is started
       sudo service docker start
 
-      # Add gitpod user to the docker group
+      # Check if docker group exists, and if not, create it and add gitpod
+      if ! getent group docker > /dev/null 2>&1; then
+        sudo groupadd docker
+      fi
       sudo usermod -aG docker gitpod
 
       # Install Nextflow
-      mkdir -p ~/bin
       if [ ! -f /usr/local/bin/nextflow ]; then
         curl -s https://get.nextflow.io | bash
         sudo mv nextflow /usr/local/bin/
         sudo chmod 755 /usr/local/bin/nextflow
       fi
-      if ! grep -Fxq 'export PATH="/usr/local/bin:$PATH"' ~/.bashrc; then
-        echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-      fi
+
+      # Ensure the PATH is set correctly
+      echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
       source ~/.bashrc
-      sudo chmod 755 /usr/local/bin/nextflow
-      nextflow -version
 
     command: |
       newgrp docker
       /bin/bash
 
-  - name: Keep-Alive
-    command: |
-      while true; do
-        curl -s https://8787-sogolsahebi-predictiorn-g4zh5pzzmjd.ws-us114.gitpod.io > /dev/null
-        sleep 600 # Wait for 10 minutes before the next request
-      done
+#  - name: Keep-Alive
+#    command: ./keep_alive.sh
