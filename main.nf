@@ -6,9 +6,7 @@ params.data_dir = './data'
 params.out_dir = './output'
 params.rda_file = "${params.data_dir}/${params.study_id}.rda"
 
-//single gene - vector , feautre input vs all genes nrow(expr)
-
-// Extract cancer type and treatment type of this data set
+// Extract cancer type and treatment type of this dataset
 cancer_type = params.study_id.split('__')[1]
 treatment_type = params.study_id.split('__')[2]
 println("Extracted Cancer Type: ${cancer_type}, Treatment Type: ${treatment_type}")
@@ -40,9 +38,11 @@ process LoadAndExtractData {
     """
 }
 
-// Process to run a specific R script for gene association analysis
-//1.Gene Association  with 'Os'
-process GeneAssociationOs {
+// Gene Association Analysis
+params.gene_nums = 100  // Default number of genes to process
+
+//1.Gene Association with 'OS'
+process GeneAssociationOS {
     tag "${params.study_id}"
     container 'sogolsahebi/nextflow-rmd-env'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -55,13 +55,9 @@ process GeneAssociationOs {
     path "${params.study_id}_cox_os_results.csv"
 
     script:
-
     """
     #!/usr/bin/env Rscript
     library(SummarizedExperiment)
-
-    args <- commandArgs(trailingOnly = TRUE)
-    study_id_parts <- unlist(strsplit(args[1], " "))
 
     expr <- read.csv("${expr_file}", row.names = 1)
     clin <- read.csv("${clin_file}")
@@ -69,10 +65,7 @@ process GeneAssociationOs {
     source('/R_scripts/getGeneAssociation.R')
     source('/R_scripts/getHR.R')
 
-    # TODO: gene_level , adding Signiture level?
-    # for single gene?
-
-    results <- lapply(1:100, function(i) {
+    results <- lapply(1:${params.gene_nums}, function(i) {
       geneSurvCont(
         dat.icb = expr,
         clin = clin,
@@ -88,10 +81,53 @@ process GeneAssociationOs {
       )
     })
 
-    # Convert list to a data frame
     results_df <- do.call(rbind, results)
-
     write.csv(results_df, file = "${params.study_id}_cox_os_results.csv", row.names = FALSE)
+    """
+}
+
+//2.Gene Association with 'PFS'
+process GeneAssociationPFS {
+    tag "${params.study_id}"
+    container 'sogolsahebi/nextflow-rmd-env'
+    publishDir "${params.out_dir}", mode: 'copy'
+
+    input:
+    path expr_file
+    path clin_file
+
+    output:
+    path "${params.study_id}_cox_pfs_results.csv"
+
+    script:
+    """
+    #!/usr/bin/env Rscript
+    library(SummarizedExperiment)
+
+    expr <- read.csv("${expr_file}", row.names = 1)
+    clin <- read.csv("${clin_file}")
+
+    source('/R_scripts/getGeneAssociation.R')
+    source('/R_scripts/getHR.R')
+
+    results <- lapply(1:${params.gene_nums}, function(i) {
+      geneSurvCont(
+        dat.icb = expr,
+        clin = clin,
+        time.censor = 36,
+        missing.perc = 0.5,
+        const.int = 0.001,
+        n.cutoff = 15,
+        feature = rownames(expr)[i],
+        study = '${params.study_id}',
+        surv.outcome = 'PFS',
+        cancer.type = '${cancer_type}',
+        treatment = '${treatment_type}'
+      )
+    })
+
+    results_df <- do.call(rbind, results)
+    write.csv(results_df, file = "${params.study_id}_cox_pfs_results.csv", row.names = FALSE)
     """
 }
 
@@ -114,16 +150,13 @@ process LogisticRegression {
     #!/usr/bin/env Rscript
     library(SummarizedExperiment)
 
-    args <- commandArgs(trailingOnly = TRUE)
-    study_id_parts <- unlist(strsplit(args[1], "__"))
-
     expr <- read.csv("${expr_file}", row.names = 1)
     clin <- read.csv("${clin_file}")
 
     source('/R_scripts/getGeneAssociation.R')
     source('/R_scripts/getHR.R')
 
-    logreg <- lapply(1:min(200, nrow(expr)), function(i) {
+    logreg <- lapply(1:${params.gene_nums}, function(i) {
       res <- geneLogReg(
         dat.icb = expr,
         clin = clin,
@@ -131,11 +164,11 @@ process LogisticRegression {
         const.int = 0.001,
         n.cutoff = 15,
         feature = rownames(expr)[i],
-        study = paste(study_id_parts[0], study_id_parts[1], study_id_parts[2], sep = '__'),
+        study = '${params.study_id}',
         n0.cutoff = 3,
         n1.cutoff = 3,
-        cancer.type = study_id_parts[1],
-        treatment = study_id_parts[2]
+        cancer.type = '${cancer_type}',
+        treatment = '${treatment_type}'
       )
       res
     })
@@ -148,21 +181,14 @@ process LogisticRegression {
     """
 }
 
-//3. PFS
-
 workflow {
-    // Entry point for the RDA data file
     icb_dat = file(params.rda_file)
 
     // Load RDA data and extract expression and clinical data to CSV files
     extracted_data = LoadAndExtractData(icb_dat)
 
     // Use the extracted CSV files for gene association analysis
-    GeneAssociationOs(
-        extracted_data[0],  // expr.csv
-        extracted_data[1]   // clin.csv
-    )
-
-    // Use the extracted CSV files for logistic regression analysis
+    GeneAssociationOS(extracted_data[0], extracted_data[1])
+    GeneAssociationPFS(extracted_data[0], extracted_data[1])
     LogisticRegression(extracted_data[0], extracted_data[1])
 }
