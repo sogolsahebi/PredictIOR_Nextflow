@@ -188,7 +188,10 @@ workflow {
     extracted_data = LoadAndExtractData(icb_dat)
 
     // Use the extracted CSV files for gene association analysis
-    GeneAssociationOS(extracted_data[0], extracted_data[1])
+    GeneAssociationOs(
+        extracted_data[0],  // expr.csv
+        extracted_data[1]   // clin.csv
+    )
     GeneAssociationPFS(extracted_data[0], extracted_data[1])
     LogisticRegression(extracted_data[0], extracted_data[1])
 }
