@@ -1,90 +1,11 @@
-// Meta Analysis Section
-
-process MetaAnalysisOS{
-    container 'sogolsahebi/nextflow-rmd-env'
-    publishDir "${params.out_dir}", mode: 'copy'
-
-    input:
-    val list_rda
-    val study_names
-
-    output:
-    path "${params.study_id}_meta_analysis_os.csv"
-
+process testPredictioR {
+    container 'nextflow-env:latest'
     script:
     """
-    #!/usr/bin/env Rscript
-
-    # Calling the functions
-    source('/R_scripts/getGeneAssociation.R')
-    source('/R/scripts/getHR.R')
-
-    # Apply a function over the loaded datasets to perform survival analysis
-    cox_os <- lapply(1:length(list_rda), function(i) {
-        study_parts <- unlist(strsplit(study_names[i], "__"))
-        res <- geneSurvCont(
-            dat.icb = list_rda[[i]],
-            time.censor = 36,
-            missing.perc = 0.5,
-            const.int = 0.001,
-            n.cutoff = 15,
-            feature = "${params.gene_name}",
-            study = study_names[i],
-            surv.outcome = "OS",
-            cancer.type = study_parts[2],
-            treatment = study_parts[3]
-        )
-
-        # Remove rows with NA coefficients from the results
-        res <- res[!is.na(res\$Coef), ]
-        res
-    })
-
-    # Combine results into one data frame
-    cox_os <- do.call(rbind, cox_os)
-
-    # Remove rows without a gene name
-    cox_os <- cox_os[!is.na(cox_os\$Gene), ]
-
-    # Adjust p-values for multiple comparisons using the Benjamini-Hochberg method
-    cox_os\$FDR <- p.adjust(cox_os\$Pval, method = "BH")
-
-    # Save the results to a CSV file
-    write.csv(cox_os, file = "${params.study_id}_meta_analysis_os.csv", row.names = FALSE)
+    Rscript -e "library(PredictioR); print('PredictioR library loaded successfully')"
     """
 }
 
-// Aggregating Associations (response, R/NR) through Meta-analysis (Pan-cancer)
-
 workflow {
-
-    // Load the specified RDA data file
-    icb_dat = file(params.rda_file)
-
-    // Extract expression and clinical data to CSV files
-    extracted_data = LoadAndExtractData(icb_dat)
-
-    // Perform gene association analysis
-    GeneAssociationOS(extracted_data[0], extractedapped_data[1]) // expr.csv and clin.csv
-    GeneAssociationPFS(extracted_data[0], extracted_data[1])
-    LogisticRegression(extracted_data[0], extracted_data[1])
-
-    // Meta Analysis Section
-    // Load all RDA files and assign study names
-    
-    list_rda, study_names = Channel.from(
-        // Load each RDA file and extract data
-        list.files(path = '${params.rda_files_dir}', pattern = '.rda', full.names = TRUE).map { file ->
-            def dat_icb = load(file)
-            return [dat_icb, file]
-        }
-    ).map { dat_icb, file ->
-        def study_name = substr(file, 5, nchar(file) - 4)
-        return [dat_icb, study_name]
-    }.toList().map { data_list ->
-        [data_list.collect{ it[0] }, data_list.collect{ it[1] }]
-    }
-
-    // Perform Meta Analysis using loaded RDA data
-    MetaAnalysisOS(list_rda, study_names)
+    testPredictioR()
 }

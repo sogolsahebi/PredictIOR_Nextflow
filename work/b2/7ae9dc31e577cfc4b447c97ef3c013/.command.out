@@ -1,0 +1,84 @@
+Clinical data (first few rows):
+  patientid sex age cancer_type histo              tissueid treatmentid stage
+1    P10101   F  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+2    P10264   M  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+3    P10150   M  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+4    P10220   M  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+5    P10375   M  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+6    P10073   M  NA     Bladder    NA Bladder/Urinary Tract          NA    NA
+  response.other.info recist response  treatment  dna    rna survival_time_pfs
+1                  NA   <NA>     <NA> PD-1/PD-L1  tgs rnaseq                NA
+2                  NA   <NA>     <NA> PD-1/PD-L1  tgs rnaseq                NA
+3                  NA     PR        R PD-1/PD-L1  tgs rnaseq                NA
+4                  NA     PD       NR PD-1/PD-L1 <NA> rnaseq                NA
+5                  NA     PD       NR PD-1/PD-L1  tgs rnaseq                NA
+6                  NA     PR        R PD-1/PD-L1 <NA> rnaseq                NA
+  event_occurred_pfs survival_time_os event_occurred_os survival_unit
+1                 NA        0.4271047                 1         month
+2                 NA        0.6242300                 1         month
+3                 NA       24.4763860                 0         month
+4                 NA        4.6324435                 1         month
+5                 NA        1.4127310                 1         month
+6                 NA       11.4004107                 1         month
+  survival_type TMB_raw nsTMB_raw indel_TMB_raw indel_nsTMB_raw TMB_perMb
+1            OS       4         4            NA              NA  5.044136
+2            OS       4         4            NA              NA  5.044136
+3            OS       3         3            NA              NA  3.783102
+4            OS      NA        NA            NA              NA        NA
+5            OS       1         1            NA              NA  1.261034
+6            OS      NA        NA            NA              NA        NA
+  nsTMB_perMb indel_TMB_perMb indel_nsTMB_perMb CIN  CNA_tot      AMP      DEL
+1    5.044136              NA                NA  NA 0.000000 0.000000 0.000000
+2    5.044136              NA                NA  NA 1.261034 0.000000 1.261034
+3    3.783102              NA                NA  NA 5.044136 2.522068 2.522068
+4          NA              NA                NA  NA       NA       NA       NA
+5    1.261034              NA                NA  NA 6.305170 3.783102 2.522068
+6          NA              NA                NA  NA       NA       NA       NA
+  binaryResponse Enrollment.IC IC.Level TC.Level Immune.phenotype
+1           <NA>           IC1      IC1      TC0         excluded
+2           <NA>           IC1      IC1      TC1         inflamed
+3          CR/PR           IC1      IC1      TC0         excluded
+4          SD/PD           IC1      IC1      TC0         excluded
+5          SD/PD           IC0      IC0      TC0           desert
+6          CR/PR           IC2     IC2+     TC2+           desert
+  FMOne.mutation.burden.per.MB                      Race
+1                            6                     WHITE
+2                           10                     WHITE
+3                            9 BLACK OR AFRICAN AMERICAN
+4                           NA                     WHITE
+5                           12                     WHITE
+6                           NA                     WHITE
+  Intravesical.BCG.administered Baseline.ECOG.Score Tobacco.Use.History
+1                             N                   1               NEVER
+2                             N                   2            PREVIOUS
+3                             Y                   0            PREVIOUS
+4                             N                   1               NEVER
+5                             N                   1            PREVIOUS
+6                             N                   1            PREVIOUS
+  Met.Disease.Status         Sample.age Received.platinum
+1           Visceral (less than) 1 year                 Y
+2           Visceral (less than) 1 year                 N
+3           Visceral          1-2 years                 Y
+4              Liver  more than 2 years                 Y
+5              Liver  more than 2 years                 Y
+6           Visceral (less than) 1 year                 Y
+  Sample.collected.pre.platinum Neoantigen.burden.per.MB sizeFactor    Lund
+1                             Y                1.0196078  1.2344059 MS2b2.2
+2                          <NA>                1.2549020  1.1647357 MS2b2.2
+3                             Y                       NA  1.4834422    MS1a
+4                             Y                       NA  0.6498134   MS2b1
+5                             N                0.3921569  1.3451211    MS1b
+6                             N                0.8627451  0.7984888   MS2b1
+           Lund2 TCGA.Subtype
+1 Basal/SCC-like           IV
+2 Basal/SCC-like           IV
+3           UroA            I
+4    Infiltrated           II
+5           UroA            I
+6    Infiltrated           IV
+Cancer types with at least 15 samples: Bladder 
+Filtered expression matrix dimensions: 1768 0 
+Filtered clinical data dimensions: 0 51 
+Length of status: 0 
+Length of time: 0 
+Length of variable: 0 

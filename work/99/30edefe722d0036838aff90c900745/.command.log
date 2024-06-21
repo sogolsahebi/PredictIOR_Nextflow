@@ -1,0 +1,5 @@
+Error in coxph(Surv(time, surv) ~ variable, data = data) : 
+  could not find function "coxph"
+Calls: lapply -> FUN -> geneSurvCont -> lapply -> FUN -> survCont
+Execution halted
+nxf-QiFRLWchbKGLY9rCrmdCU7lg

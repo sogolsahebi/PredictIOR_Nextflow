@@ -9,11 +9,11 @@ params.rda_file = "${params.data_dir}/${params.study_id}.rda"
 // Extract cancer type and treatment type of this dataset
 cancer_type = params.study_id.split('__')[1]
 treatment_type = params.study_id.split('__')[2]
-println("Extracted Cancer Type: ${cancer_type}, Treatment Type: ${treatment_type} for ${params.study_id} ")
+println("Extracted Cancer Type: ${cancer_type}, Treatment Type: ${treatment_type} for ${params.study_id} study")
 
 // Process to load RDA data and extract expression and clinical data
 process LoadAndExtractData {
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -45,7 +45,7 @@ params.gene_nums = 100  // Default number of genes to process
 //1.Gene Association with 'OS'
 process GeneAssociationOS {
     tag "${params.study_id}"
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -59,12 +59,12 @@ process GeneAssociationOS {
     """
     #!/usr/bin/env Rscript
     library(SummarizedExperiment)
+    library(PredictioR)
+    source('/R_scripts/getGeneAssociation.R')
+    source('/R_scripts/getHR.R')
 
     expr <- read.csv("${expr_file}", row.names = 1)
     clin <- read.csv("${clin_file}")
-
-    source('/R_scripts/getGeneAssociation.R')
-    source('/R_scripts/getHR.R')
 
     cox_os <- lapply(1:${params.gene_nums}, function(i) {
         geneSurvCont(
@@ -83,7 +83,8 @@ process GeneAssociationOS {
     })
 
     cox_os <- do.call(rbind, cox_os)
-    # Additional filtering and adjustments as needed
+
+    # Additional filtering 
     cox_os <- cox_os[!is.na(cox_os\$Gene), ]
     cox_os\$FDR <- p.adjust(cox_os\$Pval, method = "BH")
 
@@ -91,10 +92,67 @@ process GeneAssociationOS {
     """
 }
 
+// REPLACE WITH: 
+
+// Gene Association Analysis for specific genes
+process GeneAssociationOS_genes {
+    tag "${params.study_id}"
+    container 'nextflow-env:latest'
+    publishDir "${params.out_dir}", mode: 'copy'
+
+    input:
+    path expr_file
+    path clin_file
+    path bareche_file
+
+    output:
+    path "${params.study_id}_cox_os_genes.csv"
+
+    script:
+    """
+    #!/usr/bin/env Rscript
+    library(SummarizedExperiment)
+    library(PredictioR)
+    
+    source('/R_scripts/getGeneAssociation.R')
+    source('/R_scripts/getHR.R')
+
+    load("${bareche_file}")
+
+    expr <- read.csv("${expr_file}", row.names = 1)
+    clin <- read.csv("${clin_file}")
+
+    genes <- PredictIO_Bareche\$gene_name
+
+    cox_os <- geneSurvCont(
+            dat.icb = expr,
+            clin = clin,
+            time.censor = 36,
+            missing.perc = 0.5,
+            const.int = 0.001,
+            n.cutoff = 15,
+            feature = gene,
+            study = '${params.study_id}',
+            surv.outcome = 'OS',
+            cancer.type = '${cancer_type}',
+            treatment = '${treatment_type}'
+        )
+
+    cox_os <- do.call(rbind, cox_os)
+
+    # Additional filtering 
+    cox_os <- cox_os[!is.na(cox_os\$Gene), ]
+    cox_os\$FDR <- p.adjust(cox_os\$Pval, method = "BH")
+
+    write.csv(cox_os, file = "${params.study_id}_cox_os_genes.csv", row.names = FALSE)
+    """
+}
+
+
 //2.Gene Association with 'PFS'
 process GeneAssociationPFS {
     tag "${params.study_id}"
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -107,13 +165,13 @@ process GeneAssociationPFS {
     script:
     """
     #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-
-    expr <- read.csv("${expr_file}", row.names = 1)
-    clin <- read.csv("${clin_file}")
+    library(PredictioR)
 
     source('/R_scripts/getGeneAssociation.R')
     source('/R_scripts/getHR.R')
+
+    expr <- read.csv("${expr_file}", row.names = 1)
+    clin <- read.csv("${clin_file}")
 
     cox_pfs <- lapply(1:${params.gene_nums}, function(i) {
       geneSurvCont(
@@ -144,7 +202,7 @@ process GeneAssociationPFS {
 //2.Gene Association  with Immunotherapy response (R vs NR).
 process LogisticRegression {
     tag "${params.study_id}"
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -158,12 +216,10 @@ process LogisticRegression {
     """
     #!/usr/bin/env Rscript
     library(SummarizedExperiment)
+    library(PredictioR)
 
     expr <- read.csv("${expr_file}", row.names = 1)
     clin <- read.csv("${clin_file}")
-
-    source('/R_scripts/getGeneAssociation.R')
-    source('/R_scripts/getHR.R')
 
     logreg <- lapply(1:${params.gene_nums}, function(i) {
       res <- geneLogReg(
@@ -195,14 +251,14 @@ process LogisticRegression {
 
 // Aggregating Associations (OS) through Meta-analysis (Pan-cancer)
 params.rda_files_dir = "/workspace/PredictIOR_Nextflow/data"
-params.gene_name = "CXCL9"
+params.gene_name = "CXCL9" // default
 
 
 ////////// Meta Analysis Section //////////
 
 // Process to load and prepare RDA files
 process LoadAllData{
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -230,8 +286,9 @@ process LoadAllData{
     """
 }
 
+
 process MetaAnalysisOS{
-    container 'sogolsahebi/nextflow-rmd-env'
+    container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
@@ -244,14 +301,13 @@ process MetaAnalysisOS{
     """
     #!/usr/bin/env Rscript
 
+    source('/R_scripts/getGeneAssociation.R')
+    source('/R_scripts/getHR.R')
+
     # Load prepared data
     prepared_data <- readRDS('${prepared_data}')
     list_rda <- prepared_data[[1]]
     study_names <- prepared_data[[2]]
-
-    # Calling the functions
-    source('/R_scripts/getGeneAssociation.R')
-    source('/R_scripts/getHR.R')
 
     # Apply a function over the loaded datasets to perform survival analysis
     cox_os <- lapply(1:length(list_rda), function(i) {
@@ -283,36 +339,73 @@ process MetaAnalysisOS{
     # Adjust p-values for multiple comparisons using the Benjamini-Hochberg method
     cox_os\$FDR <- p.adjust(cox_os\$Pval, method = "BH")
 
+    # meta-analysis for a gene across datasets
+    res_meta <- metafun(coef = assoc.res\$Coef, 
+                        se = assoc.res\$SE,
+                        study  = assoc.res\$Study, 
+                        pval = assoc.res\$Pval, 
+                        n = assoc.res\$N,
+                        cancer.type = assoc.res\$Cancer_type,
+                        treatment = assoc.res\$Treatment,
+                        feature = "${params.gene_name}", 
+                        cancer.spec = FALSE, 
+                        treatment.spec = FALSE)
+        
+    # meta-analysis results
+    res_meta <- data.frame(res_meta)
+
     # Save the results to a CSV file
     write.csv(cox_os, file = "${params.study_id}_meta_analysis_os.csv", row.names = FALSE)
+    write.csv(res_meta, file = "${params.study_id}_meta_analysis_os_across_datasets.csv", row.names = FALSE)
+
     """
 }
+
+
+
 
 //Aggregating Associations (response, R/NR) through Meta-analysis (Pan-cancer)
 
 workflow {
 
-    // Load the specified RDA data file
+    ////////// load RDA data and Extract expr and clin data//////////
+
+    // Set specified study id 
+    //params.study_id = 'ICB_Ravi__Lung__PD-L1' //set as default
+    //params.data_dir = './data'
+    //params.rda_file = "${params.data_dir}/${params.study_id}.rda"
+
     icb_dat = file(params.rda_file)
+
+    // Extract expression and clinical data to CSV files
+    extracted_data = LoadAndExtractData(icb_dat) // extracted_data[0] expr.csv and extracted_data[1] clin.csv
 
     ////////// Meta Analysis Section //////////
 
-    // Extract expression and clinical data to CSV files
-    extracted_data = LoadAndExtractData(icb_dat)
-
     // Perform gene association analysis
+    //params.gene_nums = 100  // Default number of genes to process
+   
+
     GeneAssociationOS(extracted_data[0], extracted_data[1]) // expr.csv and clin.csv
+
+    //Replace
+    bareche_file = file("./Bareche/PredictIO_Bareche.rda")
+    GeneAssociationOS_genes(extracted_data[0], extracted_data[1], bareche_file)
+
     GeneAssociationPFS(extracted_data[0], extracted_data[1])
     LogisticRegression(extracted_data[0], extracted_data[1])
 
 
-     ////////// Meta Analysis Section //////////
-    
+    ////////// Meta Analysis Section //////////
+
+    //params.gene_name = "CXCL9" // Set a gene namee as default.
+
     // Load RDA files and extract data
     all_rdas = LoadAllData(params.rda_files_dir)
 
     // Perform Meta Analysis(OS) using loaded RDA data
     MetaAnalysisOS(all_rdas)
+    
 }
 
 

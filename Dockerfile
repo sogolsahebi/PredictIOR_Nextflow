@@ -20,11 +20,11 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 # Install Docker
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    sudo apt-get update && \
-    sudo apt-get install -y docker-ce && \
-    sudo usermod -aG docker rstudio && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get update && \
+    apt-get install -y docker-ce && \
+    usermod -aG docker rstudio && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Nextflow
@@ -67,9 +67,6 @@ RUN R -e "devtools::install_github('bhklab/PredictioR')"
 # Set up the working directory
 WORKDIR /PredictIOR_Nextflow
 
-# Copy R files from your local R dir to the container
-COPY R/*.R /PredictIOR_Nextflow/R/
-
 # Add a script to render Rmd files
 COPY render_rmd.sh /usr/local/bin/render_rmd.sh
 RUN chmod +x /usr/local/bin/render_rmd.sh
@@ -80,8 +77,5 @@ EXPOSE 8787
 # Command to run when the container starts
 CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0"]
 
-# Set up the working directory
-WORKDIR /PredictIOR_Nextflow
-
-# Copy R files from your local R dir to the container
-COPY R/*.R /PredictIOR_Nextflow/R/
+# Ensure the PATH includes the directory where Nextflow is installed
+RUN echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/bash.bashrc

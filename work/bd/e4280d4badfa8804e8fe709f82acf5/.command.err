@@ -1,0 +1,3 @@
+Error in assay(dat.icb) : could not find function "assay"
+Calls: lapply -> FUN -> geneSurvCont
+Execution halted

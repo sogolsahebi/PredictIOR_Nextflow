@@ -1,3 +1,0 @@
-Error in list.files(dir) : invalid 'path' argument
-Calls: substr -> nchar -> list.files
-Execution halted
