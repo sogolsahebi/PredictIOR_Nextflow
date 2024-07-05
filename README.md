@@ -57,18 +57,8 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   params.gene_out_dir = './output'
   ```
 
-## Configuration of Pipeline Parameters
-- **Cancer Type:**
-  ```bash
-  cancer_type = 'Bladder'  // Specify the cancer type for analysis
-  ```
-- **Treatment Type:**
-  ```bash
-  treatment = 'PD-1/PD-L1'  // Define the treatment regimen
-  ```
-
 ## Input Data Specifications
-Ensure clinical data is organized with required and additional fields to maintain the integrity of the analysis:
+Ensure that clinical data is properly organized with all required and additional fields to ensure the integrity of the analysis.
 - **Required Columns:**
   - `patientid`: Unique identifier for patients
   - `treatmentid`: Details of the treatment regimen
