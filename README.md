@@ -8,11 +8,11 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 ### Nextflow
 - **Version:** 24.04.2
 - **Installation and Resources:**
-  - **Installation:**
-    ```bash
-    curl -s https://get.nextflow.io | bash
-    sudo mv nextflow /usr/local/bin/
-    ```
+  - **Setup Instructions:** For detailed installation steps, please refer to the [Nextflow Setup Guide](https://www.nextflow.io/docs/latest/install.html).
+  - **Documentation and Resources:**
+    - [General Documentation](https://www.nextflow.io/docs/latest/index.html)
+    - [Nextflow Training](https://training.nextflow.io)
+
   - **Documentation and Resources:**
     - [General Documentation](https://www.nextflow.io/docs/latest/index.html)
     - [Nextflow Setup](https://www.nextflow.io/docs/latest/install.html)
