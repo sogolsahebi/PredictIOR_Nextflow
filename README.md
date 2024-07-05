@@ -65,11 +65,12 @@ Ensure that clinical data is properly organized with all required and additional
   - `treatmentid`: Details of the treatment regimen
   - `response`: Patient response to treatment (Responder 'R', Non-responder 'NR')
   - `tissueid`: Standardized cancer type
-  - `survival_time_pfs`: Time to progression-free survival
+  - `survival_time_pfs`: Time to progression-free survival, Example: 2.6 months
   - `survival_time_os`: Time to overall survival
   - `survival_unit`: Measurement units for survival times, typically months
-  - `event_occurred_pfs`: Binary indicator of event occurrence during PFS
-  - `event_occurred_os`: Binary indicator of event occurrence during OS
+  - `event_occurred_pfs`: Binary indicator of event occurrence during PFS (1,0)
+  - `event_occurred_os`: Binary indicator of event occurrence during OS (1,0)
+
 - **Additional Recommended Fields:**
   Include sex, age, histo (histological type), stage of cancer, dna, and rna details among others as necessary.
 
