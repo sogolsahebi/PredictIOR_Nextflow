@@ -29,7 +29,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 
 ## Reference Resources
 - **GitHub Repository:** [PredictioR GitHub Repository](https://github.com/bhklab/PredictioR)
-- **Key Publication:** [PubMed Reference PMID: 36055464](https://pubmed.ncbi.nlm.nih.gov/36055464/)
+- **Key Publication:** [PubMed Reference, PMID: 36055464](https://pubmed.ncbi.nlm.nih.gov/36055464/)
 
 ## Data Directory Configuration
 
