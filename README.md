@@ -13,11 +13,6 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
     - [General Documentation](https://www.nextflow.io/docs/latest/index.html)
     - [Nextflow Training](https://training.nextflow.io)
 
-  - **Documentation and Resources:**
-    - [General Documentation](https://www.nextflow.io/docs/latest/index.html)
-    - [Nextflow Setup](https://www.nextflow.io/docs/latest/install.html)
-    - [Nextflow Training](https://training.nextflow.io)
-
 ### Docker
 - **Purpose:** Ensures computational reproducibility by containerizing the environment.
 - **Installation Guide:** [Install Docker](https://docs.docker.com/get-docker/)
