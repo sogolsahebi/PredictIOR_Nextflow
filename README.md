@@ -51,6 +51,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   - `gene_type`: Type of gene
   - `gene_name`: Name of the gene
   - `weight`: Weight assigned to each gene within the signature
+    
   These files are also sourced from the [bhklab SignatureSets GitHub repository](https://github.com/bhklab/SignatureSets).
 - **Output Data Directory:**
   ```bash
