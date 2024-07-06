@@ -29,7 +29,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 
 ## Data Directory Configuration
 
-### Signature Level Analysis
+### Gene Level Analysis
 - **Input Data Directory:**
   ```bash
   params.signature_data_dir = './ICB_data'
@@ -40,17 +40,16 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   params.signature_out_dir = './output'
   ```
 
-### Gene Level Analysis
+### Signature Level Analysis
 - **Input Data Directory:**
   ```bash
   params.gene_data_dir = './SIG_data'
   ```
 - **Example Data Files:** Files like `CYT_Rooney.rda`, `EMT_Thompson.rda`, `PredictIO_Bareche.rda` are data frames with columns:
   - `signature_name`: Name of the signature
-  - `gene_id`: Gene identifier
-  - `gene_type`: Type of gene
   - `gene_name`: Name of the gene
   - `weight`: Weight assigned to each gene within the signature
+  - References: TODO
     
   These files are also sourced from the [bhklab SignatureSets GitHub repository](https://github.com/bhklab/SignatureSets).
 - **Output Data Directory:**
