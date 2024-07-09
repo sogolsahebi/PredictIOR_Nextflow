@@ -21,7 +21,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   ```bash
   docker pull bhklab/nextflow-env
   ```
-  - Docker Hub: [sogolsahebi/nextflow-env](https://hub.docker.com/r/sogolsahebi/nextflow-env)
+  - Docker Hub: [bhklab/nextflow-env](https://hub.docker.com/r/sogolsahebi/nextflow-env)
 
 ## Reference Resources
 - **GitHub Repository:** [PredictioR GitHub Repository](https://github.com/bhklab/PredictioR)
