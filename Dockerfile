@@ -79,3 +79,7 @@ CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0"]
 
 # Ensure the PATH includes the directory where Nextflow is installed
 RUN echo 'export PATH="/usr/local/bin:$PATH"' >> /etc/bash.bashrc
+
+# Add library calling file
+COPY load_libraries.R /usr/local/lib/R/site-library/load_libraries.R
+RUN mkdir -p /R && ln -s /usr/local/lib/R/site-library/load_libraries.R /R/load_libraries.R

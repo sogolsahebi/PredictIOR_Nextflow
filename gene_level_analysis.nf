@@ -1,12 +1,25 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-params.study_id = 'ICB_small_Mariathasan'
+params.study_id = 'ICB_small_Mariathasan' // Set study_id (name of the .rda file in ./ICB_data directory)
 params.data_dir = './ICB_data'
 params.out_dir = './output'
-params.rda_file = "${params.data_dir}/${params.study_id}.rda"
-cancer_type = 'Bladder'
-treatment = 'PD-1/PD-L1'
+params.cancer_type = 'Bladder'
+params.treatment = 'PD-1/PD-L1'
+
+params.cancer_types = '["Melanoma", "Pancreas", "Melanoma", "Bladder", "Melanoma", "Melanoma", "Kidney", "Melanoma"]'
+params.treatment_types = '["PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "CTLA4", "IO+combo", "PD-1/PD-L1", "CTLA4"]'
+params.gene_name = "CXCL9"
+
+log.info """
+P R E D I C T I O - N F   P I P E L I N E (Gene Level Analsyis )
+================================================================
+Study ID             : ${params.study_id}
+ICB Data Directory   : ${params.data_dir}
+Output Directory     : ${params.out_dir}
+Cancer Type          : ${params.cancer_type}
+Treatment            : ${params.treatment}
+""".stripIndent()
 
 /*
 ========================================================
@@ -15,7 +28,7 @@ SECTION: Load Immunotherapy Datasets
 */
 
 /*
-Load public clinical multimodal immunotherapy datasets from GitHub and ORCESTRA for transparent biomarker discovery in immunotherapy response. For RNA profiles, we use log2-transformed TPM data from protein-coding genes, filtering out genes with zero expression in at least 50% of samples. Only studies with at least 20 patients are included.
+Load public clinical multimodal immunotherapy datasets from GitHub or ORCESTRA for transparent biomarker discovery in immunotherapy response. For RNA profiles, we use log2-transformed TPM data from protein-coding genes, filtering out genes with zero expression in at least 50% of samples. Only studies with at least 20 patients are included.
 
 For example, the Mariathasan dataset (PMID 29443960) includes RNA expression, clinical data, and gene metadata for 195 patients with 17,993 protein-coding genes, focused on bladder cancer and PD-1/PD-L1 treatment.
 
@@ -43,7 +56,7 @@ process LoadAndExtractData {
     script:
     """
     #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
+    source('/R/load_libraries.R')
 
     load("${rda_file}")
 
@@ -58,9 +71,14 @@ process LoadAndExtractData {
 }
 
 /*
-======================================================================================
+========================================================
 SECTION: Biomarkers and Immunotherapy Response Association - Gene Association Analysis
-======================================================================================
+
+These section functions you can either:
+
+Option 1: Use dat.icb = expr (data frame) with clin = clin (data frame) for clinical data
+Option 2: Load the RDA file with load("${rda_file}"), then use  dat.icb = '${params.study_id}' (SummarizedExperiment object) with clin = NULL
+========================================================
 */
 
 /*
@@ -74,14 +92,13 @@ Note: Coef represents the log hazard ratio (logHR) or log odds ratio (logOR) dep
 */
 
 /*
---------------------------------------------------------
-SUBSECTION: Overall survival (OS)
---------------------------------------------------------
+--------------------------------------------------------------------
+SUBSECTION: Overall survival (OS) or Progression-free survival (PFS)
+--------------------------------------------------------------------
 */
 
-genes = 'c("CXCL9", "CXCL10", "TIGIT", "CD83", "STAT1", "CXCL11", "CXCL13", "CD8A", "CTLA4")'
 
-process GeneAssociationOS {
+process GeneAssociationSurvival {
     tag "${params.study_id}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -89,26 +106,21 @@ process GeneAssociationOS {
     input:
     path expr_file
     path clin_file
+    val survival_type
+    val genes
 
     output:
-    path "${params.study_id}_cox_os_genes.csv"
+    path("${params.study_id}_cox_${survival_type}_genes.csv")
 
     script:
     """
     #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
-    library(survival)
-    library(BiocGenerics)
-    library(S4Vectors)
-    library(IRanges)
-    library(GenomeInfoDb)
-    library(Biobase)
+    source('/R/load_libraries.R')
     
     expr <- read.csv("${expr_file}", row.names = 1)
-    clin <- as.data.frame(colData(${params.study_id}))
+    clin <- read.csv("${clin_file}")
 
-    cox_os <- geneSurvCont(
+    cox_result <- geneSurvCont(
         dat.icb = expr,
         clin = clin,
         time.censor = 36,
@@ -117,69 +129,15 @@ process GeneAssociationOS {
         n.cutoff = 15,
         feature = ${genes},
         study = "${params.study_id}",
-        surv.outcome = 'OS',
-        cancer.type = "${cancer_type}",
-        treatment = "${treatment}"
+        surv.outcome = "${survival_type}",
+        cancer.type = "${params.cancer_type}",
+        treatment = "${params.treatment}"
     )
 
     # Adjust p-values for multiple testing
-    cox_os\$FDR <- p.adjust(cox_os\$Pval, method = "BH")
-    cox_os <- cox_os[order(cox_os\$FDR), ]
-    write.csv(cox_os, file = "${params.study_id}_cox_os_genes.csv", row.names = FALSE)
-    """
-}
-
-/*
---------------------------------------------------------
-SUBSECTION: Progression-free survival (PFS)
---------------------------------------------------------
-*/
-
-process GeneAssociationPFS {
-    tag "${params.study_id}"
-    container 'nextflow-env:latest'
-    publishDir "${params.out_dir}", mode: 'copy'
-
-    input:
-    path expr_file
-    path clin_file
-
-    output:
-    path "${params.study_id}_cox_pfs_genes.csv"
-
-    script:
-    """
-    #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
-    library(survival)
-    library(BiocGenerics)
-    library(S4Vectors)
-    library(IRanges)
-    library(GenomeInfoDb)
-    library(Biobase)
-    
-    expr <- read.csv("${expr_file}", row.names = 1)
-    clin <- as.data.frame(colData(${params.study_id}))
-
-    cox_pfs <- geneSurvCont(
-        dat.icb = expr,
-        clin = clin,
-        time.censor = 36,
-        missing.perc = 0.5,
-        const.int = 0.001,
-        n.cutoff = 15,
-        feature = ${genes},
-        study = "${params.study_id}",
-        surv.outcome = 'PFS',
-        cancer.type = "${cancer_type}",
-        treatment = "${treatment}"
-    )
-
-    # Adjust p-values for multiple testing
-    cox_pfs\$FDR <- p.adjust(cox_pfs\$Pval, method = "BH")
-    cox_pfs <- cox_pfs[order(cox_pfs\$FDR), ]
-    write.csv(cox_pfs, file = "${params.study_id}_cox_pfs_genes.csv", row.names = FALSE)
+    cox_result\$FDR <- p.adjust(cox_result\$Pval, method = "BH")
+    cox_result <- cox_result[order(cox_result\$FDR), ]
+    write.csv(cox_result, file = "${params.study_id}_cox_${survival_type}_genes.csv", row.names = FALSE)
     """
 }
 
@@ -189,7 +147,7 @@ SUBSECTION: Immunotherapy response (R vs NR)
 --------------------------------------------------------
 */
 
-process GeneAssociationResponse_RvsNR {
+process GeneAssociationResponse {
     tag "${params.study_id}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -197,38 +155,38 @@ process GeneAssociationResponse_RvsNR {
     input:
     path expr_file
     path clin_file
+    val genes
 
     output:
-    path "${params.study_id}_Response_RvsNR.csv"
+    path("${params.study_id}_Response.csv")
 
     script:
     """
     #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
+    source('/R/load_libraries.R')
 
     expr <- read.csv("${expr_file}", row.names = 1)
     clin <- read.csv("${clin_file}")
-    
+
     logreg <- geneLogReg(
         dat.icb = expr,
         clin = clin,
         missing.perc = 0.5,
         const.int = 0.001,
         n.cutoff = 15,
-        feature = c("CXCL9", "CXCL10", "TIGIT", "CD83", "STAT1", "CXCL11", "CXCL13", "CD8A", "CTLA4"),
+        feature = ${genes},
         study = "${params.study_id}", 
         n0.cutoff = 5, 
         n1.cutoff = 5,
-        cancer.type = "${cancer_type}",
-        treatment = "${treatment}"
+        cancer.type = "${params.cancer_type}",
+        treatment = "${params.treatment}"
     )
 
     # Adjust P-values and sort by FDR
     logreg <- logreg[order(logreg\$FDR <- p.adjust(logreg\$Pval, method = "BH"))]
 
     # Save as CSV file
-    write.csv(logreg, file = "${params.study_id}_Response_RvsNR.csv", row.names = FALSE)
+    write.csv(logreg, file = "${params.study_id}_Response.csv", row.names = FALSE)
     """
 }
 
@@ -239,7 +197,7 @@ SECTION: Meta Analysis Section
 */
 
 /*
-The following clinical multimodal immunotherapy datasets are publicly available on the Github. These datasets are used in biomarker discovery for immunotherapy response through pan-cancer, cancer-specific, and treatment-specific analyses
+The following clinical multimodal immunotherapy datasets are publicly available on the Github. These datasets are used in biomarker discovery for immunotherapy response through treatment-specific analyses
 
 Links:
 - GitHub: https://github.com/bhklab/PredictioR/tree/main/data
@@ -250,65 +208,76 @@ params.cancer_types = '["Melanoma", "Pancreas", "Melanoma", "Bladder", "Melanoma
 params.treatment_types = '["PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "CTLA4", "IO+combo", "PD-1/PD-L1", "CTLA4"]'
 params.gene_name = "CXCL9"
 
+
 /*
 -----------------------------------------------------------------------
-SUBSECTION: Aggregating Associations through Meta-analysis (Pan-cancer)
+SUBSECTION: Aggregating Associations through Meta-analysis (Per-treatment)
 -----------------------------------------------------------------------
-Set the directory that contains all the .rda files for meta-analysis. Previously defined as params.data_dir = './data'. There are 8 .rda files: "ICB_Liu", "ICB_Padron", "ICB_Hugo", "ICB_Mariathasan", "ICB_Nathanson", "ICB_Riaz", "ICB_Miao", "ICB
-
-_Van_Allen"
-
-As an example, for the gene CXCL9, to generalize the association with immunotherapy survival, we apply a meta-analysis approach to integrate findings across datasets for pan-cancer analysis.
 */
 
-process MetaAnalysisOS_PanCancer {
-    tag {params.gene_name }
+process MetaAnalysis_pertreatment {
+    tag {params.gene_name}
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
     input:
     path rda_files_path
+    val survival_type
 
     output:
-    path "Meta_analysis_os_${params.gene_name}_association.csv"
-    path "Meta_analysis_os_${params.gene_name}_pancancer.csv"
+    path "Meta_analysis_${survival_type}_${params.gene_name}_pertreatment.csv"
 
     script:
     """
     #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
-    library(survival)
-    library(meta)
-    library(jsonlite) 
+    source('/R/load_libraries.R')
 
-    # Load all .rda files 
+    # Load all .rda files into the global environment
     lapply(list.files(path = '${rda_files_path}', pattern = '*.rda', full.names = TRUE), function(file) {
         load(file, envir = .GlobalEnv)
     })
 
     # Create a list of the loaded objects using their actual names
-    loaded_objects <- ls(pattern = "^ICB_small_")
+    loaded_objects <- ls(pattern = "^ICB_")
     expr <- mget(loaded_objects, envir = .GlobalEnv)
 
     # Define the cancer types and treatment types vectors
     cancer_types <- fromJSON('${params.cancer_types}')
     treatment_types <- fromJSON('${params.treatment_types}')
 
-    # Apply a function over the loaded datasets to perform survival analysis
+    if (length(expr) != length(cancer_types) || length(expr) != length(treatment_types)) {
+        stop("Mismatch in the length of loaded objects, cancer types, and treatment types.")
+    }
+
+    # Apply a function over the loaded datasets to perform survival or response analysis
     assoc.res <- lapply(1:length(expr), function(k){
-        geneSurvCont(
-            dat.icb = expr[[k]],
-            time.censor = 36,
-            missing.perc = 0.5,
-            const.int = 0.001,
-            n.cutoff = 15,
-            feature = "${params.gene_name}",
-            study = names(expr)[k],
-            surv.outcome = 'OS',
-            cancer.type = cancer_types[k],
-            treatment = treatment_types[k]
-        )
+        if ('${survival_type}' == 'OS' || '${survival_type}' == 'PFS') {
+            geneSurvCont(
+                dat.icb = expr[[k]],
+                time.censor = 36,
+                missing.perc = 0.5,
+                const.int = 0.001,
+                n.cutoff = 15,
+                feature = "${params.gene_name}",
+                study = names(expr)[k],
+                surv.outcome = '${survival_type}',
+                cancer.type = cancer_types[k],
+                treatment = treatment_types[k]
+            )
+        } else if ('${survival_type}' == 'Response') {
+            geneLogReg(
+                dat.icb = expr[[k]],
+                missing.perc = 0.5,
+                const.int = 0.001,
+                n.cutoff = 15,
+                feature = "${params.gene_name}",
+                study = names(expr)[k],
+                n0.cutoff = 5, 
+                n1.cutoff = 5,
+                cancer.type = cancer_types[k],
+                treatment = treatment_types[k]
+            )
+        }
     })
 
     # Combine results into one data frame
@@ -318,192 +287,36 @@ process MetaAnalysisOS_PanCancer {
     assoc.res\$FDR <- p.adjust(assoc.res\$Pval, method = "BH")
 
     # Meta-analysis for a gene across datasets
-    res_meta_pancancer <- metafun(
-        coef = assoc.res\$Coef, 
-        se = assoc.res\$SE,
-        study  = assoc.res\$Study, 
-        pval = assoc.res\$Pval, 
-        n = assoc.res\$N,
-        cancer.type = assoc.res\$Cancer_type,
-        treatment = assoc.res\$Treatment,
-        feature = "${params.gene_name}", 
-        cancer.spec = FALSE, 
-        treatment.spec = FALSE
-    )
-        
-    # Meta-analysis results
-    res_meta_pancancer <- data.frame(res_meta_pancancer)
-
-    # Save the results to a CSV file
-    write.csv(assoc.res, file = "Meta_analysis_os_${params.gene_name}_association.csv", row.names = FALSE)
-    write.csv(res_meta_pancancer, file = "Meta_analysis_os_${params.gene_name}_pancancer.csv", row.names = FALSE)
-    """
-}
-
-/*
------------------------------------------------------------------------
-SUBSECTION: Aggregating Associations through Meta-analysis (Per-cancer)
------------------------------------------------------------------------
-
-For cancer-specific analysis, consider meta-analysis when there are at least 3 datasets.
-*/
-
-process MetaAnalysisOS_PerCancer {
-    tag {params.gene_name }
-    container 'nextflow-env:latest'
-    publishDir "${params.out_dir}", mode: 'copy'
-
-    input:
-    path rda_files_path
-
-    output:
-    path "Meta_analysis_os_${params.gene_name}_percancer.csv"
-
-    script:
-    """
-    #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
-    library(survival)
-    library(meta)
-    library(jsonlite)
-
-    # Load all .rda files into the global environment
-    lapply(list.files(path = '${rda_files_path}', pattern = '*.rda', full.names = TRUE), function(file) {
-        load(file, envir = .GlobalEnv)
-    })
-
-    # Create a list of the loaded objects using their actual names
-    loaded_objects <- ls(pattern = "^ICB_")
-    expr <- mget(loaded_objects, envir = .GlobalEnv)
-
-    # Define the cancer types and treatment types vectors
-    cancer_types <- fromJSON('${params.cancer_types}')
-    treatment_types <- fromJSON('${params.treatment_types}')
-
-    # Apply a function over the loaded datasets to perform survival analysis
-    assoc.res <- lapply(1:length(expr), function(k){
-        geneSurvCont(
-            dat.icb = expr[[k]],
-            time.censor = 36,
-            missing.perc = 0.5,
-            const.int = 0.001,
-            n.cutoff = 15,
-            feature = "${params.gene_name}",
-            study = names(expr)[k],
-            surv.outcome = 'OS',
-            cancer.type = cancer_types[k],
-            treatment = treatment_types[k]
+    if ('${survival_type}' == 'OS' || '${survival_type}' == 'PFS') {
+        res_meta_pertreatment <- metaPerTreatmentfun(
+            coef = assoc.res\$Coef, 
+            se = assoc.res\$SE,
+            study  = assoc.res\$Study, 
+            pval = assoc.res\$Pval, 
+            n = assoc.res\$N,
+            cancer.type = assoc.res\$Cancer_type,
+            treatment = assoc.res\$Treatment,
+            feature = "${params.gene_name}", 
+            treatment.spec = TRUE
         )
-    })
-
-    # Combine results into one data frame
-    assoc.res <- do.call(rbind, assoc.res)
-
-    # Adjust p-values for multiple comparisons using the Benjamini-Hochberg method
-    assoc.res\$FDR <- p.adjust(assoc.res\$Pval, method = "BH")
-
-    # Treatment-specific meta-analysis for a gene across datasets
-    res_meta_percancer <- metaPerCanfun(
-        coef = assoc.res\$Coef, 
-        se = assoc.res\$SE,
-        study  = assoc.res\$Study, 
-        pval = assoc.res\$Pval, 
-        n = assoc.res\$N,
-        cancer.type = assoc.res\$Cancer_type,
-        treatment = assoc.res\$Treatment,
-        feature = "${params.gene_name}", 
-        cancer.spec = TRUE
-    )
-
-    res_meta_percancer <- data.frame(rbind(res_meta_percancer\$Melanoma\$meta_summery, res_meta_percancer\$Other\$meta_summery))
-
-    # Save the results to a CSV file
-    write.csv(res_meta_percancer, file = "Meta_analysis_os_${params.gene_name}_percancer.csv", row.names = FALSE)
-    """
-}
-
-/*
---------------------------------------------------------
-SUBSECTION: Aggregating Associations through Meta-analysis (Per-treatment)
---------------------------------------------------------
-
-As an example, for the gene CXCL9, to generalize the association with immunotherapy survival, we apply a meta-analysis approach to integrate findings across datasets for pan-cancer analysis.
-*/
-
-process MetaAnalysisOS_PerTreatment {
-    tag {params.gene_name}
-    container 'nextflow-env:latest'
-    publishDir "${params.out_dir}", mode: 'copy'
-
-    input:
-    path rda_files_path
-
-    output:
-    path "Meta_analysis_os_${params.gene_name}_pertreatment.csv"
-
-    script:
-    """
-    #!/usr/bin/env Rscript
-    library(SummarizedExperiment)
-    library(PredictioR)
-    library(survival)
-    library(meta)
-    library(jsonlite)
-
-    # Load all .rda files into the global environment
-    lapply(list.files(path = '${rda_files_path}', pattern = '*.rda', full.names = TRUE), function(file) {
-        load(file, envir = .GlobalEnv)
-    })
-
-    # Create a list of the loaded objects using their actual names
-    loaded_objects <- ls(pattern = "^ICB_")
-    expr <- mget(loaded_objects, envir = .GlobalEnv)
-
-    # Define the cancer types and treatment types vectors
-    cancer_types <- fromJSON('${params.cancer_types}')
-    treatment_types <- fromJSON('${params.treatment_types}')
-
-    # Apply a function over the loaded datasets to perform survival analysis
-    assoc.res <- lapply(1:length(expr), function(k){
-        geneSurvCont(
-            dat.icb = expr[[k]],
-            time.censor = 36,
-            missing.perc = 0.5,
-            const.int = 0.001,
-            n.cutoff = 15,
-            feature = "${params.gene_name}",
-            study = names(expr)[k],
-            surv.outcome = 'OS',
-            cancer.type = cancer_types[k],
-            treatment = treatment_types[k]
+    } else if ('${survival_type}' == 'Response') {
+        res_meta_pertreatment <- metaLogRegfun(
+            coef = assoc.res\$Coef, 
+            se = assoc.res\$SE,
+            study  = assoc.res\$Study, 
+            pval = assoc.res\$Pval, 
+            n = assoc.res\$N,
+            cancer.type = assoc.res\$Cancer_type,
+            treatment = assoc.res\$Treatment,
+            feature = "${params.gene_name}", 
+            treatment.spec = TRUE
         )
-    })
+    }
 
-    # Combine results into one data frame
-    assoc.res <- do.call(rbind, assoc.res)
-
-    # Adjust p-values for multiple comparisons using the Benjamini-Hochberg method
-    assoc.res\$FDR <- p.adjust(assoc.res\$Pval, method = "BH")
-
-    # Treatment-specific meta-analysis for a gene across datasets
-    res_meta_pertreatment <- metaPerTreatmentfun(
-        coef = assoc.res\$Coef, 
-        se = assoc.res\$SE,
-        study  = assoc.res\$Study, 
-        pval = assoc.res\$Pval, 
-        n = assoc.res\$N,
-        cancer.type = assoc.res\$Cancer_type,
-        treatment = assoc.res\$Treatment,
-        feature = "${params.gene_name}", 
-        treatment.spec = TRUE
-    )
-        
-    # Summary of meta-analysis results for each treatment type
-    res_meta_pertreatment <- data.frame(rbind(res_meta_pertreatment\$`PD-1/PD-L1`\$meta_summery, res_meta_pertreatment\$Other\$meta_summery))
+    res_meta_pertreatment <- data.frame(rbind(res_meta_pertreatment\$PD1\$meta_summery, res_meta_pertreatment\$CTLA4\$meta_summery))
 
     # Save the results to a CSV file
-    write.csv(res_meta_pertreatment, file = "Meta_analysis_os_${params.gene_name}_pertreatment.csv", row.names = FALSE)
+    write.csv(res_meta_pertreatment, file = "Meta_analysis_${survival_type}_${params.gene_name}_pertreatment.csv", row.names = FALSE)
     """
 }
 
@@ -516,7 +329,7 @@ workflow {
     */
 
     // Set the specified study id and data directory
-    icb_dat = file(params.rda_file)
+    icb_dat = file("${params.data_dir}/${params.study_id}.rda")
 
     // Extract expression and clinical data to CSV files
     extracted_data = LoadAndExtractData(icb_dat)
@@ -530,25 +343,19 @@ workflow {
     SECTION: Gene Association Analysis
     ========================================================
     */
-
-    // Perform gene association analysis
-
+    
     /*
     --------------------------------------------------------
-    A. SUBSECTION: OS and PFS
+    A. SUBSECTION: OS or PFS
     --------------------------------------------------------
     */
 
-    GeneAssociationOS(expr_file, clin_file)
-    GeneAssociationPFS(expr_file, clin_file)
+    // Here survival_type is "OS". You can use "PFS" alternatively.
+    // Also define your genes like genes = "CXCL9" or vector of genes as below
 
-    /*
-    --------------------------------------------------------
-    B. SUBSECTION: Immunotherapy response (R vs NR)
-    --------------------------------------------------------
-    */
-
-    GeneAssociationResponse_RvsNR(expr_file, clin_file)
+    genes = 'c("CXCL9", "CXCL10", "TIGIT", "CD83", "STAT1", "CXCL11", "CXCL13", "CD8A", "CTLA4")'
+    survival_result_os = GeneAssociationSurvival(expr_file, clin_file, survival_type = "OS", genes)
+    response_result = GeneAssociationResponse(expr_file, clin_file, genes)
 
     /*
     ========================================================
@@ -558,8 +365,7 @@ workflow {
 
     all_rdas = file(params.data_dir)
 
-    // Perform Meta Analysis (OS) using loaded RDA data
-    MetaAnalysisOS_PanCancer(all_rdas)
-    MetaAnalysisOS_PerCancer(all_rdas)
-    MetaAnalysisOS_PerTreatment(all_rdas)
+    // Perform meta-analysis for OS; you can use survival_type "PFS" or "Response"
+    MetaAnalysis_pertreatment(all_rdas, survival_type = "OS")
+
 }

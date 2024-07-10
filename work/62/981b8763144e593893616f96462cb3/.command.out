@@ -1,0 +1,31 @@
+[1] "Loaded signature information:"
+          signature DNA...RNA association             RNA.type method
+1       ADO_Sidders       RNA  resistance Count RNA-seq or TPM   GSVA
+2      APM_Thompson       RNA   sensitive              log CPM   GSVA
+3          APM_Wang       RNA   sensitive           microarray   GSVA
+4    Bcell_Budczies       RNA   sensitive           microarray   GSVA
+5     Bcell_Helmink       RNA   sensitive            log FPKM    GSVA
+6 Blood_Friedlander       RNA   sensitive           microarray   GSVA
+          cancer.type score.function     PMID cuarted
+1            multiple    geneSigGSVA 31953314     YES
+2   lung and melanoma    geneSigGSVA 33028693     YES
+3            multiple    geneSigGSVA 31767055     YES
+4                lung    geneSigGSVA 33520406     YES
+5 melanoma and kidney    geneSigGSVA 31942075     YES
+6            melanoma    geneSigGSVA 28807052     YES
+                                                                                                                                                                                        information
+1 Gene expression signature capturing the adenosine (ADO) pathway activity. This adenosine signature was significantly associated with reduced efficacy of anti-PD1 therapy in published cohorts.\n
+2 Gene expression signature capturing the antigen processing and presentation machinery (APM). This signature was predictor of response of ICB in non-small cell lung cancer and melanoma patients.
+3                                                                                                      Gene expression signature capturing the antigen processing and presentation machinery (APM).
+4                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of PD-(L)1 blockade in lung cancer patients.
+5                                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of ICB in published cohorts.
+6                                         Gene expression signature, derieved from whole-blood RNA-Sequencing, capturing the expression level of genes associated with response to CTLA-4 blockade.
+  immunotherapy gitHub.status         Signature
+1           Yes        Shared       ADO_Sidders
+2           Yes        Shared      APM_Thompson
+3            No        Shared          APM_Wang
+4           Yes        Shared    Bcell_Budczies
+5           Yes        Shared     Bcell_Helmink
+6           Yes        Shared Blood_Friedlander
+[1] "Signature Name: "
+[1] "Method: "

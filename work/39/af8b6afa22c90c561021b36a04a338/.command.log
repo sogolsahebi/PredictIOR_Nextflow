@@ -1,0 +1,157 @@
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: metadat
+Loading 'meta' package (version 7.0-0).
+Type 'help(meta)' for a brief overview.
+Readers of 'Meta-Analysis with R (Use R!)' should install
+older version of 'meta' package: https://tinyurl.com/dt4y5drs
+[1] "Processing signature: 0.0939518496770419"
+                      P10264    P10150    P10220     P10375    P10073   P10161
+0.0939518496770419 0.3940317 0.1807274 0.3111996 -0.6719877 0.1591309 0.403105
+                      P10282    P10141    P10089     P10043     P10362
+0.0939518496770419 0.4167479 0.7300657 0.3231195 -0.5143707 -0.5885187
+                       P10156     P10059     P10081     P10041     P10281
+0.0939518496770419 0.08866706 0.08422238 -0.7089488 -0.3708631 0.01367426
+                      P10330    P10088     P10308    P10293   P10132   P10015
+0.0939518496770419 0.2922132 0.6902115 -0.5743883 0.7846139 0.506279 0.429645
+                      P10112     P10317     P10307     P10111    P10072
+0.0939518496770419 0.1597584 -0.2789783 -0.5978853 -0.5661937 -0.575435
+                       P10084    P10090    P10166     P10363    P10044
+0.0939518496770419 -0.4478337 0.1816243 0.6958309 -0.4676764 0.6942926
+                      P10321    P10242     P10144     P10294    P10099
+0.0939518496770419 0.4415621 0.2766254 -0.6873171 0.09729069 0.2880889
+                      P10147    P10299    P10354   P10221     P10130    P10194
+0.0939518496770419 0.2712595 0.1743512 0.5185801 0.254228 -0.1691133 0.1497358
+                       P10272     P10249     P10080    P10023     P10295
+0.0939518496770419 -0.5523126 -0.5841921 -0.3398664 0.3960658 -0.3913894
+                      P10105    P10004      P10173     P10346    P10204
+0.0939518496770419 0.4240294 0.5049274 -0.05049912 -0.6344591 0.4013178
+                       P10238     P10119    P10373     P10315     P10358
+0.0939518496770419 -0.5761425 -0.3482266 0.4525137 -0.5719319 -0.5249172
+                       P10195     P10050    P10223     P10116     P10306
+0.0939518496770419 0.02994715 -0.5926787 0.2957182 -0.2845908 -0.4346299
+                    P10240     P10343    P10217     P10269    P10033     P10225
+0.0939518496770419 0.26186 -0.5983558 0.6204114 -0.6084864 0.2889019 -0.6729515
+                       P10297    P10005     P10092    P10117   P10206
+0.0939518496770419 -0.2184381 0.7047627 -0.2326719 0.7004106 0.825568
+                       P10069    P10198     P10034     P10024   P10191
+0.0939518496770419 -0.6271417 0.3257079 -0.3258521 -0.1931885 0.584438
+                       P10048     P10083     P10292     P10349   P10138
+0.0939518496770419 -0.2050494 -0.7145231 0.05167352 -0.4411401 0.785367
+                       P10311   P10140    P10108    P10018    P10106    P10215
+0.0939518496770419 -0.5441687 0.766882 -0.328482 0.3288937 0.3874756 0.6304555
+                      P10341    P10115     P10254     P10047     P10017
+0.0939518496770419 0.4643515 0.1422926 -0.5443335 -0.1659247 -0.4805982
+                       P10129    P10096     P10021     P10310     P10209
+0.0939518496770419 0.07105109 0.4088883 -0.6990394 -0.4839324 -0.6012329
+                      P10040    P10003    P10010     P10313     P10371
+0.0939518496770419 0.1422315 -0.226634 0.6748958 0.09571345 -0.4603773
+                       P10203     P10122    P10157    P10184    P10131
+0.0939518496770419 -0.6771608 -0.5230703 0.8091603 0.2016513 0.2484865
+                       P10251     P10189    P10256    P10136     P10187
+0.0939518496770419 -0.5124204 -0.5880776 0.3639839 0.4269015 -0.7115463
+                      P10277    P10367    P10265    P10151     P10127
+0.0939518496770419 0.1177606 0.4095586 0.6577803 -0.663657 -0.1632413
+                       P10253     P10262    P10252     P10109     P10196
+0.0939518496770419 -0.5093061 -0.0770542 0.1914752 -0.1043148 0.07163829
+                      P10167    P10333      P10145     P10042     P10227
+0.0939518496770419 0.3751028 0.5526545 -0.06987669 -0.2131533 -0.6053685
+                      P10058    P10370     P10232    P10368     P10097
+0.0939518496770419 0.6837162 0.4121666 -0.4505536 0.7234391 -0.3579744
+                       P10348   P10086    P10011     P10071    P10148    P10162
+0.0939518496770419 -0.2190357 0.595369 0.4084287 -0.1238319 0.0598943 0.4467093
+                       P10091     P10287     P10285   P10285_1    P10328
+0.0939518496770419 -0.3323571 -0.3474586 -0.5300821 -0.4773899 0.6717203
+                       P10049    P10046   P10267    P10208     P10064    P10233
+0.0939518496770419 -0.2728918 0.2940733 0.384191 0.2770336 -0.2301886 0.6686188
+                       P10226     P10327    P10336    P10065    P10039
+0.0939518496770419 -0.2231356 -0.1584372 0.7358925 0.7335638 -0.428297
+                       P10200     P10323     P10087     P10360      P10139
+0.0939518496770419 0.06308175 -0.6814404 -0.6582501 -0.3282414 -0.04403993
+                      P10279    P10035    P10146    P10178     P10212    P10332
+0.0939518496770419 0.3996539 0.7066543 0.1902525 0.7503966 0.02262774 0.6854514
+                      P10165     P10210    P10303     P10016     P10339
+0.0939518496770419 0.5527045 -0.3095771 0.1573693 -0.2985351 -0.3027094
+                       P10190    P10153     P10286    P10329     P10174
+0.0939518496770419 0.00997536 0.6017854 -0.0660483 0.4468587 -0.4062907
+                       P10244     P10271   P10027     P10022     P10192
+0.0939518496770419 -0.5442073 -0.6454888 0.740458 -0.1678574 -0.6625971
+                       P10095    P10296    P10257     P10180    P10280
+0.0939518496770419 -0.6668124 0.5468043 0.4158395 -0.4647542 0.4943321
+                      P10245     P10137    P10235   P10036     P10366    P10324
+0.0939518496770419 0.3450992 -0.4730526 0.1168526 0.514706 -0.3410078 0.2144507
+Error in FUN(X[[i]], ...) : object 'dat.icb' not found
+Calls: lapply -> lapply -> FUN
+Execution halted

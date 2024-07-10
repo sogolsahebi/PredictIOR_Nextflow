@@ -1,0 +1,241 @@
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: metadat
+Loading 'meta' package (version 7.0-0).
+Type 'help(meta)' for a brief overview.
+Readers of 'Meta-Analysis with R (Use R!)' should install
+older version of 'meta' package: https://tinyurl.com/dt4y5drs
+          signature DNA...RNA association             RNA.type method
+1       ADO_Sidders       RNA  resistance Count RNA-seq or TPM   GSVA
+2      APM_Thompson       RNA   sensitive              log CPM   GSVA
+3          APM_Wang       RNA   sensitive           microarray   GSVA
+4    Bcell_Budczies       RNA   sensitive           microarray   GSVA
+5     Bcell_Helmink       RNA   sensitive            log FPKM    GSVA
+6 Blood_Friedlander       RNA   sensitive           microarray   GSVA
+          cancer.type score.function     PMID cuarted
+1            multiple    geneSigGSVA 31953314     YES
+2   lung and melanoma    geneSigGSVA 33028693     YES
+3            multiple    geneSigGSVA 31767055     YES
+4                lung    geneSigGSVA 33520406     YES
+5 melanoma and kidney    geneSigGSVA 31942075     YES
+6            melanoma    geneSigGSVA 28807052     YES
+                                                                                                                                                                                        information
+1 Gene expression signature capturing the adenosine (ADO) pathway activity. This adenosine signature was significantly associated with reduced efficacy of anti-PD1 therapy in published cohorts.\n
+2 Gene expression signature capturing the antigen processing and presentation machinery (APM). This signature was predictor of response of ICB in non-small cell lung cancer and melanoma patients.
+3                                                                                                      Gene expression signature capturing the antigen processing and presentation machinery (APM).
+4                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of PD-(L)1 blockade in lung cancer patients.
+5                                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of ICB in published cohorts.
+6                                         Gene expression signature, derieved from whole-blood RNA-Sequencing, capturing the expression level of genes associated with response to CTLA-4 blockade.
+  immunotherapy gitHub.status         Signature
+1           Yes        Shared       ADO_Sidders
+2           Yes        Shared      APM_Thompson
+3            No        Shared          APM_Wang
+4           Yes        Shared    Bcell_Budczies
+5           Yes        Shared     Bcell_Helmink
+6           Yes        Shared Blood_Friedlander
+[1] "methods"
+ [1] "GSVA"               "GSVA"               "GSVA"              
+ [4] "GSVA"               "GSVA"               "GSVA"              
+ [7] "ssGSEA"             "GSVA"               "GSVA"              
+[10] "GSVA"               "GSVA"               "GSVA"              
+[13] "GSVA"               "Specific Algorithm" "GSVA"              
+[16] "GSVA"               "GSVA"               "Weighted Mean"     
+[19] "GSVA"               "Weighted Mean"      "GSVA"              
+[22] "GSVA"               "GSVA"               "Weighted Mean"     
+[25] "GSVA"               "GSVA"               "Specific Algorithm"
+[28] "Specific Algorithm" "Specific Algorithm" "Weighted Mean"     
+[31] "Weighted Mean"      "GSVA"               "ssGSEA"            
+[34] "GSVA"               "ssGSEA"             "ssGSEA"            
+[37] "Weighted Mean"      "GSVA"               "GSVA"              
+[40] "Specific Algorithm" "GSVA"               "ssGSEA"            
+[43] "Specific Algorithm" "Weighted Mean"      "Weighted Mean"     
+[46] "GSVA"               "GSVA"               "GSVA"              
+[49] "GSVA"               "GSVA"               "Weighted Mean"     
+[52] "GSVA"               "GSVA"               "GSVA"              
+[55] "GSVA"              
+[1] "Loaded signature information:"
+          signature DNA...RNA association             RNA.type method
+1       ADO_Sidders       RNA  resistance Count RNA-seq or TPM   GSVA
+2      APM_Thompson       RNA   sensitive              log CPM   GSVA
+3          APM_Wang       RNA   sensitive           microarray   GSVA
+4    Bcell_Budczies       RNA   sensitive           microarray   GSVA
+5     Bcell_Helmink       RNA   sensitive            log FPKM    GSVA
+6 Blood_Friedlander       RNA   sensitive           microarray   GSVA
+          cancer.type score.function     PMID cuarted
+1            multiple    geneSigGSVA 31953314     YES
+2   lung and melanoma    geneSigGSVA 33028693     YES
+3            multiple    geneSigGSVA 31767055     YES
+4                lung    geneSigGSVA 33520406     YES
+5 melanoma and kidney    geneSigGSVA 31942075     YES
+6            melanoma    geneSigGSVA 28807052     YES
+                                                                                                                                                                                        information
+1 Gene expression signature capturing the adenosine (ADO) pathway activity. This adenosine signature was significantly associated with reduced efficacy of anti-PD1 therapy in published cohorts.\n
+2 Gene expression signature capturing the antigen processing and presentation machinery (APM). This signature was predictor of response of ICB in non-small cell lung cancer and melanoma patients.
+3                                                                                                      Gene expression signature capturing the antigen processing and presentation machinery (APM).
+4                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of PD-(L)1 blockade in lung cancer patients.
+5                                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of ICB in published cohorts.
+6                                         Gene expression signature, derieved from whole-blood RNA-Sequencing, capturing the expression level of genes associated with response to CTLA-4 blockade.
+  immunotherapy gitHub.status         Signature
+1           Yes        Shared       ADO_Sidders
+2           Yes        Shared      APM_Thompson
+3            No        Shared          APM_Wang
+4           Yes        Shared    Bcell_Budczies
+5           Yes        Shared     Bcell_Helmink
+6           Yes        Shared Blood_Friedlander
+[1] "Loaded dir_GeneSig"
+[1] 55
+ [1] "./SIG_data/ADO_Sidders.rda"            
+ [2] "./SIG_data/APM_Thompson.rda"           
+ [3] "./SIG_data/APM_Wang.rda"               
+ [4] "./SIG_data/Bcell_Budczies.rda"         
+ [5] "./SIG_data/Bcell_Helmink.rda"          
+ [6] "./SIG_data/Blood_Friedlander.rda"      
+ [7] "./SIG_data/C-ECM_Chakravarthy.rda"     
+ [8] "./SIG_data/CCL5-CXCL9_Dangaj.rda"      
+ [9] "./SIG_data/CD39-CD8Tcell_Chow.rda"     
+[10] "./SIG_data/CD8_Sade-Feldman.rda"       
+[11] "./SIG_data/Chemokine_Messina.rda"      
+[12] "./SIG_data/CIN25_Carter.rda"           
+[13] "./SIG_data/CIN70_Carter.rda"           
+[14] "./SIG_data/COX-IS_Bonavita.rda"        
+[15] "./SIG_data/CRMA_Shukla.rda"            
+[16] "./SIG_data/CYT_Davoli.rda"             
+[17] "./SIG_data/CYT_Rooney.rda"             
+[18] "./SIG_data/EMT_Thompson.rda"           
+[19] "./SIG_data/EMTstroma_Wang.rda"         
+[20] "./SIG_data/IFN_Ayers.rda"              
+[21] "./SIG_data/ImmuneCells_Xiong.rda"      
+[22] "./SIG_data/ImmuneScore_Roh.rda"        
+[23] "./SIG_data/ImmunoScore_Hao.rda"        
+[24] "./SIG_data/IMPRES_Auslander.rda"       
+[25] "./SIG_data/IMS_Cui.rda"                
+[26] "./SIG_data/Inflammatory_Thompson.rda"  
+[27] "./SIG_data/IPRES_Hugo.rda"             
+[28] "./SIG_data/IPS_Charoentong.rda"        
+[29] "./SIG_data/IPSOV_Shen.rda"             
+[30] "./SIG_data/IRG_Ayers.rda"              
+[31] "./SIG_data/IRG_Yang.rda"               
+[32] "./SIG_data/KDM5A_Wang.rda"             
+[33] "./SIG_data/M1_Hwang.rda"               
+[34] "./SIG_data/Macrophage_Danaher.rda"     
+[35] "./SIG_data/MHC-I_Liu.rda"              
+[36] "./SIG_data/MHC-II_Liu.rda"             
+[37] "./SIG_data/MPS_Guijarro.rda"           
+[38] "./SIG_data/Myeloid-DC_Helmink.rda"     
+[39] "./SIG_data/NonResponse_Chen.rda"       
+[40] "./SIG_data/PassON_Du.rda"              
+[41] "./SIG_data/PDL1_Nishino.rda"           
+[42] "./SIG_data/peri-Tcell_Hwang.rda"       
+[43] "./SIG_data/PredictIO_Bareche.rda"      
+[44] "./SIG_data/proliferation_Pabla.rda"    
+[45] "./SIG_data/PTEN-MITF_Cabrita.rda"      
+[46] "./SIG_data/Response_Chen.rda"          
+[47] "./SIG_data/STAT1_Care.rda"             
+[48] "./SIG_data/Tcell-exclusion_Arnon.rda"  
+[49] "./SIG_data/Teff_McDermott.rda"         
+[50] "./SIG_data/Teff-IFNG_Fehrenbacher.rda" 
+[51] "./SIG_data/TGFB_Mariathasan.rda"       
+[52] "./SIG_data/TIS_Damotte.rda"            
+[53] "./SIG_data/TLS_Cabrita.rda"            
+[54] "./SIG_data/TUMOR-VASCULATURE-UP_Lu.rda"
+[55] "./SIG_data/VIGex_Hernando-Calvo.rda"   
+[1] "yess"
+[1] " see sig_name"
+   signature_name            gene_id      gene_type gene_name weight
+1     ADO_Sidders ENSG00000132170.24 protein_coding     PPARG     NA
+2     ADO_Sidders  ENSG00000165168.9 protein_coding      CYBB     NA
+3     ADO_Sidders ENSG00000168542.16 protein_coding    COL3A1     NA
+4     ADO_Sidders ENSG00000049768.17 protein_coding     FOXP3     NA
+5     ADO_Sidders  ENSG00000089692.9 protein_coding      LAG3     NA
+6     ADO_Sidders ENSG00000142192.21 protein_coding       APP     NA
+7     ADO_Sidders ENSG00000110651.12 protein_coding      CD81     NA
+8     ADO_Sidders ENSG00000105220.17 protein_coding       GPI     NA
+9     ADO_Sidders ENSG00000073756.13 protein_coding     PTGS2     NA
+10    ADO_Sidders ENSG00000137752.25 protein_coding     CASP1     NA
+11    ADO_Sidders ENSG00000170345.10 protein_coding       FOS     NA
+12    ADO_Sidders ENSG00000100030.15 protein_coding     MAPK1     NA
+13    ADO_Sidders ENSG00000102882.12 protein_coding     MAPK3     NA
+14    ADO_Sidders ENSG00000118260.15 protein_coding     CREB1     NA
+[1] "Signature Name: c(\"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\", \"ADO_Sidders\")"                                                                                                
+[2] "Signature Name: c(\"ENSG00000132170.24\", \"ENSG00000165168.9\", \"ENSG00000168542.16\", \"ENSG00000049768.17\", \"ENSG00000089692.9\", \"ENSG00000142192.21\", \"ENSG00000110651.12\", \"ENSG00000105220.17\", \"ENSG00000073756.13\", \"ENSG00000137752.25\", \"ENSG00000170345.10\", \"ENSG00000100030.15\", \"ENSG00000102882.12\", \"ENSG00000118260.15\")"
+[3] "Signature Name: c(\"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\", \"protein_coding\")"                                                      
+[4] "Signature Name: c(\"PPARG\", \"CYBB\", \"COL3A1\", \"FOXP3\", \"LAG3\", \"APP\", \"CD81\", \"GPI\", \"PTGS2\", \"CASP1\", \"FOS\", \"MAPK1\", \"MAPK3\", \"CREB1\")"                                                                                                                                                                                            
+[5] "Signature Name: c(NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA)"                                                                                                                                                                                                                                                                                      
+Error in if (method == "GSVA") { : the condition has length > 1
+Calls: lapply -> lapply -> FUN
+Execution halted
+ [1] "Method: GSVA" "Method: NA"   "Method: NA"   "Method: NA"   "Method: NA"  
+ [6] "Method: NA"   "Method: NA"   "Method: NA"   "Method: NA"   "Method: NA"  
+[11] "Method: NA"   "Method: NA"   "Method: NA"   "Method: NA"   "Method: NA"  
