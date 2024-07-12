@@ -93,7 +93,7 @@ Here is the revised section with grammar corrections:
 ## Signature Information
 For detailed information on the signatures, refer to the signature information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). Key columns in the CSV include:
 
-- `signature`
+- `signature`  Name of the signature , same names located in './SIG_data'
 - `method` used for signature score calculation
 - `score function`, specifying the function that should be used in the R script
 
