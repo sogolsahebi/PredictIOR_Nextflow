@@ -88,9 +88,6 @@ Ensure that clinical data is properly organized with all required and additional
 Here is the revised section focused on the signature information CSV and the related columns:
 
 ## Signature Information
-Here is the revised section with grammar corrections:
-
-## Signature Information
 For detailed information on the signatures, refer to the signature information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). Key columns in the CSV include:
 
 - `signature`  Name of the signature , same names located in './SIG_data'
