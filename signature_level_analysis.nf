@@ -43,6 +43,7 @@ SECTION: Signature Score Computation
 - Specific computational algorithms are used as described in original publications.
 - Each dataset undergoes a Z-score transformation post-computation.
 */
+
 process GeneSigScore {
     tag "${params.study_id}"
     container 'bhklab/nextflow-env'
@@ -264,7 +265,6 @@ process GeneAssociationResponse {
 
     load("${icb_rda_path}")
     geneSig.score <- read.csv("${genescore_path}")
-
 
     res.logreg <- lapply(1:nrow(geneSig.score), function(k){
     sig_name <- rownames(geneSig.score)[k]
