@@ -1,4 +1,3 @@
-
 # PredictioR Nextflow Pipeline
 
 ## Overview
@@ -69,33 +68,66 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   params.out_dir = './output/meta_analysis_output'
   ```
 
-## Input Data Specifications
-Ensure that clinical data is properly organized with all required and additional fields to ensure the integrity of the analysis.
-- **Required Columns:**
-  - `patientid`: Unique identifier for patients
-  - `treatmentid`: Details of the treatment regimen
-  - `response`: Patient response to treatment (Responder 'R', Non-responder 'NR')
-  - `tissueid`: Standardized cancer type
-  - `survival_time_pfs`: Time to progression-free survival, Example: 2.6 months
-  - `survival_time_os`: Time to overall survival
-  - `survival_unit`: Measurement units for survival times, typically months
-  - `event_occurred_pfs`: Binary indicator of event occurrence during PFS (1,0)
-  - `event_occurred_os`: Binary indicator of event occurrence during OS (1,0)
+### Input Data Specifications
+- #### ICB Data Information
 
-- **Additional Recommended Fields:**
-  Include sex, age, histo (histological type), stage of cancer, dna, and rna details among others as necessary.
+  This table summarizes each dataset by study and treatment type, along with cancer types, clinical and molecular data availability, and relevant PMID 
+  references. Required columns include 'treatment' and 'cancer type'.
+  
+  | Dataset                | Patients [#] | Cancer type | Treatment                   | Clinical endpoints | Molecular data | PMID      |
+  |------------------------|--------------|-------------|-----------------------------|--------------------|----------------|-----------|
+  | ICB_small_Hugo         | 27           | Melanoma    | PD-1/PD-L1                  | OS                 | RNA            | 26997480  |
+  | ICB_small_Liu          | 121          | Melanoma    | PD-1/PD-L1                  | PFS/OS             | RNA/DNA        | 31792460  |
+  | ICB_small_Miao         | 33           | Kidney      | PD-1/PD-L1                  | PFS/OS             | RNA/DNA        | 29301960  |
+  | ICB_small_Nathanson    | 24           | Melanoma    | CTLA4                       | OS                 | RNA/DNA        | 27956380  |
+  | ICB_small_Padron       | 45           | Pancreas    | PD-1/PD-L1                  | PFS/OS             | RNA            | 35662283  |
+  | ICB_small_Riaz         | 46           | Melanoma    | PD-1/PD-L1                  | OS                 | RNA/DNA        | 29033130  |
+  | ICB_small_Van_Allen    | 42           | Melanoma    | CTLA4                       | PFS/OS             | RNA/DNA        | 26359337  |
+  | ICB_small_Mariathasan  | 195          | Bladder     | PD-1/PD-L1                  | OS                 | RNA/DNA        | 29443960  |
+  
+  
+  Ensure that clinical data is properly organized with all required and additional fields to ensure the integrity of the analysis.
+  
+  - **Required Columns:**
+    - `patientid`: Unique identifier for patients
+    - `treatmentid`: Details of the treatment regimen
+    - `response`: Patient response to treatment (Responder 'R', Non-responder 'NR')
+    - `tissueid`: Standardized cancer type
+    - `survival_time_pfs`: Time to progression-free survival, Example: 2.6 months
+    - `survival_time_os`: Time to overall survival
+    - `survival_unit`: Measurement units for survival times, typically months
+    - `event_occurred_pfs`: Binary indicator of event occurrence during PFS (1,0)
+    - `event_occurred_os`: Binary indicator of event occurrence during OS (1,0)
+   
+  - **Additional Recommended Fields:**
+    Include sex, age, histo (histological type), stage of cancer, dna, and rna details among others as necessary.
+  
 
-Here is the revised section focused on the signature information CSV and the related columns:
+- #### Signature Information
 
-## Signature Information
-For detailed information on the signatures, refer to the signature information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). Key columns in the CSV include:
+  This table summarizes each signature name by study and PMID references, the method for computing the signature score, and the corresponding score 
+  function.
+  
+  | Signature            | DNA/RNA | RNA Type           | Method | Cancer Type         | Score Function | PMID      |
+  |----------------------|---------|--------------------|--------|---------------------|----------------|-----------|
+  | ADO_Sidders          | RNA     | Count RNA-seq/TPM  | GSVA   | Multiple            | geneSigGSVA    | 31953314  |
+  | APM_Thompson         | RNA     | log CPM            | GSVA   | Lung, melanoma      | geneSigGSVA    | 33028693  |
+  | APM_Wang             | RNA     | Microarray         | GSVA   | Multiple            | geneSigGSVA    | 31767055  |
+  | Bcell_Budczies       | RNA     | Microarray         | GSVA   | Lung                | geneSigGSVA    | 33520406  |
+  | Bcell_Helmink        | RNA     | log FPKM           | GSVA   | Melanoma, kidney    | geneSigGSVA    | 31942075  |
+  | Blood_Friedlander    | RNA     | Microarray         | GSVA   | Melanoma            | geneSigGSVA    | 28807052  |
+  | C-ECM_Chakravarthy   | RNA     | Normalized counts  | ssGSEA | Multiple            | geneSigssGSEA  | 30410077  |
+  | CCL5-CXCL9_Dangaj    | RNA     |                    | GSVA   | Multiple            | geneSigGSVA    | 31185212  |
+  | CD39-CD8Tcell_Chow   | RNA     | RNA-seq count      | GSVA   | Lung                | geneSigGSVA    | 36574773  |
 
-- `signature`  Name of the signature , same names located in './SIG_data'
-- `method` used for signature score calculation
-- `score function`, specifying the function that should be used in the R script
 
-For other columns and additional information, you can refer to the [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw).
+  **Required Columns:**
+  - `signature`: Name of the signature, same names located in './SIG_data'
+  - `method`: Used for signature score calculation
+  - `score function`: Specifying the function that should be used in the R script
+  For detailed information on the signatures used in the pipeline, refer to the signature(there are more than 50) information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). 
 
+## Running the Pipeline
 Run the pipeline with the configured parameters using Nextflow:
 ```bash
 nextflow run gene_level_analysis.nf
