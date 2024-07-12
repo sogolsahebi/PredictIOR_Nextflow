@@ -12,3 +12,8 @@
 2024-07-12 13:57:08	41.2s	lonely_austin	OK	4c5f6e3b8f973039277aebee0826998d	2dc90017-c42d-4f40-8086-6de4449c42ef	nextflow run signature_level_analysis.nf
 2024-07-12 13:57:55	57.8s	furious_hamilton	OK	c83970bbf8320966497a948d643f37a3	96dad98f-ebe8-4ca7-9faa-17ab9df784c2	nextflow run signature_level_analysis.nf
 2024-07-12 14:00:38	37.5s	high_rutherford	OK	c0cf2a26245e1b6dc241922f392d7d71	fb4d49ce-12ba-4fad-aa49-bbbc34e62679	nextflow run signature_level_analysis.nf
+2024-07-12 14:06:42	17.1s	condescending_pasteur	OK	bac66ccca139bc42989b922ab27cd719	e9cf8357-bf47-4798-be63-f552cdcd23b8	nextflow run meta_analysis.nf
+2024-07-12 14:07:28	-	wise_swartz	-	974fc803b44061d8a53cc9ba94e75102	f8945494-7c87-42cf-a9e5-c9d75e9e1e77	nextflow run meta_analysis.nf
+2024-07-12 14:07:38	-	jolly_wilson	-	53803734e7d8f3caa4bbbb944fe0728e	75f1964e-88c1-4a97-8508-99121f9910e2	nextflow run meta_analysis.nf
+2024-07-12 14:08:08	18.1s	clever_jones	OK	57ed3f9e460e3b5af597ff7f7505e800	2bd883f2-f877-49ee-aab2-d404c1ca0360	nextflow run meta_analysis.nf
+2024-07-12 14:08:40	16.4s	romantic_colden	OK	2c20e1eca77c6cf9295c0b6f41a097bd	1753d8f6-4ddf-4530-bc9e-c10277c01753	nextflow run meta_analysis.nf
