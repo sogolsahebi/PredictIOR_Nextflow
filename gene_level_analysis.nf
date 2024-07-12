@@ -4,8 +4,18 @@ nextflow.enable.dsl=2
 params.study_id = 'ICB_small_Padron' // Set study_id (name of the .rda file in ./ICB_data directory)
 params.data_dir = './ICB_data'
 params.out_dir = './output/gene_level_output'
-params.cancer_type = 'Pancreas'
+params.cancer_type = 'Pancreas' // Set the cancer type of the study you chose
+params.treatment = 'PD-1/PD-L1' // Set the treatment of the study you chose
+
+
+/*
+Note
+Another input example would be:
+
+params.study_id = 'ICB_small_Liu' 
+params.cancer_type = 'Melanoma' 
 params.treatment = 'PD-1/PD-L1'
+/*
 
 log.info """
 P R E D I C T I O - N F   P I P E L I N E (Gene Level Analysis)
@@ -270,9 +280,14 @@ workflow {
     --------------------------------------------------------
     */
 
+    // You can choose your genes as a single gene or a vector of genes as shown below
     genes = 'c("CXCL9", "CXCL10", "TIGIT", "CD83", "STAT1", "CXCL11", "CXCL13", "CD8A", "CTLA4")'
     survival_result_os = GeneAssociationOS(expr_file, clin_file, genes)
-   
+
+    // If using a single gene, uncomment the following lines
+    //gene = "CXCL9"
+    //survival_result_os = GeneAssociationOS(expr_file, clin_file, gene)
+
     /*
     --------------------------------------------------------
     B. SUBSECTION: PFS 
@@ -287,4 +302,6 @@ workflow {
     --------------------------------------------------------
     */
     response_result = GeneAssociationResponse(expr_file, clin_file, genes)
+
+
 }

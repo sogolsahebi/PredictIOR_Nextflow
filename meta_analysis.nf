@@ -196,16 +196,17 @@ SECTION: Signature level Meta Analysis
 
 /*
 ----------------------------
-SUBSECTION: Par-cancer)
+SUBSECTION: Pan-cancer
 ----------------------------
-It uses the _os, _pfs, and _Response files from signature_level_analysis.nf using
+Uses the _os, _pfs, and _Response files from signature_level_analysis.nf using
 all ICB datasets in ./ICB_data. Results are stored in sig_level_result_dir.
 
+Note: You should have at least three results (studies) to proceed.
 */
 
 
 process MetaAnalysis_Sig_PanCancer {
-    tag "${io_outcome}"
+    tag " sigGenes using ${io_outcome}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
@@ -281,7 +282,7 @@ all ICB datasets in ./ICB_data. Results are stored in sig_level_result_dir.
 */
 
 process MetaAnalysis_Sig_PerCancer {
-    tag "${io_outcome}"
+    tag "sigGenes using ${io_outcome}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
 
@@ -389,21 +390,21 @@ workflow {
     */
 
     // Perform meta-analysis for OS; you can use outcome "PFS" or "Response"
-    //MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "OS")
+    MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "OS")
 
     // Uncomment below lines to handle each outcome type individually
-    // MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "PFS")
-    // MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "Response")
+    //MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "PFS")
+    //MetaAnalysis_Gene_PanCancer(all_icb_data, io_outcome = "Response")
 
     /*
     Per-Cancer
     */
 
-    //MetaAnalysis_Gene_PerCancer(all_icb_data, io_outcome = "Response")
+    MetaAnalysis_Gene_PerCancer(all_icb_data, io_outcome = "Response")
 
     // Uncomment below lines to handle each outcome type individually
     // MetaAnalysis_Gene_PerCancer(all_icb_data, io_outcome = "OS")
-    // MetaAnalysis_Gene_PerCancer(all_icb_data, io_outcome = "PFS")
+    //MetaAnalysis_Gene_PerCancer(all_icb_data, io_outcome = "PFS")
 
     /*
     =================================
@@ -421,17 +422,17 @@ workflow {
 
     // Uncomment below lines to handle each outcome type individually
     //MetaAnalysis_Sig_PanCancer(sig_level_results, io_outcome = "PFS")
-    MetaAnalysis_Sig_PanCancer(sig_level_results, io_outcome = "Response")
+    //MetaAnalysis_Sig_PanCancer(sig_level_results, io_outcome = "Response")
 
     /*
     Per-Cancer
     */
 
     sig_level_results = file(params.sig_level_result_dir)
-    //MetaAnalysis_Sig_PerCancer(sig_level_results, io_outcome = "PFS" )
+    MetaAnalysis_Sig_PerCancer(sig_level_results, io_outcome = "OS" )
 
     // Uncomment below lines to handle each outcome type individually
     //MetaAnalysis_Sig_PerCancer(sig_level_results, io_outcome = "PFS")
-    MetaAnalysis_Sig_PerCancer(sig_level_results, io_outcome = "Response")
+    //MetaAnalysis_Sig_PerCancer(sig_level_results, io_outcome = "Response")
 
     }

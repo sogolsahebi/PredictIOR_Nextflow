@@ -2,13 +2,22 @@
 nextflow.enable.dsl=2
 
 // Workflow configuration
-params.study_id = 'ICB_small_Padron' // Identifier for the study
+params.study_id = 'ICB_small_Padron' // Identifier for the study (name of the study in ./ICB_data directory)
 params.icb_data_dir = './ICB_data' // Directory for ICB data files
 params.sig_data_dir = './SIG_data' // Directory for signature data files
 params.sig_summery_dir = './sig_summery_info' // Directory for signature summary information
 params.out_dir = './output/signatures_level_output' // Output directory for results
 params.cancer_type = 'Pancreas' // Type of cancer being studied
-params.treatment = 'PD-1/PD-L1' // Type of treatment in the study
+params.treatment = 'PD-1/PD-L1' // Type of treatment being studied
+
+ /*
+Note
+Another input example would be:
+
+params.study_id = 'ICB_small_Liu' 
+params.cancer_type = 'Melanoma' 
+params.treatment = 'PD-1/PD-L1'
+/* 
 
 log.info """
 P R E D I C T I O - N F   P I P E L I N E (Signature Level Analysis)
@@ -127,13 +136,13 @@ process GeneSigScore {
 
 
 /*
-=============================
+=================================
 SECTION: Sig Association for "OS" 
-=============================
+=================================
 */
 
 
-process GeneAssociationOS {
+process GeneSig_AssociationOS {
     tag "${params.study_id}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -152,7 +161,7 @@ process GeneAssociationOS {
 
     load("${icb_rda_path}")
     
-    geneSig.score <- read.csv("${genescore_path}")
+    geneSig.score <- read.csv("${genescore_path}", row.names = 1)
 
     res.all <- lapply(1:nrow(geneSig.score), function(k) {
         sig_name <- rownames(geneSig.score)[k]
@@ -167,8 +176,8 @@ process GeneAssociationOS {
             study = "${params.study_id}",
             surv.outcome = "OS",
             sig.name = sig_name,
-            cancer.type = "Pancreas",
-            treatment = "PD-1/PD-L1"
+            cancer.type = "${params.cancer_type}",
+            treatment = "${params.treatment}"
         )
         
         res
@@ -185,11 +194,11 @@ process GeneAssociationOS {
 
 /*
 =============================
-SECTION: Association for "OS" 
+SECTION: Association for "PFS" 
 =============================
 */
 
-process GeneAssociationPFS {
+process GeneSig_AssociationPFS {
     tag "${params.study_id}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -208,7 +217,7 @@ process GeneAssociationPFS {
 
     load("${icb_rda_path}")
     
-    geneSig.score <- read.csv("${genescore_path}")
+    geneSig.score <- read.csv("${genescore_path}", row.names = 1)
     
 
     res.all <- lapply(1:nrow(geneSig.score), function(k) {
@@ -246,7 +255,7 @@ SECTION: Association for Response(R vs NR)
 */
 
 //asososiation of signiture with one study 
-process GeneAssociationResponse {
+process GeneSig_AssociationResponse {
     tag "${params.study_id}"
     container 'nextflow-env:latest'
     publishDir "${params.out_dir}", mode: 'copy'
@@ -291,8 +300,6 @@ process GeneAssociationResponse {
     """
 }
 
-
-
 workflow {
 
 /*
@@ -316,8 +323,8 @@ gene_sigscore_result = GeneSigScore(sigs_info_path, all_sigs , icb_rda_path)
 */
 
 gene_sigscore = gene_sigscore_result[0] 
-GeneAssociationOS(icb_rda_path, gene_sigscore)
-GeneAssociationPFS(icb_rda_path, gene_sigscore) 
-GeneAssociationResponse(icb_rda_path, gene_sigscore)
+GeneSig_AssociationOS(icb_rda_path, gene_sigscore)
+GeneSig_AssociationPFS(icb_rda_path, gene_sigscore) 
+GeneSig_AssociationResponse(icb_rda_path, gene_sigscore)
 
 }

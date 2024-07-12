@@ -1,0 +1,92 @@
+Jul-12 17:00:52.009 [main] DEBUG nextflow.cli.Launcher - $> nextflow run signature_level_analysis.nf
+Jul-12 17:00:53.207 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.3
+Jul-12 17:00:53.314 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2-patch1,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-12 17:00:53.407 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-12 17:00:53.409 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-12 17:00:53.415 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-12 17:00:53.511 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-12 17:00:53.610 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
+Jul-12 17:00:53.613 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
+Jul-12 17:00:53.815 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
+Jul-12 17:00:53.904 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@616b241a] - activable => nextflow.secret.LocalSecretsProvider@616b241a
+Jul-12 17:00:53.919 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jul-12 17:00:57.217 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-12 17:00:57.323 [main] DEBUG nextflow.cli.CmdRun - Launching `signature_level_analysis.nf` [ecstatic_neumann] DSL2 - revision: 1de36af619
+Jul-12 17:00:57.400 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-12 17:00:57.401 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-12 17:00:57.715 [main] DEBUG nextflow.Session - Session UUID: 8913e8fc-702e-4870-a7c6-e65ff5e86ad7
+Jul-12 17:00:57.716 [main] DEBUG nextflow.Session - Run name: ecstatic_neumann
+Jul-12 17:00:57.716 [main] DEBUG nextflow.Session - Executor pool size: 16
+Jul-12 17:00:57.807 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-12 17:00:57.819 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:00:58.006 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.3 build 5916
+  Created: 09-07-2024 19:35 UTC 
+  System: Linux 6.1.91-060191-generic
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.23+9-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 712207@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
+  CPUs: 16 - Mem: 62.8 GB (3.4 GB) - Swap: 375 GB (372.2 GB)
+Jul-12 17:00:58.134 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
+Jul-12 17:00:58.135 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
+Jul-12 17:00:58.207 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-12 17:00:58.224 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-12 17:00:58.417 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-12 17:00:58.513 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+Jul-12 17:00:58.622 [main] DEBUG nextflow.Session - Session start
+Jul-12 17:01:01.205 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-12 17:01:01.234 [main] INFO  nextflow.Nextflow - 
+P R E D I C T I O - N F   P I P E L I N E (Signature Level Analysis)
+====================================================================
+Study ID             : ICB_small_Riaz
+ICB Data Directory   : ./ICB_data
+SIG Data Directory   : ./SIG_data
+SIG info summary     : ./sig_summery_info
+Output Directory     : ./output/signatures_level_output
+Cancer Type          : Melanoma
+Treatment            : PD-1/PD-L1
+
+Jul-12 17:01:01.708 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:01:01.708 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:01:01.717 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-12 17:01:01.725 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.8 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+Jul-12 17:01:01.729 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-12 17:01:02.301 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:01:02.302 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:01:02.323 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:01:02.400 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:01:02.418 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:01:02.418 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:01:02.507 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: GeneSig_AssociationResponse, GeneSigScore, GeneSig_AssociationOS, GeneSig_AssociationPFS
+Jul-12 17:01:02.508 [main] DEBUG nextflow.Session - Igniting dataflow network (4)
+Jul-12 17:01:02.509 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneSigScore
+Jul-12 17:01:02.510 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneSig_AssociationOS
+Jul-12 17:01:02.511 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneSig_AssociationPFS
+Jul-12 17:01:02.514 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GeneSig_AssociationResponse
+Jul-12 17:01:02.515 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_edec750146bc029e: /workspace/PredictIOR_Nextflow/signature_level_analysis.nf
+Jul-12 17:01:02.516 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-12 17:01:02.516 [main] DEBUG nextflow.Session - Session await
+Jul-12 17:01:04.107 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:01:04.112 [Task submitter] INFO  nextflow.Session - [90/9233c5] Submitted process > GeneSigScore (ICB_small_Riaz)
+Jul-12 17:01:24.470 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: GeneSigScore (ICB_small_Riaz); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/90/9233c5e356756159b37c0972c2eb91]
+Jul-12 17:01:24.472 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:01:24.519 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:01:24.629 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:01:24.630 [Task submitter] INFO  nextflow.Session - [d1/410784] Submitted process > GeneSig_AssociationPFS (ICB_small_Riaz)
+Jul-12 17:01:24.640 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:01:24.641 [Task submitter] INFO  nextflow.Session - [e0/625db9] Submitted process > GeneSig_AssociationResponse (ICB_small_Riaz)
+Jul-12 17:01:24.701 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:01:24.701 [Task submitter] INFO  nextflow.Session - [42/15fdc2] Submitted process > GeneSig_AssociationOS (ICB_small_Riaz)
+Jul-12 17:01:38.465 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: GeneSig_AssociationPFS (ICB_small_Riaz); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/d1/410784163938e0d90728ee84915bce]
+Jul-12 17:01:38.684 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: GeneSig_AssociationOS (ICB_small_Riaz); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/42/15fdc2ba37b57ab9bf83d6ff4ab54e]
+Jul-12 17:01:38.767 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: GeneSig_AssociationResponse (ICB_small_Riaz); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/e0/625db9c6863e4bae4cef47860bef28]
+Jul-12 17:01:38.771 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-12 17:01:38.867 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-12 17:01:38.868 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-12 17:01:38.871 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-12 17:01:38.872 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-12 17:01:38.878 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=4; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1m 2s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=3; peakCpus=3; peakMemory=0; ]
+Jul-12 17:01:38.967 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-12 17:01:38.987 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-12 17:01:38.987 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

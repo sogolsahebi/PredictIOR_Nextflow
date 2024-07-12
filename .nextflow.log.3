@@ -1,0 +1,90 @@
+Jul-12 17:16:32.604 [main] DEBUG nextflow.cli.Launcher - $> nextflow run meta_analysis.nf
+Jul-12 17:16:33.118 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.3
+Jul-12 17:16:33.219 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/gitpod/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2-patch1,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-12 17:16:33.310 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-12 17:16:33.312 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-12 17:16:33.316 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-12 17:16:33.331 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-12 17:16:33.425 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /workspace/PredictIOR_Nextflow/nextflow.config
+Jul-12 17:16:33.500 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /workspace/PredictIOR_Nextflow/nextflow.config
+Jul-12 17:16:33.614 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/gitpod/.nextflow/secrets/store.json
+Jul-12 17:16:33.618 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@616b241a] - activable => nextflow.secret.LocalSecretsProvider@616b241a
+Jul-12 17:16:33.626 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jul-12 17:16:35.824 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-12 17:16:35.921 [main] DEBUG nextflow.cli.CmdRun - Launching `meta_analysis.nf` [curious_mclean] DSL2 - revision: 467efde06d
+Jul-12 17:16:35.924 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-12 17:16:35.925 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-12 17:16:36.206 [main] DEBUG nextflow.Session - Session UUID: e7f2694d-36cf-47a1-a192-135cc13a5ac1
+Jul-12 17:16:36.206 [main] DEBUG nextflow.Session - Run name: curious_mclean
+Jul-12 17:16:36.207 [main] DEBUG nextflow.Session - Executor pool size: 16
+Jul-12 17:16:36.219 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-12 17:16:36.228 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:16:36.413 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.3 build 5916
+  Created: 09-07-2024 19:35 UTC 
+  System: Linux 6.1.91-060191-generic
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.23+9-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 721742@sogolsahebi-predictiorn-g4zh5pzzmjd [127.0.0.1]
+  CPUs: 16 - Mem: 62.8 GB (5.4 GB) - Swap: 375 GB (372.1 GB)
+Jul-12 17:16:36.514 [main] DEBUG nextflow.Session - Work-dir: /workspace/PredictIOR_Nextflow/work [xfs]
+Jul-12 17:16:36.515 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /workspace/PredictIOR_Nextflow/bin
+Jul-12 17:16:36.527 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-12 17:16:36.601 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-12 17:16:36.708 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-12 17:16:36.724 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+Jul-12 17:16:36.833 [main] DEBUG nextflow.Session - Session start
+Jul-12 17:16:39.522 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-12 17:16:39.609 [main] INFO  nextflow.Nextflow - 
+P R E D I C T I O - N F   P I P E L I N E (for Gene Level + Signature Level)
+========================================================================
+ICB Data Directory: ./ICB_data
+Output Directory  : ./output/meta_analysis_output
+Cancer Types      : ["Melanoma", "Pancreas", "Melanoma", "Bladder", "Melanoma", "Melanoma", "Kidney", "Melanoma"]
+Treatments        : ["PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "PD-1/PD-L1", "CTLA4", "IO+combo", "PD-1/PD-L1", "CTLA4"]
+Genenames         : CXCL9
+
+Jul-12 17:16:40.105 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:16:40.106 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:16:40.113 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-12 17:16:40.121 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=62.8 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+Jul-12 17:16:40.124 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-12 17:16:40.619 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:16:40.619 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:16:40.630 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:16:40.630 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:16:40.718 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-12 17:16:40.718 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-12 17:16:40.725 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: MetaAnalysis_Sig_PanCancer, MetaAnalysis_Gene_PerCancer, MetaAnalysis_Gene_PanCancer, MetaAnalysis_Sig_PerCancer
+Jul-12 17:16:40.726 [main] DEBUG nextflow.Session - Igniting dataflow network (4)
+Jul-12 17:16:40.800 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MetaAnalysis_Gene_PanCancer
+Jul-12 17:16:40.804 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MetaAnalysis_Gene_PerCancer
+Jul-12 17:16:40.805 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MetaAnalysis_Sig_PanCancer
+Jul-12 17:16:40.806 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MetaAnalysis_Sig_PerCancer
+Jul-12 17:16:40.808 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_5821601f6cc2b03f: /workspace/PredictIOR_Nextflow/meta_analysis.nf
+Jul-12 17:16:40.808 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-12 17:16:40.808 [main] DEBUG nextflow.Session - Session await
+Jul-12 17:16:42.107 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:16:42.111 [Task submitter] INFO  nextflow.Session - [f6/44df66] Submitted process > MetaAnalysis_Gene_PerCancer (CXCL9 using OS)
+Jul-12 17:16:42.124 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:16:42.125 [Task submitter] INFO  nextflow.Session - [4a/6b9ddd] Submitted process > MetaAnalysis_Gene_PanCancer (CXCL9 using PFS)
+Jul-12 17:16:42.204 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:16:42.205 [Task submitter] INFO  nextflow.Session - [a0/110232] Submitted process > MetaAnalysis_Sig_PanCancer (PFS)
+Jul-12 17:16:42.282 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-12 17:16:42.284 [Task submitter] INFO  nextflow.Session - [15/636e6f] Submitted process > MetaAnalysis_Sig_PerCancer (PFS)
+Jul-12 17:16:56.754 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: MetaAnalysis_Gene_PanCancer (CXCL9 using PFS); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/4a/6b9ddd601971d96e7c6cbe411847dc]
+Jul-12 17:16:56.756 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:16:56.807 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-12 17:16:57.371 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: MetaAnalysis_Gene_PerCancer (CXCL9 using OS); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/f6/44df662944a9b50530d1f530f9ce8b]
+Jul-12 17:16:57.454 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: MetaAnalysis_Sig_PerCancer (PFS); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/15/636e6fca98660013a1f8e7692aaed7]
+Jul-12 17:16:58.173 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: MetaAnalysis_Sig_PanCancer (PFS); status: COMPLETED; exit: 0; error: -; workDir: /workspace/PredictIOR_Nextflow/work/a0/110232d8230d28153bb4eb9d4e3e58]
+Jul-12 17:16:58.177 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-12 17:16:58.273 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-12 17:16:58.274 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-12 17:16:58.277 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-12 17:16:58.278 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-12 17:16:58.283 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=4; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1m 1s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=4; peakCpus=4; peakMemory=0; ]
+Jul-12 17:16:58.357 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-12 17:16:58.377 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-12 17:16:58.377 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
