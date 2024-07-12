@@ -32,29 +32,41 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 ### Gene Level Analysis
 - **Input Data Directory:**
   ```bash
-  params.signature_data_dir = './ICB_data'
+  params.gene_data_dir = './ICB_data'
   ```
 - **Example Data Files:** Includes files such as `ICB_small_Hugo.rda`, `ICB_small_Mariathasan.rda`, which are [SummarizedExperiment objects](https://bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html). These files are located within the `ICB_data` directory at the [bhklab PredictioR data repository](https://github.com/bhklab/PredictioR/tree/main/data).
 - **Output Data Directory:**
   ```bash
-  params.signature_out_dir = './output'
+  params.out_dir = './output/gene_level_output'
   ```
 
 ### Signature Level Analysis
 - **Input Data Directory:**
   ```bash
-  params.gene_data_dir = './SIG_data'
+  params.signature_data_dir = './SIG_data'
   ```
-- **Example Data Files:** Files like `CYT_Rooney.rda`, `EMT_Thompson.rda`, `PredictIO_Bareche.rda` are data frames with columns:
+- **Example Data Files:** Files like `CYT_Rooney.rda`, `EMT_Thompson.rda`, `PredictIO_Bareche.rda` are data frames with columns like:
   - `signature_name`: Name of the signature
   - `gene_name`: Name of the gene
   - `weight`: Weight assigned to each gene within the signature
-  - References: TODO
-    
-  These files are also sourced from the [bhklab SignatureSets GitHub repository](https://github.com/bhklab/SignatureSets).
+  
+  To see other columns, these files are also sourced from the [bhklab SignatureSets GitHub repository](https://github.com/bhklab/SignatureSets).
+  The `.rda` files are stored in the object `sig` as data frames. Please follow the same format for consistency.
+  
 - **Output Data Directory:**
   ```bash
-  params.gene_out_dir = './output'
+  params.out_dir = './output/signature_level_output'
+  ```
+
+### Meta Analysis
+- **Input Data Directory:** 
+  - This step aggregates the results from both gene-level and signature-level analyses.
+  - **Input Directories:** 
+    - Gene level output: `./output/gene_level_output`
+    - Signature level output: `./output/signature_level_output`
+- **Output Data Directory:**
+  ```bash
+  params.out_dir = './output/meta_analysis_output'
   ```
 
 ## Input Data Specifications
@@ -73,10 +85,34 @@ Ensure that clinical data is properly organized with all required and additional
 - **Additional Recommended Fields:**
   Include sex, age, histo (histological type), stage of cancer, dna, and rna details among others as necessary.
 
-## Execution Instructions
+Here is the revised section focused on the signature information CSV and the related columns:
+
+## Signature Information
+Here is the revised section with grammar corrections:
+
+## Signature Information
+For detailed information on the signatures, refer to the signature information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). Key columns in the CSV include:
+
+- `signature`
+- `method` used for signature score calculation
+- `score function`, specifying the function that should be used in the R script
+
+For other columns and additional information, you can refer to the [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw).
+
 Run the pipeline with the configured parameters using Nextflow:
 ```bash
-nextflow run signature_level_analysis.nf
 nextflow run gene_level_analysis.nf
+nextflow run signature_level_analysis.nf
+nextflow run meta_analysis.nf
 ```
+
+## Additional Notes
+- Ensure that all the necessary R packages and dependencies are installed as specified in the `load_libraries.R` script.
+- Customize the `nextflow.config` file to specify any additional parameters or configurations required for your specific analysis needs.
+
+
+
+
+
+
 
