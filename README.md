@@ -51,6 +51,8 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   - `weight`: Weight assigned to each gene within the signature
   
   To see other columns, these files are also sourced from the [bhklab SignatureSets GitHub repository](https://github.com/bhklab/SignatureSets).
+  The `.rda` files are stored in the object `sig` as data frames. Please follow the same format for consistency.
+  
 - **Output Data Directory:**
   ```bash
   params.out_dir = './output/signature_level_output'
