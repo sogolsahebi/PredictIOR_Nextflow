@@ -104,12 +104,4 @@ nextflow run meta_analysis.nf
 ```
 
 ## Additional Notes
-- Ensure that all the necessary R packages and dependencies are installed as specified in the `load_libraries.R` script.
-- Customize the `nextflow.config` file to specify any additional parameters or configurations required for your specific analysis needs.
-
-
-
-
-
-
-
+- necessary R packages and dependencies are installed as specified in the `load_libraries.R` script and it included in bhk docker as mendtioned aboce.
