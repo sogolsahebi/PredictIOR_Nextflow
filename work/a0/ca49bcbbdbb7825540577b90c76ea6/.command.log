@@ -1,0 +1,134 @@
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: metadat
+Loading 'meta' package (version 7.0-0).
+Type 'help(meta)' for a brief overview.
+Readers of 'Meta-Analysis with R (Use R!)' should install
+older version of 'meta' package: https://tinyurl.com/dt4y5drs
+[1] " res.all"
+     Outcome Gene            Study   Coef    SE  N        Pval Cancer_type
+HR10      OS   11 ICB_small_Padron  3.848 1.250 45 0.002082814    Pancreas
+HR17      OS   18 ICB_small_Padron -2.510 0.847 45 0.003061803    Pancreas
+HR3       OS    4 ICB_small_Padron -0.870 0.327 45 0.007740961    Pancreas
+HR4       OS    5 ICB_small_Padron -0.821 0.297 45 0.005712607    Pancreas
+HR8       OS    9 ICB_small_Padron  1.162 0.438 45 0.007987643    Pancreas
+HR        OS    1 ICB_small_Padron -0.975 0.390 45 0.012445510    Pancreas
+HR19      OS   20 ICB_small_Padron -0.813 0.332 45 0.014393754    Pancreas
+HR21      OS   22 ICB_small_Padron -0.938 0.379 45 0.013212740    Pancreas
+HR9       OS   10 ICB_small_Padron -1.036 0.432 45 0.016429612    Pancreas
+HR16      OS   17 ICB_small_Padron -1.733 0.763 45 0.023127307    Pancreas
+HR23      OS   24 ICB_small_Padron  1.293 0.574 45 0.024203323    Pancreas
+HR6       OS    7 ICB_small_Padron  0.865 0.444 45 0.051428736    Pancreas
+HR11      OS   12 ICB_small_Padron -0.334 0.178 45 0.061567755    Pancreas
+HR20      OS   21 ICB_small_Padron -0.639 0.345 45 0.063450611    Pancreas
+HR22      OS   23 ICB_small_Padron -0.754 0.397 45 0.057768759    Pancreas
+HR14      OS   15 ICB_small_Padron -1.693 0.954 45 0.075931809    Pancreas
+HR24      OS   25 ICB_small_Padron -0.679 0.460 45 0.140480075    Pancreas
+HR13      OS   14 ICB_small_Padron -0.284 0.220 45 0.197087338    Pancreas
+HR5       OS    6 ICB_small_Padron -0.711 0.647 45 0.271772956    Pancreas
+HR15      OS   16 ICB_small_Padron -0.582 0.705 45 0.408931543    Pancreas
+HR18      OS   19 ICB_small_Padron  0.233 0.361 45 0.519289700    Pancreas
+HR7       OS    8 ICB_small_Padron -0.080 0.228 45 0.726661229    Pancreas
+HR12      OS   13 ICB_small_Padron  0.433 2.150 45 0.840420434    Pancreas
+HR2       OS    3 ICB_small_Padron -0.028 0.346 45 0.934711166    Pancreas
+HR1       OS    2 ICB_small_Padron  0.007 0.437 45 0.987263309    Pancreas
+      Treatment        FDR
+HR10 PD-1/PD-L1 0.03827254
+HR17 PD-1/PD-L1 0.03827254
+HR3  PD-1/PD-L1 0.03993822
+HR4  PD-1/PD-L1 0.03993822
+HR8  PD-1/PD-L1 0.03993822
+HR   PD-1/PD-L1 0.04498048
+HR19 PD-1/PD-L1 0.04498048
+HR21 PD-1/PD-L1 0.04498048
+HR9  PD-1/PD-L1 0.04563781
+HR16 PD-1/PD-L1 0.05500755
+HR23 PD-1/PD-L1 0.05500755
+HR6  PD-1/PD-L1 0.10575102
+HR11 PD-1/PD-L1 0.10575102
+HR20 PD-1/PD-L1 0.10575102
+HR22 PD-1/PD-L1 0.10575102
+HR14 PD-1/PD-L1 0.11864345
+HR24 PD-1/PD-L1 0.20658834
+HR13 PD-1/PD-L1 0.27373241
+HR5  PD-1/PD-L1 0.35759600
+HR15 PD-1/PD-L1 0.51116443
+HR18 PD-1/PD-L1 0.61820202
+HR7  PD-1/PD-L1 0.82575140
+HR12 PD-1/PD-L1 0.91350047
+HR2  PD-1/PD-L1 0.97365746
+HR1  PD-1/PD-L1 0.98726331
+ [1] "Outcome"     "Gene"        "Study"       "Coef"        "SE"         
+ [6] "N"           "Pval"        "Cancer_type" "Treatment"   "FDR"        

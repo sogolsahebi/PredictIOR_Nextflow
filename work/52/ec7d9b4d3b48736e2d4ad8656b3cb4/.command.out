@@ -1,0 +1,104 @@
+[[1]]
+[1] "ICB_small_Hugo"
+
+[[2]]
+[1] "ICB_small_Liu"
+
+[[3]]
+[1] "ICB_small_Mariathasan"
+
+[[4]]
+[1] "ICB_small_Miao"
+
+[[5]]
+[1] "ICB_small_Nathanson"
+
+[[6]]
+[1] "ICB_small_Padron"
+
+[[7]]
+[1] "ICB_small_Riaz"
+
+[[8]]
+[1] "ICB_small_Van_Allen"
+
+[1] "res_meta_percancer"
+$Melanoma
+$Melanoma$input_data
+   Gene                          Study   N       Coef        SE         Pval
+5 CXCL9    ICB_small_Nathanson, n = 24  24 -0.5400840 0.2552747 0.0343705233
+8 CXCL9    ICB_small_Van_Allen, n = 42  42 -0.3980895 0.1813712 0.0281716349
+3 CXCL9 ICB_small_Mariathasan, n = 195 195 -0.3473888 0.0832178 0.0000298703
+6 CXCL9       ICB_small_Padron, n = 45  45 -0.1328303 0.1958716 0.4976768190
+1 CXCL9         ICB_small_Hugo, n = 26  26  0.1597286 0.3090491 0.6052684705
+  Cancer_type  Treatment
+5    Melanoma      CTLA4
+8    Melanoma      CTLA4
+3    Melanoma PD-1/PD-L1
+6    Melanoma   IO+combo
+1    Melanoma PD-1/PD-L1
+
+$Melanoma$meta_output
+Number of studies: k = 5
+
+                                         95%-CI     z  p-value
+Random effects model -0.3191 [-0.4493; -0.1889] -4.80 < 0.0001
+
+Quantifying heterogeneity:
+ tau^2 < 0.0001 [0.0000; 0.5370]; tau = 0.0019 [0.0000; 0.7328]
+ I^2 = 8.2% [0.0%; 80.9%]; H = 1.04 [1.00; 2.29]
+
+Test of heterogeneity:
+    Q d.f. p-value
+ 4.36    4  0.3595
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+
+$Melanoma$meta_summery
+  Cancer_type  Gene       Coef         SE   CI_lower   CI_upper        Pval
+1    Melanoma CXCL9 -0.3191304 0.06643137 -0.4493334 -0.1889273 1.55596e-06
+          I2    Q_Pval
+1 0.08246284 0.3595341
+
+
+$Other
+$Other$input_data
+   Gene                  Study  N        Coef        SE      Pval Cancer_type
+7 CXCL9 ICB_small_Riaz, n = 23 23 -0.20447966 0.2926305 0.4846995       Other
+2 CXCL9  ICB_small_Liu, n = 74 74 -0.09864513 0.1679199 0.5568992       Other
+4 CXCL9 ICB_small_Miao, n = 33 33 -0.07729599 0.2187351 0.7238058       Other
+   Treatment
+7 PD-1/PD-L1
+2 PD-1/PD-L1
+4 PD-1/PD-L1
+
+$Other$meta_output
+Number of studies: k = 3
+
+                                        95%-CI     z p-value
+Random effects model -0.1103 [-0.3479; 0.1274] -0.91  0.3631
+
+Quantifying heterogeneity:
+ tau^2 = 0 [0.0000; 0.1125]; tau = 0 [0.0000; 0.3354]
+ I^2 = 0.0% [0.0%; 89.6%]; H = 1.00 [1.00; 3.10]
+
+Test of heterogeneity:
+    Q d.f. p-value
+ 0.13    2  0.9365
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+
+$Other$meta_summery
+  Cancer_type  Gene      Coef        SE  CI_lower CI_upper      Pval I2
+1       Other CXCL9 -0.110251 0.1212293 -0.347856 0.127354 0.3631169  0
+     Q_Pval
+1 0.9365225
+
+
+[1] "list"

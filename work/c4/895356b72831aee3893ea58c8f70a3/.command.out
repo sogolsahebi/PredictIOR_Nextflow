@@ -1,0 +1,42 @@
+[[1]]
+[1] "ICB_small_Hugo"
+
+[[2]]
+[1] "ICB_small_Liu"
+
+[[3]]
+[1] "ICB_small_Mariathasan"
+
+[[4]]
+[1] "ICB_small_Miao"
+
+[[5]]
+[1] "ICB_small_Nathanson"
+
+[[6]]
+[1] "ICB_small_Padron"
+
+[[7]]
+[1] "ICB_small_Riaz"
+
+[[8]]
+[1] "ICB_small_Van_Allen"
+
+[1] "Loaded objects:"
+[1] "ICB_small_Hugo"        "ICB_small_Liu"         "ICB_small_Mariathasan"
+[4] "ICB_small_Miao"        "ICB_small_Nathanson"   "ICB_small_Padron"     
+[7] "ICB_small_Riaz"        "ICB_small_Van_Allen"  
+[1] "Cancer types:"
+[1] "Melanoma" "Pancreas" "Melanoma" "Bladder"  "Melanoma" "Melanoma" "Kidney"  
+[8] "Melanoma"
+[1] "Treatment types:"
+[1] "PD-1/PD-L1" "PD-1/PD-L1" "PD-1/PD-L1" "PD-1/PD-L1" "CTLA4"     
+[6] "IO+combo"   "PD-1/PD-L1" "CTLA4"     
+[1] "Processing dataset: ICB_small_Hugo"
+[1] "Processing dataset: ICB_small_Liu"
+[1] "Processing dataset: ICB_small_Mariathasan"
+[1] "Processing dataset: ICB_small_Miao"
+[1] "Processing dataset: ICB_small_Nathanson"
+[1] "Processing dataset: ICB_small_Padron"
+[1] "Processing dataset: ICB_small_Riaz"
+[1] "Processing dataset: ICB_small_Van_Allen"

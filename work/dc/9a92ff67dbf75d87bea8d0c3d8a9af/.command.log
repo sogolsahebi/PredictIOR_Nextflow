@@ -1,0 +1,199 @@
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: metadat
+Loading 'meta' package (version 7.0-0).
+Type 'help(meta)' for a brief overview.
+Readers of 'Meta-Analysis with R (Use R!)' should install
+older version of 'meta' package: https://tinyurl.com/dt4y5drs
+[1] "Reading signature information..."
+[1] "Signature information loaded:"
+          signature DNA...RNA association             RNA.type method
+1       ADO_Sidders       RNA  resistance Count RNA-seq or TPM   GSVA
+2      APM_Thompson       RNA   sensitive              log CPM   GSVA
+3          APM_Wang       RNA   sensitive           microarray   GSVA
+4    Bcell_Budczies       RNA   sensitive           microarray   GSVA
+5     Bcell_Helmink       RNA   sensitive            log FPKM    GSVA
+6 Blood_Friedlander       RNA   sensitive           microarray   GSVA
+          cancer.type score.function     PMID cuarted
+1            multiple    geneSigGSVA 31953314     YES
+2   lung and melanoma    geneSigGSVA 33028693     YES
+3            multiple    geneSigGSVA 31767055     YES
+4                lung    geneSigGSVA 33520406     YES
+5 melanoma and kidney    geneSigGSVA 31942075     YES
+6            melanoma    geneSigGSVA 28807052     YES
+                                                                                                                                                                                        information
+1 Gene expression signature capturing the adenosine (ADO) pathway activity. This adenosine signature was significantly associated with reduced efficacy of anti-PD1 therapy in published cohorts.\n
+2 Gene expression signature capturing the antigen processing and presentation machinery (APM). This signature was predictor of response of ICB in non-small cell lung cancer and melanoma patients.
+3                                                                                                      Gene expression signature capturing the antigen processing and presentation machinery (APM).
+4                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of PD-(L)1 blockade in lung cancer patients.
+5                                                      Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response of ICB in published cohorts.
+6                                         Gene expression signature, derieved from whole-blood RNA-Sequencing, capturing the expression level of genes associated with response to CTLA-4 blockade.
+  immunotherapy gitHub.status         Signature
+1           Yes        Shared       ADO_Sidders
+2           Yes        Shared      APM_Thompson
+3            No        Shared          APM_Wang
+4           Yes        Shared    Bcell_Budczies
+5           Yes        Shared     Bcell_Helmink
+6           Yes        Shared Blood_Friedlander
+[1] "Number of rows in signature data frame: 55"
+[1] "Structure of signature data frame:"
+'data.frame':	55 obs. of  13 variables:
+ $ signature     : chr  "ADO_Sidders" "APM_Thompson" "APM_Wang" "Bcell_Budczies" ...
+ $ DNA...RNA     : chr  "RNA" "RNA" "RNA" "RNA" ...
+ $ association   : chr  "resistance" "sensitive" "sensitive" "sensitive" ...
+ $ RNA.type      : chr  "Count RNA-seq or TPM" "log CPM" "microarray" "microarray" ...
+ $ method        : chr  "GSVA" "GSVA" "GSVA" "GSVA" ...
+ $ cancer.type   : chr  "multiple" "lung and melanoma" "multiple" "lung" ...
+ $ score.function: chr  "geneSigGSVA" "geneSigGSVA" "geneSigGSVA" "geneSigGSVA" ...
+ $ PMID          : chr  "31953314" "33028693" "31767055" "33520406" ...
+ $ cuarted       : chr  "YES" "YES" "YES" "YES" ...
+ $ information   : chr  "Gene expression signature capturing the adenosine (ADO) pathway activity. This adenosine signature was signific"| __truncated__ "Gene expression signature capturing the antigen processing and presentation machinery (APM). This signature was"| __truncated__ "Gene expression signature capturing the antigen processing and presentation machinery (APM)." "Gene expression signature capturing the B-cells activity. This B_cell signature was a predictor of the response"| __truncated__ ...
+ $ immunotherapy : chr  "Yes" "Yes" "No" "Yes" ...
+ $ gitHub.status : chr  "Shared" "Shared" "Shared" "Shared" ...
+ $ Signature     : chr  "ADO_Sidders" "APM_Thompson" "APM_Wang" "Bcell_Budczies" ...
+[1] "Processing signature: ADO_Sidders"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: APM_Thompson"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: APM_Wang"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: Bcell_Budczies"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: Bcell_Helmink"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: Blood_Friedlander"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: C-ECM_Chakravarthy"
+[1] "Using method: ssGSEA"
+not enough samples and/or genes in a data
+[1] "Error in ssGSEA for C-ECM_Chakravarthy : object 'geneSig' not found"
+[1] "Processing signature: CCL5-CXCL9_Dangaj"
+[1] "Using method: GSVA"
+[1] "Processing signature: CD39-CD8Tcell_Chow"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: CD8_Sade-Feldman"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: Chemokine_Messina"
+[1] "Using method: GSVA"
+[1] "Processing signature: CIN25_Carter"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: CIN70_Carter"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: COX-IS_Bonavita"
+[1] "Using method: Specific Algorithm"
+[1] "Error in Specific Algorithm for COX-IS_Bonavita : $ operator is invalid for atomic vectors"
+[1] "Processing signature: CRMA_Shukla"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: CYT_Davoli"
+[1] "Using method: GSVA"
+[1] "Processing signature: CYT_Rooney"
+[1] "Using method: GSVA"
+[1] "Processing signature: EMT_Thompson"
+[1] "Using method: Weighted Mean"
+[1] "Processing signature: EMTstroma_Wang"
+[1] "Using method: GSVA"
+[1] "Processing signature: IFN_Ayers"
+[1] "Using method: Weighted Mean"
+[1] "Processing signature: ImmuneCells_Xiong"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: ImmuneScore_Roh"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: ImmunoScore_Hao"
+[1] "Using method: GSVA"
+not enough samples and/or genes in a data
+[1] "Processing signature: IMPRES_Auslander"
+[1] "Using method: Weighted Mean"
+not enough samples and/or genes in a data
+[1] "Processing signature: IMS_Cui"
+[1] "Using method: GSVA"
+[1] "Processing signature: Inflammatory_Thompson"
+[1] "Using method: GSVA"
+Error in computeGeneSignature(method, sig_name, sig) : 
+  Error: sig is not a dataframe for signature IPRES_Hugo
+Calls: lapply -> lapply -> FUN -> computeGeneSignature
+Execution halted

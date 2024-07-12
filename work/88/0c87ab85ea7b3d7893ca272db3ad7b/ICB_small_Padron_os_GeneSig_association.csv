@@ -1,0 +1,4 @@
+"","Outcome","Gene","Study","Coef","SE","N","Pval","Cancer_type","Treatment","FDR"
+"HR","OS","1","ICB_small_Padron",3.848,1.25,45,0.00208281443415552,"Pancreas","PD-1/PD-L1",0.00459270426923411
+"HR2","OS","3","ICB_small_Padron",-2.51,0.847,45,0.00306180284615607,"Pancreas","PD-1/PD-L1",0.00459270426923411
+"HR1","OS","2","ICB_small_Padron",0.433,2.15,45,0.840420433929179,"Pancreas","PD-1/PD-L1",0.840420433929179
