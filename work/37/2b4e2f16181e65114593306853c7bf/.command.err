@@ -1,4 +1,0 @@
-Error in geneSurvCont(dat.icb = list_rda[[k]], time.censor = 36, missing.perc = 0.5,  : 
-  could not find function "geneSurvCont"
-Calls: lapply -> FUN
-Execution halted

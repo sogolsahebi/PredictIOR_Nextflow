@@ -1,2 +1,0 @@
-.command.run: line 85: 213753 Hangup                  ( set -o pipefail; ( nxf_launch | tee .command.out ) 3>&1 1>&2 2>&3 | tee .command.err )
-nxf-Ui4NvFKezW8DFtZdNSvuSGZm

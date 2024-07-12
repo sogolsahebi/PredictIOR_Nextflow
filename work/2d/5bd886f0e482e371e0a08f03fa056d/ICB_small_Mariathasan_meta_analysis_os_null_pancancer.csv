@@ -1,9 +1,0 @@
-"input_data.Gene","input_data.Study","input_data.N","input_data.Coef","input_data.SE","input_data.Pval","input_data.Cancer_type","input_data.Treatment","meta_output.studlab","meta_output.TE","meta_output.seTE","meta_output.statistic","meta_output.pval","meta_output.df","meta_output.lower","meta_output.upper","meta_output.w.common","meta_output.w.random","meta_output.zval","meta_output.w.fixed","meta_summery.Gene","meta_summery.Coef","meta_summery.SE","meta_summery.CI_lower","meta_summery.CI_upper","meta_summery.Pval","meta_summery.I2","meta_summery.Q_Pval"
-"null","ICB_Liu",NA,NA,NA,NA,NA,NA,"ICB_Liu",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Padron",NA,NA,NA,NA,NA,NA,"ICB_Padron",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Hugo",NA,NA,NA,NA,NA,NA,"ICB_Hugo",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Mariathasan",NA,NA,NA,NA,NA,NA,"ICB_Mariathasan",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Nathanson",NA,NA,NA,NA,NA,NA,"ICB_Nathanson",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Riaz",NA,NA,NA,NA,NA,NA,"ICB_Riaz",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Miao",NA,NA,NA,NA,NA,NA,"ICB_Miao",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA
-"null","ICB_Van_Allen",NA,NA,NA,NA,NA,NA,"ICB_Van_Allen",NA,NA,NA,NA,NA,NA,NA,0,0,NA,0,"null",NA,NA,NA,NA,NA,NA,NA

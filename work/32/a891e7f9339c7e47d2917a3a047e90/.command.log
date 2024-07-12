@@ -1,5 +1,0 @@
-function requires SummarizedExperiment, MultiAssayExperiment, data.frame, or matrix class of data
-Error in geneSurvCont(dat.icb = list_rda[[k]], time.censor = 36, missing.perc = 0.5,  : 
-  
-Calls: lapply -> FUN -> geneSurvCont
-Execution halted
