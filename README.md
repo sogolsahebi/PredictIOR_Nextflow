@@ -73,7 +73,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 
   This table summarizes each dataset by study and treatment type, along with cancer types, clinical and molecular data availability, and relevant PMID 
   references. Required columns include 'treatment' and 'cancer type'.
-  
+    
   | Dataset                | Patients [#] | Cancer type | Treatment                   | Clinical endpoints | Molecular data | PMID      |
   |------------------------|--------------|-------------|-----------------------------|--------------------|----------------|-----------|
   | ICB_small_Hugo         | 27           | Melanoma    | PD-1/PD-L1                  | OS                 | RNA            | 26997480  |
@@ -84,6 +84,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   | ICB_small_Riaz         | 46           | Melanoma    | PD-1/PD-L1                  | OS                 | RNA/DNA        | 29033130  |
   | ICB_small_Van_Allen    | 42           | Melanoma    | CTLA4                       | PFS/OS             | RNA/DNA        | 26359337  |
   | ICB_small_Mariathasan  | 195          | Bladder     | PD-1/PD-L1                  | OS                 | RNA/DNA        | 29443960  |
+
   
   
   Ensure that clinical data is properly organized with all required and additional fields to ensure the integrity of the analysis.
