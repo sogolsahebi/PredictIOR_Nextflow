@@ -83,7 +83,20 @@ Ensure that clinical data is properly organized with all required and additional
 - **Additional Recommended Fields:**
   Include sex, age, histo (histological type), stage of cancer, dna, and rna details among others as necessary.
 
-## Execution Instructions
+Here is the revised section focused on the signature information CSV and the related columns:
+
+## Signature Information
+Here is the revised section with grammar corrections:
+
+## Signature Information
+For detailed information on the signatures, refer to the signature information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). Key columns in the CSV include:
+
+- `signature`
+- `method` used for signature score calculation
+- `score function`, specifying the function that should be used in the R script
+
+For other columns and additional information, you can refer to the [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw).
+
 Run the pipeline with the configured parameters using Nextflow:
 ```bash
 nextflow run gene_level_analysis.nf
