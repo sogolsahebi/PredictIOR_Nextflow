@@ -264,24 +264,24 @@ process GeneAssociationResponse {
     source('/R/load_libraries.R')
 
     load("${icb_rda_path}")
-    geneSig.score <- read.csv("${genescore_path}")
+    geneSig.score <- read.csv("${genescore_path}", row.names = 1)
 
     res.logreg <- lapply(1:nrow(geneSig.score), function(k){
-    sig_name <- rownames(geneSig.score)[k]
-    geneSig_vector <- as.numeric(geneSig.score[k, ])
-    geneSig_vector <- geneSig_vector[!is.na(geneSig_vector)]
+        sig_name <- rownames(geneSig.score)[k]
+        geneSig_vector <- as.numeric(geneSig.score[k, ])
+        geneSig_vector <- geneSig_vector[!is.na(geneSig_vector)]
 
-    res <- geneSigLogReg(dat.icb = ${params.study_id},
-                        geneSig = geneSig_vector,
-                        n.cutoff = 10,
-                        study =  "${params.study_id}",
-                        sig.name = sig_name,
-                        n0.cutoff = 3, 
-                        n1.cutoff = 3,
-                        cancer.type = "${params.cancer_type}",
-                        treatment = "${params.treatment}")
-    
-    res
+        res <- geneSigLogReg(dat.icb = ${params.study_id},
+                            geneSig = geneSig_vector,
+                            n.cutoff = 10,
+                            study =  "${params.study_id}",
+                            sig.name = sig_name,
+                            n0.cutoff = 3, 
+                            n1.cutoff = 3,
+                            cancer.type = "${params.cancer_type}",
+                            treatment = "${params.treatment}")
+        
+        res
     })
 
     res.logreg <- do.call(rbind, res.logreg)
@@ -292,6 +292,7 @@ process GeneAssociationResponse {
 }
 
 
+
 workflow {
 
 /*
@@ -299,7 +300,7 @@ workflow {
  Signature Score Computation 
 ========================================================
 */ 
-   
+
 // set input files
 icb_rda_path = file("${params.icb_data_dir}/${params.study_id}.rda")
 all_sigs = file(params.sig_data_dir)
@@ -307,10 +308,7 @@ sigs_info_path = file("${params.sig_summery_dir}/signature_information.csv")
 
 gene_sigscore_result = GeneSigScore(sigs_info_path, all_sigs , icb_rda_path)
 
-/*
- Signature Association : OS, PFS and Response(R vs NR)
- 
-*/
+
 /*
 ========================================================
  Signature Score Computation 

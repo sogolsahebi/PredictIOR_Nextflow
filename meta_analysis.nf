@@ -215,7 +215,6 @@ process MetaAnalysis_Sig_PanCancer {
 
     output:
     path "Meta_analysis_Sig_${io_outcome}_pancancer.csv"
-    path "meta_pan_${io_outcome}.RData"
 
     script:
     """
@@ -269,7 +268,6 @@ process MetaAnalysis_Sig_PanCancer {
 
     # Save the results to a CSV file
     write.csv(AllGeneSig_meta, file = "Meta_analysis_Sig_${io_outcome}_pancancer.csv", row.names = FALSE)
-    save(AllGeneSig_meta, file = "meta_pan_${io_outcome}.RData")
     """
 }
 
@@ -293,7 +291,6 @@ process MetaAnalysis_Sig_PerCancer {
 
     output:
     path "Meta_analysis_Sig_${io_outcome}_percancer.csv"
-    path "meta_per_${io_outcome}.RData"
 
     script:
     """
@@ -372,7 +369,6 @@ process MetaAnalysis_Sig_PerCancer {
 
     # Save the results to a CSV file
     write.csv(AllGeneSig_meta, file = "Meta_analysis_Sig_${io_outcome}_percancer.csv", row.names = FALSE)
-    save(AllGeneSig_meta, file = "meta_per_${io_outcome}.RData")
     """
 }
 
