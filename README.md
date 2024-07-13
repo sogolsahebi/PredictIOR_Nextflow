@@ -125,6 +125,7 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   - `signature`: Name of the signature, same names located in './SIG_data'
   - `method`: Used for signature score calculation
   - `score function`: Specifying the function that should be used in the R script
+    
   For detailed information on the signatures used in the pipeline, refer to the signature(there are more than 50) information CSV available at: [Signature Information CSV](https://github.com/bhklab/SignatureSets/tree/main/data-raw). 
 
 ## Running the Pipeline
