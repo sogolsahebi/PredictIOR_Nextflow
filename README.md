@@ -3,6 +3,11 @@
 ## Overview
 The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses and identify biomarkers across various cancers. It utilizes Nextflow for workflow management and Docker for reproducibility, focusing on handling SummarizedExperiment objects for in-depth biomarker analysis.
 
+The `main.nf` script integrates three key analysis steps:
+1. **Gene Level Analysis**
+2. **Signature Level Analysis**
+3. **Meta Analysis**
+
 ## Software Requirements and Installation Instructions
 
 ### Nextflow
