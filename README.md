@@ -34,10 +34,11 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   params.gene_data_dir = './ICB_data'
   ```
 - **Example Data Files:** Includes files such as `ICB_small_Hugo.rda`, `ICB_small_Mariathasan.rda`, which are [SummarizedExperiment objects](https://bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html). These files are located within the `ICB_data` directory at the [bhklab PredictioR data repository](https://github.com/bhklab/PredictioR/tree/main/data).
-- **Output Data Directory:**
+  - **Output Data Directory:**
   ```bash
-  params.out_dir = './output/gene_level_output'
+  params.out_dir = './output/main_output'
   ```
+- **Output Details:** The results of the Gene Level Analysis are stored in the `main_output` directory, stratified by their study ID for clarity and ease of reference.
 
 ### Signature Level Analysis
 - **Input Data Directory:**
@@ -54,18 +55,19 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
   
 - **Output Data Directory:**
   ```bash
-  params.out_dir = './output/signature_level_output'
+  params.out_dir = './output/main_output'
   ```
+- **Output Details:** The results of the Signature Level Analysis are stored in the `main_output` directory, stratified by their study ID for clarity and ease of reference.
 
 ### Meta Analysis
 - **Input Data Directory:** 
-  - This step aggregates the directories from both gene-level and signature-level analyses.
+  - The meta-analysis step uses the results from both gene-level and signature-level analyses.
   - **Input Directories:** 
-    - Gene level : `./ICB_data`
-    - Signature level : `./output/signature_level_output`
+    - Gene level: `./output/main_output`
+    - Signature level: `./output/main_output`
 - **Output Data Directory:**
   ```bash
-  params.out_dir = './output/meta_analysis_output'
+  params.out_dir = './output/main_output'
   ```
 
 ### Input Data Specifications
@@ -130,10 +132,10 @@ The PredictioR Nextflow pipeline is designed to analyze immunotherapy responses 
 
 ## Running the Pipeline
 Run the pipeline with the configured parameters using Nextflow:
+
 ```bash
-nextflow run gene_level_analysis.nf
-nextflow run signature_level_analysis.nf
-nextflow run meta_analysis.nf
+nextflow run main.nf
+```
 ```
 
 ## Additional Notes
