@@ -141,7 +141,7 @@ Run the pipeline with the configured parameters using Nextflow:
 ```bash
 nextflow run main.nf
 ```
-```
+
 
 ## Additional Notes
 - Necessary R packages and dependencies are installed as specified in `load_libraries.R` and included in the BHK Docker.
